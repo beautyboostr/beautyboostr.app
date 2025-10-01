@@ -180,9 +180,10 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         ingredient_name_lower = item['name'].lower()
         data = ingredients_dict.get(ingredient_name_lower, {})
         functions = []
-        if data.get('behaviors'):
+        if data and isinstance(data.get('behaviors'), list):
             for behavior in data['behaviors']:
-                functions.extend(behavior.get('functions', []))
+                if isinstance(behavior, dict) and behavior.get('functions'):
+                    functions.extend(behavior.get('functions', []))
         
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
         is_positive = any(pf in funcs for pf in positive_functions for funcs in functions)
@@ -200,10 +201,15 @@ def identify_product_role(analyzed_ingredients, function_rules):
     best_match, highest_score = "Unknown", 0
 
     for role, rules in function_rules.items():
+        # --- THIS IS THE FIX ---
+        # Skip any entry that isn't a dictionary of rules (like the 'description' field)
+        if not isinstance(rules, dict):
+            continue
+        # --- END OF FIX ---
+            
         score = 0
         must_haves = rules.get('must_have_functions', [])
-        # Ensure 'rules' is a dictionary before calling .get()
-        if isinstance(rules, dict) and all(f in product_functions for f in must_haves):
+        if all(f in product_functions for f in must_haves):
             score += len(must_haves)
             if score > highest_score:
                 highest_score, best_match = score, role
