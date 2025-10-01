@@ -1,8 +1,8 @@
-﻿{
+{
   "description": "Maps a product's analyzed ingredient functions to a standardized product role from the routines.json file. This is a complete list covering all functions in the routines.",
   "Anti-aging Mask or Oil": {
     "must_have_functions": ["Anti-aging"],
-    "good_to_have_functions": ["Humectant", "Occlusive"],
+    "good_to_have_functions": ["Humectant", "Occlusive", "Emollient"],
     "incompatible_functions": []
   },
   "Anti-aging Moisturizer": {
@@ -111,6 +111,11 @@
     "must_have_functions": ["Humectant"],
     "notes": "Should contain at least one primary humectant like Hyaluronic Acid or Glycerin in the top ingredients.",
     "incompatible_functions": []
+  },
+  "Toner": {
+    "must_have_functions": ["Humectant"],
+    "good_to_have_functions": [],
+    "incompatible_functions": ["Occlusive", "Abrasive"]
   },
   "Hydrating Toner": {
     "must_have_functions": ["Humectant"],
