@@ -1,0 +1,110 @@
+{
+  "description": "A complete lookup table mapping every specific product function from routines.json to a general product composition profile for percentage analysis.",
+  "Hydrating Cream Cleanser": {
+    "base_solvent_range": [60, 75], "oil_emollient_range": [10, 20], "humectant_range": [5, 10], "surfactant_range": [5, 10], "notes": "Gentle cleanser with higher emollient content for dry/sensitive skin."
+  },
+  "Gentle Foaming Cleanser": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [0, 5], "humectant_range": [5, 15], "surfactant_range": [5, 20], "notes": "Water-based with significant surfactants for normal to oily skin."
+  },
+  "Oil-based Cleanser": {
+    "base_solvent_range": [0, 10], "oil_emollient_range": [70, 95], "humectant_range": [0, 5], "surfactant_range": [5, 15], "notes": "Primarily oils and emulsifiers to dissolve makeup and sebum."
+  },
+  "Gentle Foaming or Clarifying Cleanser": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [0, 5], "humectant_range": [5, 15], "surfactant_range": [5, 20], "notes": "Profiled as a foaming cleanser. The 'clarifying' aspect relates to actives, not the base."
+  },
+  "Gentle Foaming or Enzyme Cleanser": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [0, 5], "humectant_range": [5, 15], "surfactant_range": [5, 20], "notes": "Profiled as a foaming cleanser. The 'enzyme' aspect relates to actives, not the base."
+  },
+  "Hydrating Toner": {
+    "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
+  },
+  "Soothing Toner": {
+    "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
+  },
+  "Hydrating or Clarifying Toner": {
+    "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
+  },
+  "Soothing or Gentle Exfoliating Toner": {
+    "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
+  },
+  "Hydrating Essence": {
+    "base_solvent_range": [80, 90], "oil_emollient_range": [1, 7], "humectant_range": [5, 15], "surfactant_range": [0, 1], "notes": "Slightly more viscous than a toner, with a higher concentration of humectants and actives."
+  },
+  "Brightening Essence": {
+    "base_solvent_range": [80, 90], "oil_emollient_range": [1, 7], "humectant_range": [5, 15], "surfactant_range": [0, 1], "notes": "Slightly more viscous than a toner, with a higher concentration of humectants and actives."
+  },
+  "Barrier Support Essence": {
+    "base_solvent_range": [80, 90], "oil_emollient_range": [1, 7], "humectant_range": [5, 15], "surfactant_range": [0, 1], "notes": "Slightly more viscous than a toner, with a higher concentration of humectants and actives."
+  },
+  "Calming Essence": {
+    "base_solvent_range": [80, 90], "oil_emollient_range": [1, 7], "humectant_range": [5, 15], "surfactant_range": [0, 1], "notes": "Slightly more viscous than a toner, with a higher concentration of humectants and actives."
+  },
+  "Hydrating Essence or Weekly Exfoliant": {
+    "base_solvent_range": [80, 90], "oil_emollient_range": [1, 7], "humectant_range": [5, 15], "surfactant_range": [0, 1], "notes": "Primary profile is an essence. The 'exfoliant' part refers to the active ingredients."
+  },
+  "Hydrating Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General profile for most water-based serums."
+  },
+  "Anti-aging Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General profile for most water-based serums."
+  },
+  "Pigmentation Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General profile for most water-based serums."
+  },
+  "Barrier Repair Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General serum profile, may contain slightly more lipids."
+  },
+  "Refining Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General profile for most water-based serums."
+  },
+  "pH-Balancing Serum": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 12], "humectant_range": [5, 15], "surfactant_range": [0, 2], "notes": "General profile for most water-based serums."
+  },
+  "Lightweight Moisturizer": {
+    "base_solvent_range": [65, 80], "oil_emollient_range": [10, 20], "humectant_range": [5, 10], "surfactant_range": [1, 3], "notes": "For lotions and light creams, higher water content."
+  },
+  "Barrier Repair Moisturizer": {
+    "base_solvent_range": [50, 70], "oil_emollient_range": [20, 40], "humectant_range": [5, 15], "surfactant_range": [1, 4], "notes": "For rich creams, higher oil and occlusive content."
+  },
+  "Anti-aging Moisturizer": {
+    "base_solvent_range": [50, 70], "oil_emollient_range": [20, 40], "humectant_range": [5, 15], "surfactant_range": [1, 4], "notes": "For rich creams, higher oil and occlusive content."
+  },
+  "Lightweight Barrier Repair Moisturizer": {
+    "base_solvent_range": [65, 80], "oil_emollient_range": [10, 20], "humectant_range": [5, 10], "surfactant_range": [1, 3], "notes": "For lotions and light creams, higher water content."
+  },
+  "Hydrating Mask or Oil": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 10], "humectant_range": [10, 20], "notes": "Profiled as a wash-off mask. Algorithm should check for Face Oil profile if oil content is >90%."
+  },
+  "Anti-aging Mask or Oil": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 10], "humectant_range": [10, 20], "notes": "Profiled as a wash-off mask. Algorithm should check for Face Oil profile if oil content is >90%."
+  },
+  "Soothing Mask or Oil": {
+    "base_solvent_range": [70, 85], "oil_emollient_range": [2, 10], "humectant_range": [10, 20], "notes": "Profiled as a wash-off mask. Algorithm should check for Face Oil profile if oil content is >90%."
+  },
+  "Clay Mask": {
+    "base_solvent_range": [40, 60], "oil_emollient_range": [1, 10], "humectant_range": [5, 15], "absorbent_range": [20, 50], "notes": "Base is a mix of water/glycerin and absorbent powders."
+  },
+  "Face Oil": {
+    "base_solvent_range": [0, 5], "oil_emollient_range": [95, 100], "humectant_range": [0, 1], "surfactant_range": [0, 0], "notes": "Almost entirely composed of oils."
+  },
+  "Eye Cream": {
+    "base_solvent_range": [60, 75], "oil_emollient_range": [15, 25], "humectant_range": [5, 10], "surfactant_range": [1, 3], "notes": "A rich emulsion formulated for the delicate eye area."
+  },
+  "SPF 30+": {
+    "base_solvent_range": [50, 70], "oil_emollient_range": [10, 25], "uv_filter_range": [7, 30], "humectant_range": [2, 10], "notes": "Cream/lotion chassis with a significant percentage of UV filters."
+  },
+  "Lip Balm": {
+    "base_solvent_range": [0, 10], "oil_emollient_range": [80, 95], "humectant_range": [0, 5], "surfactant_range": [0, 0], "notes": "Almost entirely composed of waxes, oils, and butters."
+  },
+  "Hydrating Mist": {
+    "base_solvent_range": [90, 98], "oil_emollient_range": [0, 2], "humectant_range": [1, 5], "surfactant_range": [0, 1], "notes": "Extremely high water content."
+  },
+  "Soothing Mist": {
+    "base_solvent_range": [90, 98], "oil_emollient_range": [0, 2], "humectant_range": [1, 5], "surfactant_range": [0, 1], "notes": "Extremely high water content."
+  },
+  "Oil Control Mist": {
+    "base_solvent_range": [90, 98], "oil_emollient_range": [0, 2], "humectant_range": [1, 5], "surfactant_range": [0, 1], "notes": "Extremely high water content."
+  }
+}
+
+
