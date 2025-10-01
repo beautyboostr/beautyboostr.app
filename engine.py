@@ -55,7 +55,7 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
             st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
             return None, None, None
             
-        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], ALL_DATA["ingredients"])
+        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"])
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
         product_role = identify_product_role(analyzed_ingredients, ALL_DATA["product_functions"])
         
@@ -75,7 +75,6 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
 # --- STAGE 1 FUNCTIONS (CORRECTED) ---
 def get_product_profile(product_name, profiles_data):
     name_lower = product_name.lower()
-    
     keyword_map = {
         "oil cleanser": "Cleanser (Oil-based)", "cleansing oil": "Cleanser (Oil-based)", "cleansing balm": "Cleanser (Oil-based)",
         "cream cleanser": "Cleanser (Cream)", "milk cleanser": "Cleanser (Cream)",
@@ -88,58 +87,85 @@ def get_product_profile(product_name, profiles_data):
         "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Mist",
         "cleanser": "Cleanser (Foaming)", "cream": "Moisturizer (Rich)", "moisturizer": "Moisturizer (Lightweight)"
     }
-
     for keyword, profile_key in keyword_map.items():
         if keyword in name_lower:
             profile = profiles_data.get(profile_key)
             if profile:
                 st.write(f"**[DEBUG] Stage 1: Product Profile Identified.** Keyword: `{keyword}`. Profile: **{profile_key}**")
                 return profile
-    
     st.warning("Could not automatically determine product type from the name. Using 'Serum' as a default profile.")
     default_profile = profiles_data.get("Serum")
     if not default_profile:
         st.error("CRITICAL ERROR: The default 'Serum' profile is missing from product_profiles.json!")
-        return None 
+        return None
     return default_profile
 
-def estimate_percentages(inci_list, profile, markers, ingredients_data):
+def estimate_percentages(inci_list, profile, markers):
     if not profile:
         raise ValueError("Cannot estimate percentages without a valid product profile.")
 
     percentages = {name: 0.0 for name in inci_list}
     
+    # 1. Find the true base solvent (Water/Aqua/Eau)
+    base_solvent_name = None
+    water_aliases = ["water/aqua/eau", "aqua", "water"]
+    for alias in water_aliases:
+        if alias in inci_list:
+            base_solvent_name = alias
+            break
+    
+    # Anchor the base solvent percentage, regardless of its position
+    if base_solvent_name:
+        base_percentage = sum(profile.get("base_solvent_range", [70, 85])) / 2.0
+        percentages[base_solvent_name] = base_percentage
+    else:
+        # If no water is found (e.g., an oil), distribute 100% among all ingredients
+        base_percentage = 0
+
+    # 2. Find the 1% Line
     one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
     if one_percent_line_index == -1:
-        one_percent_line_index = int(len(inci_list) * 0.5)
+        one_percent_line_index = int(len(inci_list) * 0.5)  # Fallback guess
 
+    # 3. Anchor sub-1% ingredients
     current_perc = 1.0
-    for i in range(one_percent_line_index, len(inci_list)):
-        percentages[inci_list[i]] = current_perc
+    sub_one_ingredients = [ing for ing in inci_list[one_percent_line_index:] if percentages[ing] == 0.0]
+    for ing in sub_one_ingredients:
+        percentages[ing] = current_perc
         current_perc = max(0.01, current_perc * 0.85)
 
-    base_solvent = inci_list[0]
-    percentages[base_solvent] = sum(profile.get("base_solvent_range", [70, 85])) / 2.0
-
+    # 4. Distribute the remaining percentage among the 'middle' ingredients
     allocated_sum = sum(percentages.values())
     remaining_to_distribute = 100.0 - allocated_sum
-    unallocated_ingredients = [ing for ing in inci_list[1:one_percent_line_index] if percentages[ing] == 0.0]
+    
+    # Identify ingredients between the start and the 1% line that are not yet allocated
+    unallocated_ingredients = [ing for ing in inci_list[:one_percent_line_index] if percentages[ing] == 0.0]
 
     if unallocated_ingredients and remaining_to_distribute > 0:
-        weights = list(reversed(range(1, len(unallocated_ingredients) + 1)))
-        total_weight = sum(weights)
+        # Simple distribution for MVP: divide equally then apply descending weight
+        # This is a heuristic and can be improved, but it's more robust than the previous version
+        num_unallocated = len(unallocated_ingredients)
+        base_share = remaining_to_distribute / num_unallocated
+        
+        # Apply a simple descending weight to respect the order
         for i, ingredient in enumerate(unallocated_ingredients):
-            percentages[ingredient] = (weights[i] / total_weight) * remaining_to_distribute
+             # A simple linear decay, can be made more sophisticated
+            decay_factor = (num_unallocated - i) / num_unallocated
+            percentages[ingredient] = base_share * (1 + decay_factor)
 
+
+    # 5. Normalize to 100%
     current_total = sum(percentages.values())
     if current_total > 0:
         factor = 100.0 / current_total
         for ing in percentages:
             percentages[ing] *= factor
     
-    top_3_debug_msg = ", ".join([f'{name} ({perc:.2f}%)' for name, perc in list(percentages.items())[:3]])
+    sorted_percentages = sorted(percentages.items(), key=lambda item: item[1], reverse=True)
+    top_3_debug_msg = ", ".join([f'{name} ({perc:.2f}%)' for name, perc in sorted_percentages[:3]])
     st.write(f"**[DEBUG] Stage 2: Percentages Estimated.** Top 3: `{top_3_debug_msg}`")
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
+
 
 def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data):
     ingredients_dict = {item['inci_name'].lower(): item for item in ingredients_data}
@@ -249,8 +275,14 @@ def find_all_routine_matches(product_role, analyzed_ingredients, all_data):
                         max_possible_score = base_score + max_bonus
                         match_percent = (total_score / max_possible_score) * 100 if max_possible_score > 0 else 0
                         
-                        match_str = f"ID {type_id.split(' ')[1]} Routine {routine_key} Step {step['step_number']} Match {match_percent:.0f}%"
-                        routine_matches.append(match_str)
+                        # Correctly extract the numeric part of the skin type ID
+                        try:
+                            skin_type_number = type_id.split(' ')[1]
+                            match_str = f"ID {skin_type_number} Routine {routine_key} Step {step['step_number']} Match {match_percent:.0f}%"
+                            routine_matches.append(match_str)
+                        except IndexError:
+                            # Handle cases where the type_id format might be unexpected
+                            continue
 
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
