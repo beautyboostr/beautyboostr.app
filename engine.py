@@ -20,14 +20,15 @@ def load_all_data():
     }
     try:
         for name, path in files_to_load.items():
-            # CORRECTED: Changed encoding to 'utf-8-sig' to handle BOM
-            with open(path, 'r', encoding='utf-8-sig') as f:
-                data[name] = json.load(f)
-        return data
+            try:
+                # CORRECTED: Changed encoding to 'utf-8-sig' to handle BOM
+                with open(path, 'r', encoding='utf-8-sig') as f:
+                    data[name] = json.load(f)
+            except json.JSONDecodeError as e:
+                # IMPROVED ERROR HANDLING: Pinpoints the exact file with the error.
+                raise ValueError(f"Error decoding JSON from file '{path}': {e}. Please validate the file format.")
     except FileNotFoundError as e:
         raise FileNotFoundError(f"A required data file was not found: {e}. Ensure it is in the 'data' folder.")
-    except json.JSONDecodeError as e:
-        raise ValueError(f"Error decoding JSON from a file: {e}. Please validate the file format.")
 
 # --- STAGE 1: PRODUCT DECONSTRUCTION ---
 
@@ -64,7 +65,16 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
 
     # Initialize a list of objects to hold our data
     estimated_list = [{"name": name, "percentage": 0.0, "is_anchored": False} for name in inci_list]
-    ingredient_lookup = {item['inci_name'].lower(): item for item in ingredients_data}
+    
+    # Check if ingredients_data is a list of dicts as expected
+    if not isinstance(ingredients_data, list):
+        # Handle case where ingredients.json might be malformed (e.g., dict instead of list)
+        # This can happen if batches are incorrectly merged.
+        # For now, we'll proceed with an empty lookup to avoid a crash.
+        ingredient_lookup = {}
+    else:
+        ingredient_lookup = {item['inci_name'].lower(): item for item in ingredients_data if 'inci_name' in item}
+
 
     # 1. Find the 1% Line
     one_percent_line_index = num_ingredients
@@ -75,9 +85,10 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
 
     # 2. Anchor Key Ingredients
     # Anchor Base Solvent (usually Aqua)
-    base_solvent_percent = sum(profile["base_solvent_range"]) / 2
-    estimated_list[0]["percentage"] = base_solvent_percent
-    estimated_list[0]["is_anchored"] = True
+    base_solvent_percent = sum(profile.get("base_solvent_range", [70, 85])) / 2
+    if estimated_list:
+        estimated_list[0]["percentage"] = base_solvent_percent
+        estimated_list[0]["is_anchored"] = True
 
     # Anchor ingredients at or below the 1% line
     sub_one_percent_total = 0
@@ -99,7 +110,6 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
 
     if num_to_estimate > 0:
         # Use a simple linear decay for distribution
-        # Example: if 3 items, they might get 50%, 30%, 20% of the remainder
         weights = list(range(num_to_estimate, 0, -1))
         total_weight = sum(weights)
         
@@ -108,19 +118,16 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
             item["percentage"] = share
 
     # 4. Normalize and Finalize
-    # Ensure descending order is respected and total is 100%
-    current_total = sum(item["percentage"] for item in estimated_list)
-    if current_total != 100:
-        # For this version, we adjust the base solvent to force 100%
-        # A more advanced model would adjust all non-anchored values
+    current_total = sum(item.get("percentage", 0) for item in estimated_list)
+    if current_total != 100 and estimated_list:
         diff = 100 - current_total
         estimated_list[0]["percentage"] += diff
 
-    # Final rounding
+    # Final rounding and cleanup
     for item in estimated_list:
-        item["estimated_percentage"] = round(item["percentage"], 3)
-        del item["percentage"] # clean up temporary keys
-        del item["is_anchored"]
+        item["estimated_percentage"] = round(item.get("percentage", 0), 3)
+        if "percentage" in item: del item["percentage"]
+        if "is_anchored" in item: del item["is_anchored"]
         
     return estimated_list
 
@@ -132,10 +139,14 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
     positive_impact_list = []
     neutral_functional_list = []
 
-    ingredient_lookup = {item['inci_name'].lower(): item for item in ingredients_data}
+    # Defensive check for ingredients_data format
+    if not isinstance(ingredients_data, list):
+        ingredient_lookup = {}
+    else:
+        ingredient_lookup = {item['inci_name'].lower(): item for item in ingredients_data if 'inci_name' in item}
 
     for item in ingredients_with_percentages:
-        ingredient_name = item['name'].lower()
+        ingredient_name = item.get('name', '').lower()
         if ingredient_name in ingredient_lookup:
             ing_data = ingredient_lookup[ingredient_name]
             functions = []
@@ -158,8 +169,8 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
                 neutral_functional_list.append(item['name'])
     
     formula_breakdown = {
-        "positive_impact": positive_impact_list,
-        "neutral_functional": neutral_functional_list
+        "positive_impact": list(dict.fromkeys(positive_impact_list)), # Remove duplicates
+        "neutral_functional": list(dict.fromkeys(neutral_functional_list))
     }
 
     return annotated_ingredients, list(all_functions), formula_breakdown
@@ -172,13 +183,12 @@ def identify_product_role(product_functions, function_rules):
 
     for role, rules in function_rules.items():
         score = 0
-        # Check for incompatible functions first
         if any(func in product_functions for func in rules.get("incompatible_functions", [])):
             continue
 
         must_haves = rules.get("must_have_functions", [])
         if all(func in product_functions for func in must_haves):
-            score += len(must_haves) * 2  # Strong weight for must-haves
+            score += len(must_haves) * 2
             
             good_to_haves = rules.get("good_to_have_functions", [])
             for func in good_to_haves:
@@ -194,7 +204,6 @@ def identify_product_role(product_functions, function_rules):
 
 def generate_analysis_output(annotated_ingredients, templates):
     """Generates the 'AI Assistant Says' narratives. MVP version."""
-    # This is a simplified scoring logic for the MVP
     narratives = []
     category_map = {
         "Hydration & Skin Barrier Support": ["Hydration", "Humectant", "Barrier Support", "Emollient", "Occlusive"],
@@ -208,18 +217,17 @@ def generate_analysis_output(annotated_ingredients, templates):
         score = 0
         star_ingredients = []
         for ing in annotated_ingredients:
-            if any(f in funcs for f in ing['functions']):
-                score += ing['estimated_percentage']
-                if ing['name'] not in [s[0] for s in star_ingredients]:
-                     star_ingredients.append((ing['name'], ing['estimated_percentage']))
+            if any(f in funcs for f in ing.get('functions', [])):
+                score += ing.get('estimated_percentage', 0)
+                if ing.get('name') not in [s[0] for s in star_ingredients]:
+                     star_ingredients.append((ing.get('name'), ing.get('estimated_percentage', 0)))
         
-        # Normalize score to 1-10
         score_10 = min(10, int(score / 5) + 5) if score > 1 else int(score * 5)
         
-        if score_10 >= 5:
+        if score_10 >= 5 and category in templates:
             star_ingredients.sort(key=lambda x: x[1], reverse=True)
             stars_str = ", ".join([s[0] for s in star_ingredients[:2]])
-            template = templates[category]['medium_score'] if score_10 < 8 else templates[category]['high_score']
+            template = templates[category].get('medium_score', "{star_ingredients}") if score_10 < 8 else templates[category].get('high_score', "{star_ingredients}")
             narratives.append(f"{category}: Score {score_10}/10 ✅\n" + template.format(star_ingredients=stars_str))
 
     return "\n\n".join(narratives) if narratives else "This product has a general-purpose formula suitable for maintaining skin health."
@@ -227,47 +235,43 @@ def generate_analysis_output(annotated_ingredients, templates):
 
 # --- STAGE 3: MATCHING ---
 
-def find_all_routine_matches(product_role, product_functions, all_data):
+def find_all_routine_matches(inci_list, product_role, product_functions, all_data):
     """Finds all routine placements and calculates a match score for each."""
     matches = []
     
     for type_id, skin_type in all_data["skin_types"].items():
         # Disqualification Check
-        # For simplicity, this MVP assumes no bad ingredients are found.
-        # A full implementation would check the product's INCI list here.
-        is_suitable = True 
+        bad_ingredients_found = [ing for ing in inci_list if ing.lower() in [bad.lower() for bad in skin_type.get("bad_for_ingredients", [])]]
+        if bad_ingredients_found:
+            continue # Skip this skin type if any bad ingredients are found
         
-        if is_suitable:
-            for routine_key, routine in all_data["routines"].items():
-                if routine_key.startswith(type_id):
-                    for step in routine["steps"]:
-                        # Check for a function match
-                        is_perfect_match = (step["product_function"] == product_role)
-                        partial_match_list = all_data["scoring_config"]["partial_match_map"].get(step["product_function"], [])
-                        is_partial_match = (product_role in partial_match_list)
+        for routine_key, routine in all_data["routines"].items():
+            if routine_key.startswith(type_id):
+                for step in routine["steps"]:
+                    is_perfect_match = (step["product_function"] == product_role)
+                    partial_match_list = all_data["scoring_config"]["partial_match_map"].get(step["product_function"], [])
+                    is_partial_match = (product_role in partial_match_list)
 
-                        if is_perfect_match or is_partial_match:
-                            # Calculate Score
-                            base_score = all_data["scoring_config"]["function_match_scores"]["perfect_match_base_points"] if is_perfect_match else all_data["scoring_config"]["function_match_scores"]["partial_match_base_points"]
-                            
-                            bonus_points = 0
-                            max_bonus = 0
-                            
-                            for func_needed in skin_type["good_for_functions"]:
-                                priority = func_needed['priority']
-                                bonus_value = all_data["scoring_config"]["priority_fulfillment_scores"][f"{priority}_priority_bonus"]
-                                max_bonus += bonus_value
-                                if func_needed['function'] in product_functions:
-                                    bonus_points += bonus_value
-                            
-                            total_score = base_score + bonus_points
-                            max_possible_score = all_data["scoring_config"]["function_match_scores"]["perfect_match_base_points"] + max_bonus
-                            match_percent = int((total_score / max_possible_score) * 100) if max_possible_score > 0 else 0
-                            
-                            # Add to list if it's a good match
-                            if match_percent >= all_data["scoring_config"]["match_thresholds"]["good_match_min_percent"]:
-                                match_string = f"ID {type_id.split(' ')[1]} Routine {routine_key} Step {step['step_number']} Match {match_percent}%"
-                                matches.append(match_string)
+                    if is_perfect_match or is_partial_match:
+                        base_score = all_data["scoring_config"]["function_match_scores"]["perfect_match_base_points"] if is_perfect_match else all_data["scoring_config"]["function_match_scores"]["partial_match_base_points"]
+                        
+                        bonus_points = 0
+                        max_bonus = 0
+                        
+                        for func_needed in skin_type.get("good_for_functions", []):
+                            priority = func_needed['priority']
+                            bonus_value = all_data["scoring_config"]["priority_fulfillment_scores"][f"{priority}_priority_bonus"]
+                            max_bonus += bonus_value
+                            if func_needed['function'] in product_functions:
+                                bonus_points += bonus_value
+                        
+                        total_score = base_score + bonus_points
+                        max_possible_score = all_data["scoring_config"]["function_match_scores"]["perfect_match_base_points"] + max_bonus
+                        match_percent = int((total_score / max_possible_score) * 100) if max_possible_score > 0 else 0
+                        
+                        if match_percent >= all_data["scoring_config"]["match_thresholds"]["good_match_min_percent"]:
+                            match_string = f"ID {type_id.split(' ')[1]} Routine {routine_key} Step {step['step_number']} Match {match_percent}%"
+                            matches.append(match_string)
     return matches
 
 
@@ -277,18 +281,14 @@ def run_full_analysis(product_name, inci_list, all_data):
     """
     The main function that runs the entire analysis pipeline.
     """
-    # Stage 1: Deconstruction
     profile = get_product_profile(product_name, all_data["product_profiles"])
-    # Note the added argument to the function call below
     ingredients_with_percentages = estimate_percentages(inci_list, profile, all_data["one_percent_markers"], all_data["ingredients"])
     
-    # Stage 2: Functional Analysis
     annotated_ingredients, product_functions, formula_breakdown = analyze_ingredient_functions(ingredients_with_percentages, all_data["ingredients"])
     product_role = identify_product_role(product_functions, all_data["product_functions"])
     
-    # Stage 3: Narrative and Match Generation
     ai_says_output = generate_analysis_output(annotated_ingredients, all_data["narrative_templates"])
-    routine_matches = find_all_routine_matches(product_role, product_functions, all_data)
+    routine_matches = find_all_routine_matches(inci_list, product_role, product_functions, all_data)
     
     return ai_says_output, formula_breakdown, routine_matches
 
