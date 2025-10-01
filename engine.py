@@ -20,7 +20,8 @@ def load_all_data():
     }
     try:
         for name, path in files_to_load.items():
-            with open(path, 'r', encoding='utf-8') as f:
+            # CORRECTED: Changed encoding to 'utf-8-sig' to handle BOM
+            with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         return data
     except FileNotFoundError as e:
@@ -32,6 +33,26 @@ def load_all_data():
 
 def get_product_profile(product_name, profiles_data):
     """Identifies the product type from its name and returns the corresponding profile."""
+    # (Implementation from previous step)
+    name_lower = product_name.lower()
+    keyword_map = {
+        "oil cleanser": "Cleanser (Oil-based)", "cleansing oil": "Cleanser (Oil-based)",
+        "cleansing balm": "Cleanser (Oil-based)", "cream cleanser": "Cleanser (Cream)",
+        "milk cleanser": "Cleanser (Cream)", "foaming cleanser": "Cleanser (Foaming)",
+        "cleanser": "Cleanser (Foaming)", "rich cream": "Moisturizer (Rich)",
+        "heavy cream": "Moisturizer (Rich)", "barrier cream": "Moisturizer (Rich)",
+        "night cream": "Moisturizer (Rich)", "lotion": "Moisturizer (Lightweight)",
+        "lightweight moisturizer": "Moisturizer (Lightweight)", "gel cream": "Moisturizer (Lightweight)",
+        "cream": "Moisturizer (Rich)", "moisturizer": "Moisturizer (Lightweight)",
+        "sunscreen": "Sunscreen", "spf": "Sunscreen", "serum": "Serum", "essence": "Essence",
+        "toner": "Toner", "clay mask": "Mask (Clay)", "mask": "Mask (Wash-off Gel/Cream)",
+        "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Mist"
+    }
+    for keyword, profile_key in keyword_map.items():
+        if keyword in name_lower:
+            return profiles_data.get(profile_key)
+    return profiles_data.get("Serum") # Default profile
+
 def estimate_percentages(inci_list, profile, markers, ingredients_data):
     """
     [CORRECTED ALGORITHM]
@@ -270,6 +291,4 @@ def run_full_analysis(product_name, inci_list, all_data):
     routine_matches = find_all_routine_matches(product_role, product_functions, all_data)
     
     return ai_says_output, formula_breakdown, routine_matches
-
-
 
