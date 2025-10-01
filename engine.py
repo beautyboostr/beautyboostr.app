@@ -3,8 +3,6 @@ import json
 import traceback
 
 # --- DATA LOADING ---
-# This is the single source of truth for all data files.
-
 @st.cache_data
 def load_all_data():
     """
@@ -24,19 +22,17 @@ def load_all_data():
     
     for name, path in files_to_load.items():
         try:
-            # Use 'utf-8-sig' to handle potential BOM characters at the start of files
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
             raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'. Please ensure your 'data' folder is correctly placed and the file is named correctly.")
         except json.JSONDecodeError as e:
-            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format. A common issue is a missing or extra comma.")
+            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format.")
         except Exception as e:
             raise RuntimeError(f"An unexpected error occurred while loading '{path}': {e}")
             
     return data
 
-# Load all data once at the start of the app
 try:
     ALL_DATA = load_all_data()
 except (FileNotFoundError, ValueError, RuntimeError) as e:
@@ -44,11 +40,7 @@ except (FileNotFoundError, ValueError, RuntimeError) as e:
     st.stop()
 
 # --- MAIN ANALYSIS ORCHESTRATOR ---
-
 def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
-    """
-    The main orchestrator function that runs the entire analysis pipeline.
-    """
     try:
         st.write("---")
         st.write("### 🧠 AI Analysis Log")
@@ -59,6 +51,10 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
 
         # STAGE 1: Deconstruction
         profile = get_product_profile(product_name, ALL_DATA["product_profiles"])
+        if not profile:
+            st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
+            return None, None, None
+            
         ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], ALL_DATA["ingredients"])
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
         product_role = identify_product_role(analyzed_ingredients, ALL_DATA["product_functions"])
@@ -76,21 +72,21 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
         st.code(traceback.format_exc())
         return None, None, None
 
-# --- STAGE 1 FUNCTIONS ---
-
+# --- STAGE 1 FUNCTIONS (CORRECTED) ---
 def get_product_profile(product_name, profiles_data):
     name_lower = product_name.lower()
+    
     keyword_map = {
         "oil cleanser": "Cleanser (Oil-based)", "cleansing oil": "Cleanser (Oil-based)", "cleansing balm": "Cleanser (Oil-based)",
         "cream cleanser": "Cleanser (Cream)", "milk cleanser": "Cleanser (Cream)",
-        "foaming cleanser": "Cleanser (Foaming)", "cleanser": "Cleanser (Foaming)",
+        "foaming cleanser": "Cleanser (Foaming)",
         "rich cream": "Moisturizer (Rich)", "barrier cream": "Moisturizer (Rich)", "night cream": "Moisturizer (Rich)",
         "lotion": "Moisturizer (Lightweight)", "gel cream": "Moisturizer (Lightweight)",
-        "cream": "Moisturizer (Rich)", "moisturizer": "Moisturizer (Lightweight)",
         "sunscreen": "Sunscreen", "spf": "Sunscreen",
         "serum": "Serum", "essence": "Essence", "toner": "Toner",
         "clay mask": "Mask (Clay)", "mask": "Mask (Wash-off Gel/Cream)",
-        "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Mist"
+        "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Mist",
+        "cleanser": "Cleanser (Foaming)", "cream": "Moisturizer (Rich)", "moisturizer": "Moisturizer (Lightweight)"
     }
 
     for keyword, profile_key in keyword_map.items():
@@ -100,8 +96,12 @@ def get_product_profile(product_name, profiles_data):
                 st.write(f"**[DEBUG] Stage 1: Product Profile Identified.** Keyword: `{keyword}`. Profile: **{profile_key}**")
                 return profile
     
-    st.warning("Could not automatically determine product type. Using 'Serum' as a default.")
-    return profiles_data.get("Serum")
+    st.warning("Could not automatically determine product type from the name. Using 'Serum' as a default profile.")
+    default_profile = profiles_data.get("Serum")
+    if not default_profile:
+        st.error("CRITICAL ERROR: The default 'Serum' profile is missing from product_profiles.json!")
+        return None 
+    return default_profile
 
 def estimate_percentages(inci_list, profile, markers, ingredients_data):
     if not profile:
@@ -109,22 +109,18 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
 
     percentages = {name: 0.0 for name in inci_list}
     
-    # 1. Find the 1% Line
     one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
     if one_percent_line_index == -1:
-        one_percent_line_index = int(len(inci_list) * 0.5) # Fallback guess
+        one_percent_line_index = int(len(inci_list) * 0.5)
 
-    # 2. Anchor sub-1% ingredients
     current_perc = 1.0
     for i in range(one_percent_line_index, len(inci_list)):
         percentages[inci_list[i]] = current_perc
         current_perc = max(0.01, current_perc * 0.85)
 
-    # 3. Anchor the base solvent
     base_solvent = inci_list[0]
     percentages[base_solvent] = sum(profile.get("base_solvent_range", [70, 85])) / 2.0
 
-    # 4. Distribute remaining percentage
     allocated_sum = sum(percentages.values())
     remaining_to_distribute = 100.0 - allocated_sum
     unallocated_ingredients = [ing for ing in inci_list[1:one_percent_line_index] if percentages[ing] == 0.0]
@@ -135,7 +131,6 @@ def estimate_percentages(inci_list, profile, markers, ingredients_data):
         for i, ingredient in enumerate(unallocated_ingredients):
             percentages[ingredient] = (weights[i] / total_weight) * remaining_to_distribute
 
-    # 5. Normalize to 100%
     current_total = sum(percentages.values())
     if current_total > 0:
         factor = 100.0 / current_total
@@ -184,10 +179,8 @@ def identify_product_role(analyzed_ingredients, function_rules):
     st.write(f"**[DEBUG] Stage 4: Primary Product Role Identified.** Role: **{best_match}**")
     return best_match
 
-# --- STAGE 2 FUNCTIONS ---
-
+# --- STAGE 2 & 3 FUNCTIONS ---
 def generate_analysis_output(analyzed_ingredients, templates):
-    # This is an MVP implementation of the scoring and narrative logic
     analysis_categories = {
         "Hydration & Skin Barrier Support": ["Hydration", "Humectant", "Barrier Support", "Emollient", "Occlusive"],
         "Brightening & Even Skin Tone": ["Brightening", "Anti-pigmentation", "Exfoliation (mild)"],
@@ -206,10 +199,8 @@ def generate_analysis_output(analyzed_ingredients, templates):
                 if ing['classification'] == 'Positive Impact':
                     star_ingredients.append(ing['name'].title())
         
-        # Normalize score to a 1-10 scale (simple version)
         final_score = min(10, int(score / 5) + 1)
         
-        # Select narrative template
         if final_score >= 8: template_key = "high_score"
         elif final_score >= 4: template_key = "medium_score"
         else: template_key = "low_score"
@@ -227,26 +218,20 @@ def generate_analysis_output(analyzed_ingredients, templates):
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown
 
-# --- STAGE 3 FUNCTIONS ---
-
 def find_all_routine_matches(product_role, analyzed_ingredients, all_data):
     routine_matches = []
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     scoring_config = all_data["scoring_config"]
 
     for type_id, skin_type in all_data["skin_types"].items():
-        # Disqualification check
         if any(bad_ing.lower() in [ing['name'] for ing in analyzed_ingredients] for bad_ing in skin_type.get('bad_for_ingredients', [])):
             continue
 
-        # Find routines for this skin type
         for routine_key, routine_details in all_data["routines"].items():
             if routine_key.startswith(type_id):
                 for step in routine_details.get("steps", []):
-                    # Check for a perfect function match
                     if step["product_function"] == product_role:
                         
-                        # Calculate Score
                         base_score = scoring_config["function_match_scores"]["perfect_match_base_points"]
                         bonus_points = 0
                         max_bonus = 0
