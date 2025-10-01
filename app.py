@@ -53,11 +53,11 @@ if analyze_button:
     else:
         with st.spinner("🤖 AI is analyzing the formula... This may take a moment."):
             try:
-                # --- Execute the Full Analysis Pipeline ---
+                # --- CORRECTED FUNCTION CALL ---
+                # Removed the extra 'engine.ALL_DATA' argument
                 ai_says_output, formula_breakdown, routine_matches = engine.run_full_analysis(
                     product_name, 
-                    inci_list_str, 
-                    engine.ALL_DATA,
+                    inci_list_str,
                     selected_skin_type_id
                 )
 
