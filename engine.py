@@ -178,16 +178,29 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
     
     for item in ingredients_with_percentages:
         ingredient_name_lower = item['name'].lower()
-        data = ingredients_dict.get(ingredient_name_lower, {})
+        data = ingredients_dict.get(ingredient_name_lower)
         functions = []
-        if data and isinstance(data.get('behaviors'), list):
-            for behavior in data['behaviors']:
-                if isinstance(behavior, dict) and behavior.get('functions'):
+        classification = "Neutral/Functional"
+
+        if data: # Ingredient found in our database
+            if data.get('behaviors'):
+                for behavior in data['behaviors']:
                     functions.extend(behavior.get('functions', []))
-        
+        else: # --- NEW HEURISTIC LOGIC FOR UNKNOWN INGREDIENTS ---
+            if "extract" in ingredient_name_lower:
+                functions.extend(["Antioxidant", "Soothing"])
+            if "ferment" in ingredient_name_lower:
+                functions.extend(["Soothing", "Hydration"])
+            if "gluconolactone" in ingredient_name_lower:
+                functions.extend(["Exfoliation (mild)", "Humectant"])
+            if "salicylate" in ingredient_name_lower:
+                functions.extend(["Exfoliation (mild)"])
+            if "polyglutamate" in ingredient_name_lower:
+                functions.extend(["Hydration", "Humectant"])
+
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
-        is_positive = any(pf in funcs for pf in positive_functions for funcs in functions)
-        classification = "Positive Impact" if is_positive else "Neutral/Functional"
+        if any(pf in funcs for pf in positive_functions for funcs in functions):
+            classification = "Positive Impact"
 
         item['functions'] = list(set(functions))
         item['classification'] = classification
@@ -201,11 +214,8 @@ def identify_product_role(analyzed_ingredients, function_rules):
     best_match, highest_score = "Unknown", 0
 
     for role, rules in function_rules.items():
-        # --- THIS IS THE FIX ---
-        # Skip any entry that isn't a dictionary of rules (like the 'description' field)
         if not isinstance(rules, dict):
             continue
-        # --- END OF FIX ---
             
         score = 0
         must_haves = rules.get('must_have_functions', [])
