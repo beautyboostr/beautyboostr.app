@@ -1,1 +1,730 @@
-
+{
+  "Type 1": {
+    "name": "Dry, Resistant, Non-pigmented, Tight, Fine lines",
+    "problems": ["dry", "resistant", "non-pigmented", "tight", "fine lines"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat."]
+  },
+  "Type 2": {
+    "name": "Dry, Resistant, Non-pigmented, Wrinkled",
+    "problems": ["dry", "resistant", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat."]
+  },
+  "Type 3": {
+    "name": "Dry, Resistant, Pigmented, Fine lines",
+    "problems": ["dry", "resistant", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat."]
+  },
+  "Type 4": {
+    "name": "Dry, Resistant, Pigmented, Wrinkled",
+    "problems": ["dry", "resistant", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat."]
+  },
+  "Type 5": {
+    "name": "Dry, Moderate reactive, Non-Pigmented, Fine lines",
+    "problems": ["dry", "moderate reactive", "non-pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 6": {
+    "name": "Dry, Moderate reactive, Non-Pigmented, Wrinkled",
+    "problems": ["dry", "moderate reactive", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 7": {
+    "name": "Dry, Moderate reactive, Pigmented, Tight",
+    "problems": ["dry", "moderate reactive", "pigmented", "tight"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 8": {
+    "name": "Dry, Moderate reactive, Pigmented, Wrinkled",
+    "problems": ["dry", "moderate reactive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 9": {
+    "name": "Dry, Sensitive, Non-pigmented, Tight, Fine lines",
+    "problems": ["dry", "sensitive", "non-pigmented", "tight", "fine lines"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 10": {
+    "name": "Dry, Sensitive, Non-pigmented, Wrinkled",
+    "problems": ["dry", "sensitive", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 11": {
+    "name": "Dry, Sensitive, Pigmented, Tight",
+    "problems": ["dry", "sensitive", "pigmented", "tight"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 12": {
+    "name": "Dry, Sensitive, Pigmented, Wrinkled",
+    "problems": ["dry", "sensitive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Hydration", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 13": {
+    "name": "Normal, Resistant, Non-pigmented, Tight, Fine lines",
+    "problems": ["normal", "resistant", "non-pigmented", "tight", "fine lines"],
+    "good_for_functions": [
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": []
+  },
+  "Type 14": {
+    "name": "Normal, Resistant, Non-pigmented, Wrinkled",
+    "problems": ["normal", "resistant", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": []
+  },
+  "Type 15": {
+    "name": "Normal, Resistant, Pigmented, Fine lines",
+    "problems": ["normal", "resistant", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": []
+  },
+  "Type 16": {
+    "name": "Normal, Resistant, Pigmented, Wrinkled",
+    "problems": ["normal", "resistant", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": []
+  },
+  "Type 17": {
+    "name": "Normal, Moderate reactive, Non-Pigmented, Tight",
+    "problems": ["normal", "moderate reactive", "non-pigmented", "tight"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 18": {
+    "name": "Normal, Moderate reactive, Non-Pigmented, Wrinkled",
+    "problems": ["normal", "moderate reactive", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 19": {
+    "name": "Normal, Moderate reactive, Pigmented, Fine lines",
+    "problems": ["normal", "moderate reactive", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 20": {
+    "name": "Normal, Moderate reactive, Pigmented, Wrinkled",
+    "problems": ["normal", "moderate reactive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Lavandula Angustifolia Extract", "Methylisothiazolinone", "Propylene Glycol"]
+  },
+  "Type 21": {
+    "name": "Normal, Sensitive, Non-pigmented, Fine lines",
+    "problems": ["normal", "sensitive", "non-pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 22": {
+    "name": "Normal, Sensitive, Non-pigmented, Wrinkles",
+    "problems": ["normal", "sensitive", "non-pigmented", "wrinkles"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 23": {
+    "name": "Normal, Sensitive, Pigmented, Fine lines",
+    "problems": ["normal", "sensitive", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 24": {
+    "name": "Normal, Sensitive, Pigmented, Wrinkled",
+    "problems": ["normal", "sensitive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Hydration", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 25": {
+    "name": "Oily, Resistant, Non-pigmented, Tight, Fine lines",
+    "problems": ["oily", "resistant", "non-pigmented", "tight", "fine lines"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Isopropyl Palmitate", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Stearic Acid"]
+  },
+  "Type 26": {
+    "name": "Oily, Resistant, Non-pigmented, Wrinkled",
+    "problems": ["oily", "resistant", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Isopropyl Palmitate", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Stearic Acid"]
+  },
+  "Type 27": {
+    "name": "Oily, Resistant, Pigmented, Fine lines",
+    "problems": ["oily", "resistant", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Isopropyl Palmitate", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Stearic Acid"]
+  },
+  "Type 28": {
+    "name": "Oily, Resistant, Pigmented, Wrinkled",
+    "problems": ["oily", "resistant", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Isopropyl Palmitate", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Stearic Acid"]
+  },
+  "Type 29": {
+    "name": "Oily, Moderate reactive, Non-Pigmented, Tight",
+    "problems": ["oily", "moderate reactive", "non-pigmented", "tight"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lavandula Angustifolia Extract"]
+  },
+  "Type 30": {
+    "name": "Oily, Moderate reactive, Non-Pigmented, Wrinkled",
+    "problems": ["oily", "moderate reactive", "non-pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lavandula Angustifolia Extract"]
+  },
+  "Type 31": {
+    "name": "Oily, Moderate reactive, Pigmented, Tight",
+    "problems": ["oily", "moderate reactive", "pigmented", "tight"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lavandula Angustifolia Extract"]
+  },
+  "Type 32": {
+    "name": "Oily, Moderate reactive, Pigmented, Wrinkled",
+    "problems": ["oily", "moderate reactive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Sodium Lauryl Sulfate", "Fragrance/Parfum", "Alcohol Denat.", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lavandula Angustifolia Extract"]
+  },
+  "Type 33": {
+    "name": "Oily, Sensitive, Non-pigmented, Tight, Fine lines",
+    "problems": ["oily", "sensitive", "non-pigmented", "tight", "fine lines"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 34": {
+    "name": "Oily, Sensitive, Non-pigmented, Wrinkles",
+    "problems": ["oily", "sensitive", "non-pigmented", "wrinkles"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 35": {
+    "name": "Oily, Sensitive, Pigmented, Fine lines",
+    "problems": ["oily", "sensitive", "pigmented", "fine lines"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Collagen Synthesis", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  },
+  "Type 36": {
+    "name": "Oily, Sensitive, Pigmented, Wrinkled",
+    "problems": ["oily", "sensitive", "pigmented", "wrinkled"],
+    "good_for_functions": [
+      {"function": "Oil Control", "priority": "high"},
+      {"function": "Sebum Regulation", "priority": "high"},
+      {"function": "Acne Control", "priority": "high"},
+      {"function": "Soothing", "priority": "high"},
+      {"function": "Anti-inflammatory", "priority": "high"},
+      {"function": "Redness Reduction", "priority": "high"},
+      {"function": "Barrier Support", "priority": "high"},
+      {"function": "Brightening", "priority": "high"},
+      {"function": "Anti-pigmentation", "priority": "high"},
+      {"function": "Anti-aging", "priority": "high"},
+      {"function": "Skin Repair", "priority": "high"},
+      {"function": "Collagen Synthesis", "priority": "high"},
+      {"function": "Comedolytic", "priority": "medium"},
+      {"function": "Firming", "priority": "medium"},
+      {"function": "Texture Improvement", "priority": "medium"},
+      {"function": "Cell Renewal", "priority": "medium"},
+      {"function": "Antioxidant", "priority": "medium"},
+      {"function": "Environmental Defense", "priority": "low"},
+      {"function": "UV Protection", "priority": "low"}
+    ],
+    "bad_for_ingredients": ["Cocos Nucifera Oil", "Isopropyl Myristate", "Alcohol Denat.", "Sodium Lauryl Sulfate", "Sodium Laureth Sulfate", "Fragrance/Parfum", "Eucalyptus Globulus Leaf Oil", "Citrus Limon Peel Oil", "Mentha Piperita Oil", "Ethylhexyl Palmitate", "Myristyl Myristate", "Lanolin", "Lauric Acid", "Lavandula Angustifolia Extract", "Methylparaben", "Propylparaben", "Benzophenone-3", "Propylene Glycol", "Cocamidopropyl Betaine", "Phenoxyethanol", "Benzyl Alcohol"]
+  }
+}
