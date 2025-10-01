@@ -101,16 +101,11 @@ def get_product_profile(product_name, profiles_data):
     return default_profile
 
 def estimate_percentages(inci_list, profile, markers):
-    """
-    Estimates ingredient percentages based on INCI list order, product type, 
-    and the position of the primary solvent (water).
-    """
     if not profile:
         raise ValueError("Cannot estimate percentages without a valid product profile.")
 
     percentages = {name: 0.0 for name in inci_list}
     
-    # --- NEW LOGIC: FIND THE TRUE BASE SOLVENT ---
     water_index = -1
     water_aliases = ["water/aqua/eau", "aqua", "water"]
     for i, ingredient in enumerate(inci_list):
@@ -118,34 +113,28 @@ def estimate_percentages(inci_list, profile, markers):
             water_index = i
             break
 
-    # --- DISTRIBUTION LOGIC ---
     if water_index == 0:
-        # Scenario 1: Water is the first ingredient (most common)
         base_ingredients = [inci_list[0]]
         solute_ingredients = inci_list[1:]
         base_percentage_to_distribute = sum(profile.get("base_solvent_range", [70, 85])) / 2.0
     elif water_index > 0:
-        # Scenario 2: "Hero ingredients" are listed before water
         base_ingredients = inci_list[0:water_index]
         solute_ingredients = inci_list[water_index:]
         base_percentage_to_distribute = sum(profile.get("base_solvent_range", [70, 85])) / 2.0
     else:
-        # Scenario 3: No water found (e.g., anhydrous product like a face oil)
         base_ingredients = inci_list
         solute_ingredients = []
         base_percentage_to_distribute = 100.0
     
-    # Distribute the main bulk of the percentage among the base ingredients
     if base_ingredients:
         if len(base_ingredients) == 1:
              percentages[base_ingredients[0]] = base_percentage_to_distribute
-        else: # Distribute with descending weight
+        else:
             weights = list(reversed(range(1, len(base_ingredients) + 1)))
             total_weight = sum(weights)
             for i, ingredient in enumerate(base_ingredients):
                 percentages[ingredient] = (weights[i] / total_weight) * base_percentage_to_distribute
 
-    # Distribute the remaining percentage among the solute ingredients
     remaining_percentage = 100.0 - sum(percentages.values())
     
     if solute_ingredients:
@@ -153,20 +142,16 @@ def estimate_percentages(inci_list, profile, markers):
         if one_percent_line_index_in_solutes == -1:
              one_percent_line_index_in_solutes = int(len(solute_ingredients) * 0.5)
 
-        # Handle sub-1% ingredients first
         sub_one_ingredients = solute_ingredients[one_percent_line_index_in_solutes:]
         if sub_one_ingredients:
-            # Allocate a small portion of the remainder to the sub-1% group
             sub_one_total_percentage = min(remaining_percentage * 0.2, len(sub_one_ingredients) * 1.0)
             remaining_percentage -= sub_one_total_percentage
             
-            # Simple equal distribution for sub-1% for now
             if len(sub_one_ingredients) > 0:
                 share = sub_one_total_percentage / len(sub_one_ingredients)
                 for ing in sub_one_ingredients:
                     percentages[ing] = share
         
-        # Distribute the rest to the main solutes
         main_solutes = solute_ingredients[:one_percent_line_index_in_solutes]
         if main_solutes and remaining_percentage > 0:
             weights = list(reversed(range(1, len(main_solutes) + 1)))
@@ -174,7 +159,6 @@ def estimate_percentages(inci_list, profile, markers):
             for i, ingredient in enumerate(main_solutes):
                 percentages[ingredient] = (weights[i] / total_weight) * remaining_percentage
 
-    # --- FINAL NORMALIZATION ---
     current_total = sum(percentages.values())
     if current_total > 0:
         factor = 100.0 / current_total
@@ -218,7 +202,8 @@ def identify_product_role(analyzed_ingredients, function_rules):
     for role, rules in function_rules.items():
         score = 0
         must_haves = rules.get('must_have_functions', [])
-        if all(f in product_functions for f in must_haves):
+        # Ensure 'rules' is a dictionary before calling .get()
+        if isinstance(rules, dict) and all(f in product_functions for f in must_haves):
             score += len(must_haves)
             if score > highest_score:
                 highest_score, best_match = score, role
