@@ -1,0 +1,30 @@
+﻿{
+  "description": "Configuration file for the final product-to-routine percentage match score.",
+  "function_match_scores": {
+    "perfect_match_base_points": 50,
+    "partial_match_base_points": 25
+  },
+  "priority_fulfillment_scores": {
+    "high_priority_bonus": 10,
+    "medium_priority_bonus": 5,
+    "low_priority_bonus": 2
+  },
+  "match_thresholds": {
+    "perfect_match_min_percent": 85,
+    "good_match_min_percent": 70
+  },
+  "partial_match_map": {
+    "Barrier Repair Moisturizer": [
+      "Lightweight Moisturizer",
+      "Anti-aging Moisturizer",
+      "Lightweight Barrier Repair Moisturizer"
+    ],
+    "Hydrating Toner": [
+      "Soothing Toner",
+      "Exfoliating Toner"
+    ],
+    "Hydrating Cream Cleanser": [
+      "Gentle Foaming Cleanser"
+    ]
+  }
+}
