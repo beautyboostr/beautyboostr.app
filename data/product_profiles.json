@@ -15,6 +15,9 @@
   "Gentle Foaming or Enzyme Cleanser": {
     "base_solvent_range": [70, 85], "oil_emollient_range": [0, 5], "humectant_range": [5, 15], "surfactant_range": [5, 20], "notes": "Profiled as a foaming cleanser. The 'enzyme' aspect relates to actives, not the base."
   },
+  "Toner": {
+    "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
+  },
   "Hydrating Toner": {
     "base_solvent_range": [85, 95], "oil_emollient_range": [0, 5], "humectant_range": [2, 10], "surfactant_range": [0, 1], "notes": "General profile for all toners. Very high water content."
   },
@@ -106,3 +109,4 @@
     "base_solvent_range": [90, 98], "oil_emollient_range": [0, 2], "humectant_range": [1, 5], "surfactant_range": [0, 1], "notes": "Extremely high water content."
   }
 }
+
