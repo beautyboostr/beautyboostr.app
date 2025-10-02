@@ -1,28 +1,19 @@
 {
-  "description": "Defines the complete rules for calculating the 1-10 score for each analysis category, including star ingredients and generic function bonuses.",
+  "description": "Defines the rules for calculating the 1-10 score for each analysis category, with expanded ingredient lists and more comprehensive generic function mapping.",
   "categories": {
     "Hydration & Skin Barrier Support": {
       "max_points": 100,
       "generic_functions": ["Hydration", "Humectant", "Barrier Support", "Emollient", "Occlusive"],
-      "generic_function_bonus": 2,
+      "generic_function_bonus": 3,
       "star_ingredients": [
         { "name": "Hyaluronic Acid", "min_effective_percent": 0.2, "points": 25 },
         { "name": "Sodium Hyaluronate", "min_effective_percent": 0.2, "points": 25 },
         { "name": "Ceramides", "min_effective_percent": 0.1, "points": 25 },
         { "name": "Sodium Polyglutamate", "min_effective_percent": 0.1, "points": 20 },
-        { "name": "Glycerin", "min_effective_percent": 2.0, "points": 15 },
-        { "name": "Squalane", "min_effective_percent": 1.0, "points": 15 },
-        { "name": "Panthenol", "min_effective_percent": 1.0, "points": 15 },
-        { "name": "Petrolatum", "min_effective_percent": 2.0, "points": 15 },
-        { "name": "Beta-Glucan", "min_effective_percent": 0.5, "points": 10 }
+        { "name": "Glycerin", "min_effective_percent": 2.0, "points": 15 }
       ],
       "supporting_ingredients": {
-        "Butyrospermum Parkii Butter": 8,
-        "Dimethicone": 5,
-        "Urea": 5,
-        "Sodium PCA": 5,
-        "Lactobacillus/Watermelon Fruit Ferment Extract": 5,
-        "Aloe Barbadensis Leaf Juice": 3
+        "Squalane": 10, "Panthenol": 10, "Butyrospermum Parkii Butter": 8, "Dimethicone": 5, "Urea": 5
       }
     },
     "Brightening & Even Skin Tone": {
@@ -34,20 +25,15 @@
         { "name": "Niacinamide", "min_effective_percent": 2.0, "points": 25 },
         { "name": "Arbutin", "min_effective_percent": 1.0, "points": 20 },
         { "name": "Kojic Acid", "min_effective_percent": 0.5, "points": 20 },
-        { "name": "Tranexamic Acid", "min_effective_percent": 2.0, "points": 25 },
-        { "name": "Azelaic Acid", "min_effective_percent": 5.0, "points": 25 },
-        { "name": "Retinol", "min_effective_percent": 0.1, "points": 15 }
+        { "name": "Tranexamic Acid", "min_effective_percent": 2.0, "points": 25 }
       ],
       "supporting_ingredients": {
-        "Glycyrrhiza Glabra (Licorice) Root Extract": 15,
-        "Ferulic Acid": 10,
-        "Scutellaria Baicalensis Root Extract": 5,
-        "Fragaria Ananassa (Strawberry) Fruit Extract": 3
+        "Glycyrrhiza Glabra (Licorice) Root Extract": 15, "Ferulic Acid": 10, "Azelaic Acid": 10
       }
     },
     "Soothing & Redness Reduction": {
       "max_points": 100,
-      "generic_functions": ["Soothing", "Anti-inflammatory", "Barrier Support", "Antioxidant"],
+      "generic_functions": ["Soothing", "Anti-inflammatory", "Barrier Support"],
       "generic_function_bonus": 4,
       "star_ingredients": [
         { "name": "Panthenol", "min_effective_percent": 1.0, "points": 20 },
@@ -56,32 +42,22 @@
         { "name": "Madecassoside", "min_effective_percent": 0.1, "points": 25 }
       ],
       "supporting_ingredients": {
-        "Centella Asiatica Extract": 15,
-        "Glycyrrhiza Glabra (Licorice) Root Extract": 10,
-        "Chamomilla Recutita Flower Extract": 8,
-        "Aloe Barbadensis Leaf Juice": 5,
-        "Cucumis Sativus (Cucumber) Fruit Extract": 5,
-        "Opuntia Ficus-Indica Extract": 5
+        "Centella Asiatica Extract": 15, "Glycyrrhiza Glabra (Licorice) Root Extract": 10, "Chamomilla Recutita Flower Extract": 8
       }
     },
     "Pore Appearance & Texture Improvement": {
       "max_points": 100,
-      "generic_functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent"],
-      "generic_function_bonus": 3,
+      "generic_functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent", "Soothing", "Anti-inflammatory"],
+      "generic_function_bonus": 4,
       "star_ingredients": [
         { "name": "Salicylic Acid", "min_effective_percent": 0.5, "points": 30 },
         { "name": "Glycolic Acid", "min_effective_percent": 4.0, "points": 25 },
         { "name": "Gluconolactone", "min_effective_percent": 2.0, "points": 20 },
         { "name": "Niacinamide", "min_effective_percent": 2.0, "points": 20 },
-        { "name": "Retinol", "min_effective_percent": 0.1, "points": 25 },
-        { "name": "Mandelic Acid", "min_effective_percent": 3.0, "points": 20 }
+        { "name": "Retinol", "min_effective_percent": 0.1, "points": 25 }
       ],
       "supporting_ingredients": {
-        "Salix Alba (Willow) Bark Extract": 10,
-        "Betaine Salicylate": 10,
-        "Hibiscus Sabdariffa Flower Extract": 5,
-        "Melaleuca Alternifolia (Tea Tree) Extract": 5,
-        "Saccharum Officinarum (Sugarcane) Extract": 3
+        "Salix Alba (Willow) Bark Extract": 10, "Betaine Salicylate": 10, "Mandelic Acid": 10, "Melaleuca Alternifolia (Tea Tree) Extract": 5
       }
     },
     "Anti-aging & Wrinkle Reduction": {
@@ -92,16 +68,11 @@
         { "name": "Retinol", "min_effective_percent": 0.1, "points": 30 },
         { "name": "Peptides", "min_effective_percent": 0.01, "points": 25 },
         { "name": "L-Ascorbic Acid", "min_effective_percent": 5.0, "points": 20 },
-        { "name": "Bakuchiol", "min_effective_percent": 0.5, "points": 20 },
-        { "name": "Glycolic Acid", "min_effective_percent": 5.0, "points": 15 }
+        { "name": "Bakuchiol", "min_effective_percent": 0.5, "points": 20 }
       ],
       "supporting_ingredients": {
-        "Resveratrol": 10,
-        "Ferulic Acid": 10,
-        "Coenzyme Q10": 8,
-        "Gluconolactone": 5
+        "Resveratrol": 10, "Ferulic Acid": 10, "Coenzyme Q10": 8, "Glycolic Acid": 5
       }
     }
   }
 }
-
