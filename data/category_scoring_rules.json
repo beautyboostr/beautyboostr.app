@@ -1,0 +1,69 @@
+{
+  "description": "Defines the rules for calculating the 1-10 score for each analysis category.",
+  "categories": {
+    "Hydration & Skin Barrier Support": {
+      "max_points": 50,
+      "star_ingredients": [
+        { "name": "Hyaluronic Acid", "min_effective_percent": 0.2, "points": 25 },
+        { "name": "Ceramides", "min_effective_percent": 0.1, "points": 25 },
+        { "name": "Sodium Polyglutamate", "min_effective_percent": 0.1, "points": 20 },
+        { "name": "Glycerin", "min_effective_percent": 2.0, "points": 15 }
+      ],
+      "supporting_ingredients": {
+        "Panthenol": 5,
+        "Butyrospermum Parkii Butter": 5,
+        "Squalane": 5
+      }
+    },
+    "Brightening & Even Skin Tone": {
+      "max_points": 50,
+      "star_ingredients": [
+        { "name": "L-Ascorbic Acid", "min_effective_percent": 5.0, "points": 30 },
+        { "name": "Niacinamide", "min_effective_percent": 2.0, "points": 25 },
+        { "name": "Arbutin", "min_effective_percent": 1.0, "points": 20 },
+        { "name": "Kojic Acid", "min_effective_percent": 0.5, "points": 20 }
+      ],
+      "supporting_ingredients": {
+        "Glycyrrhiza Glabra (Licorice) Root Extract": 10,
+        "Ferulic Acid": 10
+      }
+    },
+    "Soothing & Redness Reduction": {
+      "max_points": 40,
+      "star_ingredients": [
+        { "name": "Panthenol", "min_effective_percent": 1.0, "points": 20 },
+        { "name": "Bisabolol", "min_effective_percent": 0.1, "points": 20 },
+        { "name": "Allantoin", "min_effective_percent": 0.2, "points": 15 }
+      ],
+      "supporting_ingredients": {
+        "Centella Asiatica Extract": 10,
+        "Chamomilla Recutita Flower Extract": 5,
+        "Aloe Barbadensis Leaf Juice": 5
+      }
+    },
+    "Pore Appearance & Texture Improvement": {
+      "max_points": 40,
+      "star_ingredients": [
+        { "name": "Salicylic Acid", "min_effective_percent": 0.5, "points": 30 },
+        { "name": "Glycolic Acid", "min_effective_percent": 4.0, "points": 25 },
+        { "name": "Gluconolactone", "min_effective_percent": 2.0, "points": 20 },
+        { "name": "Niacinamide", "min_effective_percent": 2.0, "points": 15 }
+      ],
+      "supporting_ingredients": {
+        "Salix Alba (Willow) Bark Extract": 5,
+        "Melaleuca Alternifolia (Tea Tree) Extract": 5
+      }
+    },
+    "Anti-aging & Wrinkle Reduction": {
+      "max_points": 50,
+      "star_ingredients": [
+        { "name": "Retinol", "min_effective_percent": 0.1, "points": 30 },
+        { "name": "Peptides", "min_effective_percent": 0.01, "points": 25 },
+        { "name": "L-Ascorbic Acid", "min_effective_percent": 5.0, "points": 20 }
+      ],
+      "supporting_ingredients": {
+        "Antioxidant": 5
+      }
+    }
+  }
+}
