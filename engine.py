@@ -40,7 +40,7 @@ except (FileNotFoundError, ValueError) as e:
     st.error(str(e))
     st.stop()
 
-# --- HELPER FUNCTION FOR NEW LOGIC ---
+# --- HELPER FUNCTION ---
 def parse_known_percentages(known_percentages_str):
     """Parses the user input for known percentages into a dictionary."""
     known_percentages = {}
@@ -56,15 +56,11 @@ def parse_known_percentages(known_percentages_str):
                 perc = float(perc_str.strip())
                 known_percentages[name] = perc
             except ValueError:
-                # Silently ignore malformed pairs
                 continue
     return known_percentages
 
 # --- MAIN ANALYSIS ORCHESTRATOR ---
 def run_full_analysis(product_name, inci_list_str, known_percentages_str):
-    """
-    The main orchestrator function that runs the entire analysis pipeline.
-    """
     try:
         st.write("---")
         st.write("### 🧠 AI Analysis Log")
@@ -73,13 +69,11 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         inci_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
         st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} ingredients.")
 
-        # STAGE 0: Safety Check
         prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
         if prohibited_found:
             st.error(f"⚠️ **SAFETY ALERT:** This product contains a substance prohibited in cosmetic products in the EU: **{prohibited_found.title()}**. Analysis halted.")
             return None, None, None
 
-        # STAGE 1: Deconstruction
         known_percentages = parse_known_percentages(known_percentages_str)
         st.write(f"**[DEBUG] Known Percentages Parsed:** `{known_percentages}`")
         
@@ -92,10 +86,8 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"])
         
-        # STAGE 2: Narrative Generation with NEW SCORING
         ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"], ALL_DATA["category_scoring_rules"])
         
-        # STAGE 3: Matching & Internal Output
         routine_matches = find_all_routine_matches(product_roles, analyzed_ingredients, ALL_DATA)
 
         return ai_says_output, formula_breakdown, routine_matches
@@ -135,57 +127,75 @@ def get_product_profile(product_name, profiles_data):
     return profiles_data.get("Serum")
 
 def estimate_percentages(inci_list, profile, markers, known_percentages):
-    percentages = {name: 0.0 for name in inci_list}
+    """
+    Corrected logic that handles "hero ingredients" and user-provided known percentages,
+    while strictly respecting the descending order rule.
+    """
+    percentages = {name: None for name in inci_list}
     
-    # 1. Anchor all known percentages first
+    # 1. Anchor all known percentages first. These are non-negotiable.
     for name, perc in known_percentages.items():
         if name in percentages:
-            percentages[name] = perc
+            percentages[name] = float(perc)
+    
+    # 2. Iteratively fill gaps from the bottom up, respecting anchors.
+    # Start from the last ingredient and move backwards.
+    for i in range(len(inci_list) - 1, -1, -1):
+        current_ing = inci_list[i]
+        
+        # If the percentage is already known, skip it.
+        if percentages[current_ing] is not None:
+            continue
+            
+        # Get the percentage of the ingredient that comes *after* this one.
+        # This will be our floor for the current estimation.
+        floor_perc = 0.001 # A tiny floor for the very last ingredient
+        if i + 1 < len(inci_list):
+            next_ing = inci_list[i+1]
+            if percentages[next_ing] is None:
+                 # This should not happen in a backwards loop, but as a safeguard:
+                 raise ValueError("Estimation logic failed: encountered an un-estimated ingredient while moving backwards.")
+            floor_perc = percentages[next_ing]
+        
+        # Estimate the current ingredient's percentage to be slightly higher than the floor.
+        # This simple step ensures the descending order is always respected.
+        estimated_perc = floor_perc * 1.1 + 0.01 
+        
+        # If the current ingredient is below the 1% line, cap its estimation.
+        one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
+        if one_percent_line_index != -1 and i >= one_percent_line_index:
+            estimated_perc = min(estimated_perc, 1.0)
+            
+        percentages[current_ing] = estimated_perc
 
-    # 2. Distribute remaining percentage
-    allocated_sum = sum(percentages.values())
-    if allocated_sum > 100:
+    # 3. Normalize only the *estimated* values to fit the remaining percentage.
+    known_sum = sum(p for ing, p in percentages.items() if ing in known_percentages)
+    if known_sum > 100:
         st.error("Error: The sum of known percentages exceeds 100%. Please check your input.")
         raise ValueError("Sum of known percentages exceeds 100%.")
+
+    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
+    remaining_to_distribute = 100.0 - known_sum
+
+    if estimated_sum > 0 and remaining_to_distribute > 0:
+        factor = remaining_to_distribute / estimated_sum
+        for ing in percentages:
+            if ing not in known_percentages:
+                percentages[ing] *= factor
     
-    remaining_to_distribute = 100.0 - allocated_sum
-    unallocated_ingredients = [ing for ing in inci_list if percentages[ing] == 0.0]
+    # Final safeguard normalization to ensure total is exactly 100%
+    final_total = sum(percentages.values())
+    if final_total > 0:
+        final_factor = 100.0 / final_total
+        for ing in percentages:
+            percentages[ing] *= final_factor
 
-    if unallocated_ingredients:
-        # Simplified distribution for the remaining ingredients
-        # Find 1% line within the unallocated ingredients
-        one_percent_line_in_unallocated = next((i for i, ing in enumerate(unallocated_ingredients) if ing in markers.get("markers", [])), -1)
-        if one_percent_line_in_unallocated == -1:
-            one_percent_line_in_unallocated = int(len(unallocated_ingredients) * 0.7) # Fallback
-
-        main_ingredients = unallocated_ingredients[:one_percent_line_in_unallocated]
-        sub_one_ingredients = unallocated_ingredients[one_percent_line_in_unallocated:]
-
-        # Allocate to main and sub-one groups
-        main_total = remaining_to_distribute * 0.95
-        sub_one_total = remaining_to_distribute * 0.05
-
-        if main_ingredients:
-            weights = list(reversed(range(1, len(main_ingredients) + 1)))
-            total_weight = sum(weights)
-            for i, ingredient in enumerate(main_ingredients):
-                percentages[ingredient] = (weights[i] / total_weight) * main_total
-
-        if sub_one_ingredients:
-            share = sub_one_total / len(sub_one_ingredients)
-            for ingredient in sub_one_ingredients:
-                percentages[ingredient] = share
-    
-    # Final normalization
-    current_total = sum(percentages.values())
-    if current_total > 0:
-        factor = 100.0 / current_total
-        for ing in percentages: percentages[ing] *= factor
-    
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
-    sorted_percentages = sorted(percentages.items(), key=lambda item: item[1], reverse=True)
-    st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in sorted_percentages]))
+    debug_percentage_list = [f"- {name}: {percentages[name]:.4f}%" for name in inci_list]
+    st.text("\n".join(debug_percentage_list))
+    
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
+
 
 def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data):
     ingredients_dict = {item['inci_name'].lower(): item for item in ingredients_data}
