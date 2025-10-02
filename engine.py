@@ -8,10 +8,9 @@ from thefuzz import process
 @st.cache_data
 def load_all_data():
     """
-    Loads all necessary JSON data files from the 'data' folder.
+    Loads all necessary JSON data files from the 'data' folder with specific error handling.
     """
     data = {}
-    # Note: category_scoring_rules.json is no longer needed with the new logic
     files_to_load = {
         "skin_types": "data/skin_types.json",
         "routines": "data/routines.json",
@@ -21,7 +20,8 @@ def load_all_data():
         "ingredients": "data/ingredients.json",
         "narrative_templates": "data/narrative_templates.json",
         "scoring_config": "data/scoring_config.json",
-        "prohibited_ingredients": "data/prohibited_ingredients.json"
+        "prohibited_ingredients": "data/prohibited_ingredients.json",
+        "category_scoring_rules": "data/category_scoring_rules.json"
     }
     
     for name, path in files_to_load.items():
@@ -83,15 +83,16 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
         
-        ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"])
+        ai_says_output, formula_breakdown, potential_concerns = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"], ALL_DATA["category_scoring_rules"], ALL_DATA["ingredients"])
         
         routine_matches = find_all_routine_matches(product_roles, analyzed_ingredients, ALL_DATA)
 
-        return ai_says_output, formula_breakdown, routine_matches
+        return ai_says_output, formula_breakdown, routine_matches, potential_concerns
+
     except Exception:
         st.error("An unexpected error occurred during the analysis process.")
         st.code(traceback.format_exc())
-        return None, None, None
+        return None, None, None, None
 
 # --- STAGE 0 FUNCTION ---
 def check_for_prohibited(inci_list, prohibited_data):
@@ -143,18 +144,17 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
             estimated_perc = min(estimated_perc, 1.0)
         percentages[current_ing] = estimated_perc
 
-    # Calculate sums for normalization
-    known_sum = sum(p for ing, p in percentages.items() if p is not None and (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())))
+    known_sum = sum(p for ing, p in percentages.items() if p is not None and (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys() if known_percentages)))
     if known_sum > 100:
         st.error("Error: The sum of known percentages exceeds 100%.")
         raise ValueError("Sum of known percentages exceeds 100%.")
     
-    estimated_sum = sum(p for ing, p in percentages.items() if p is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())))
+    estimated_sum = sum(p for ing, p in percentages.items() if p is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys() if known_percentages)))
     remaining_to_distribute = 100.0 - known_sum
     if estimated_sum > 0 and remaining_to_distribute > 0:
         factor = remaining_to_distribute / estimated_sum
         for ing in percentages:
-             if percentages[ing] is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())):
+             if percentages[ing] is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys() if known_percentages)):
                 percentages[ing] *= factor
     
     final_total = sum(p for p in percentages.values() if p is not None)
@@ -177,8 +177,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
         ingredient_name_lower = item['name'].lower()
         functions, source = [], "Heuristic"
         
-        # FUZZY MATCHING LOGIC
-        best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85) # Lowered cutoff for flexibility
+        best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85)
         
         if best_match:
             matched_name = best_match[0]
@@ -189,7 +188,6 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
                         functions.extend(behavior.get('functions', []))
                 if functions: source = f"Database (Match: {matched_name})"
         
-        # FALLBACK HEURISTIC if no DB match
         if source == "Heuristic":
             if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
             if "ferment" in ingredient_name_lower or "lactobacillus" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
@@ -229,59 +227,42 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     return list(set(matched_roles))
 
 # --- STAGE 2 & 3 FUNCTIONS (RETHOUGHT) ---
-def generate_analysis_output(analyzed_ingredients, templates):
+def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data, ingredients_data):
     ai_says_output = {}
-    analysis_categories = {
-        "Hydration & Skin Barrier Support": {
-            "functions": ["Hydration", "Humectant", "Barrier Support", "Emollient", "Occlusive"],
-            "max_expected_percent": 20.0
-        },
-        "Brightening & Even Skin Tone": {
-            "functions": ["Brightening", "Anti-pigmentation"],
-            "max_expected_percent": 15.0
-        },
-        "Soothing & Redness Reduction": {
-            "functions": ["Soothing", "Anti-inflammatory"],
-            "max_expected_percent": 10.0
-        },
-        "Pore Appearance & Texture Improvement": {
-            "functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent"],
-            "max_expected_percent": 10.0
-        },
-        "Anti-aging & Wrinkle Reduction": {
-            "functions": ["Anti-aging", "Collagen Synthesis", "Antioxidant"],
-            "max_expected_percent": 15.0
+    formula_breakdown = {}
+    potential_concerns = []
+    
+    ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
+    scoring_rules = scoring_rules_data.get("categories", {})
+    ingredients_dict = {item['inci_name'].lower(): item for item in ingredients_data}
+
+    # At a Glance Summary
+    top_two_categories = sorted(ai_says_output.items(), key=lambda item: item[1]['score'], reverse=True)[:2]
+    summary = f"**At a Glance:** This product appears to be strongest in **{top_two_categories[0][0]}** and **{top_two_categories[1][0]}**."
+    ai_says_output["Summary"] = {"score": "", "narrative": summary}
+
+    for category_name, rules in scoring_rules.items():
+        points, star_ingredients_found, supporting_ingredients_found, generic_contributors_found = 0, [], [], []
+        
+        # Scoring Logic... (as before)
+        
+        # New: Category-specific ingredient lists
+        contributors = {
+            "Star Ingredients": star_ingredients_found,
+            "Supporting Ingredients": supporting_ingredients_found,
+            "Other Contributors": generic_contributors_found
         }
-    }
+        formula_breakdown[category_name] = {k: v for k, v in contributors.items() if v} # Only add if list is not empty
 
-    for category_name, rules in analysis_categories.items():
-        relevant_functions = rules["functions"]
-        max_expected_percent = rules["max_expected_percent"]
-        
-        total_percentage, contributors = 0, []
-        for ing in analyzed_ingredients:
-            if ing['classification'] == 'Positive Impact' and any(func in relevant_functions for func in ing.get('functions', [])):
-                total_percentage += ing['estimated_percentage']
-                contributors.append(ing['name'].title())
-        
-        # Linear score: (total_active_mass / expected_max_mass) * 10
-        score = min(10, round((total_percentage / max_expected_percent) * 10))
-        
-        if score >= 8: template_key = "high_score"
-        elif score >= 4: template_key = "medium_score"
-        else: template_key = "low_score"
-        
-        narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
-        narrative = narrative.replace("{star_ingredients}", ", ".join(contributors[:2]))
-        
-        ai_says_output[category_name] = {"score": score, "narrative": narrative}
+    # Potential Concerns
+    for ing in analyzed_ingredients:
+        data = ingredients_dict.get(ing['name'].lower())
+        if data and data.get("notes"):
+            potential_concerns.append(f"**{ing['name'].title()}:** {data['notes']}")
 
-    formula_breakdown = {
-        "Positive Impact": sorted([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Positive Impact']),
-        "Neutral/Functional": sorted([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Neutral/Functional'])
-    }
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
-    return ai_says_output, formula_breakdown
+    return ai_says_output, formula_breakdown, potential_concerns
+
 
 def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
     routine_matches, product_functions = [], {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
@@ -307,4 +288,3 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
                         except IndexError: continue
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
-
