@@ -28,9 +28,9 @@ def load_all_data():
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'. Please ensure it's in the 'data' folder.")
+            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
         except json.JSONDecodeError as e:
-            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format.")
+            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}.")
             
     return data
 
@@ -66,8 +66,10 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         st.write("### 🧠 AI Analysis Log")
         st.write("_[This log shows the AI's step-by-step reasoning]_")
         
-        inci_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
-        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} ingredients.")
+        # --- UPGRADED PRE-PROCESSING ---
+        raw_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
+        inci_list = [item.split('/')[0].strip() for item in raw_list]
+        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} cleaned ingredients.")
 
         prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
         if prohibited_found:
@@ -189,7 +191,9 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         item['functions'] = list(set(functions))
         item['classification'] = classification
         annotated_list.append(item)
-    st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.** Total functions found: {sum(len(ing.get('functions', [])) for ing in annotated_list)}")
+    st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
+    debug_func_list = [f"- {ing['name']}: {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']
+    st.text("\n".join(debug_func_list))
     return annotated_list
 
 def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
@@ -214,15 +218,14 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
 
-# --- STAGE 2 & 3 FUNCTIONS (UPGRADED) ---
+# --- STAGE 2 & 3 FUNCTIONS ---
 def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data):
     ai_says_output = {}
     ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
     scoring_rules = scoring_rules_data.get("categories", {})
 
     for category_name, rules in scoring_rules.items():
-        points = 0
-        star_ingredients_found = []
+        points, star_ingredients_found = 0, []
         supporting_ingredients_found = []
         generic_contributors_found = []
 
@@ -268,10 +271,12 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         
         narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
         
-        # Populate placeholders
-        narrative = narrative.replace("{star_ingredients}", ", ".join(star_ingredients_found[:2]))
-        narrative = narrative.replace("{supporting_ingredients}", ", ".join(supporting_ingredients_found[:2]))
-        narrative = narrative.replace("{generic_contributors}", ", ".join(generic_contributors_found[:2]))
+        all_contributors = star_ingredients_found + supporting_ingredients_found + generic_contributors_found
+        unique_contributors = sorted(list(set(all_contributors)), key=lambda x: all_contributors.index(x))
+        
+        narrative = narrative.replace("{star_ingredients}", ", ".join(unique_contributors[:1]))
+        narrative = narrative.replace("{supporting_ingredients}", ", ".join(unique_contributors[1:3]))
+        narrative = narrative.replace("{generic_contributors}", ", ".join(unique_contributors[:2]))
         
         ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
 
