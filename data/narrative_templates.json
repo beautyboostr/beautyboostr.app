@@ -1,32 +1,34 @@
-﻿{
+{
+  "description": "Templates for generating the 'AI Assistant Says' narratives. Includes different text for high, medium, and low scores, plus generic versions for when no star ingredients are found.",
   "Hydration & Skin Barrier Support": {
-    "high_score": "This product provides exceptional hydration and barrier support, featuring key ingredients like {star_ingredients}.",
-    "medium_score": "This product offers good support for skin hydration, containing helpful ingredients such as {star_ingredients}.",
-    "low_score": "Hydration is not the primary focus of this product, though it contains some beneficial ingredients.",
-    "benefits": {}
+    "high_score": "This formula excels at providing hydration and supporting the skin's natural barrier. It features powerhouse humectants like {star_ingredients} to draw moisture into the skin, supported by {supporting_ingredients} which help to lock that moisture in and prevent water loss.",
+    "high_score_generic": "This product achieves a high score for hydration through a beneficial combination of ingredients. It contains a cocktail of humectants and emollients, including {generic_contributors}, that work together to moisturize the skin and support its barrier.",
+    "medium_score": "This product provides a solid level of hydration. It contains effective ingredients like {star_ingredients} that help to keep the skin moisturized.",
+    "low_score": "While this formula may have other benefits, it is not primarily focused on intensive hydration or barrier repair."
   },
   "Brightening & Even Skin Tone": {
-    "high_score": "This product is exceptionally formulated for brightening and evening out skin tone, with {star_ingredients} as the star ingredients.",
-    "medium_score": "This product can contribute to a brighter skin tone thanks to ingredients like {star_ingredients}.",
-    "low_score": "This formula is not primarily focused on brightening or addressing hyperpigmentation.",
-    "benefits": {}
+    "high_score": "This is an exceptionally strong formula for targeting hyperpigmentation and achieving a brighter, more even skin tone. It leverages proven brightening agents like {star_ingredients}, complemented by powerful antioxidants like {supporting_ingredients} that help protect against future discoloration.",
+    "high_score_generic": "This product effectively brightens the skin through a synergistic blend of ingredients. It combines several antioxidants and mild exfoliants, including {generic_contributors}, to promote a more even and radiant complexion.",
+    "medium_score": "This product can contribute to a more radiant complexion over time. It includes beneficial ingredients such as {star_ingredients} that are known for their brightening properties.",
+    "low_score": "This formula is not designed to be a primary treatment for hyperpigmentation or uneven skin tone."
   },
   "Soothing & Redness Reduction": {
-    "high_score": "This is a strong formula for calming the skin and reducing redness, featuring soothing agents like {star_ingredients}.",
-    "medium_score": "This product offers moderate soothing benefits, containing ingredients such as {star_ingredients}.",
-    "low_score": "Soothing is not a primary function of this product.",
-    "benefits": {}
+    "high_score": "This product is highly effective at calming the skin and reducing visible signs of irritation and redness. It is formulated with a strong concentration of soothing agents like {star_ingredients}, and is further supported by a cocktail of anti-inflammatory extracts like {supporting_ingredients}.",
+    "high_score_generic": "This formula achieves a high soothing score due to its rich blend of calming ingredients. It contains a variety of botanical extracts and anti-inflammatories, such as {generic_contributors}, that work together to reduce redness and irritation.",
+    "medium_score": "This formula contains several ingredients known for their calming properties, such as {star_ingredients}, making it a good option for reducing mild irritation.",
+    "low_score": "Soothing is not a primary function of this product, and it lacks a significant concentration of dedicated anti-inflammatory ingredients."
   },
   "Pore Appearance & Texture Improvement": {
-    "high_score": "This product is highly effective for improving skin texture and the appearance of pores, driven by key ingredients like {star_ingredients}.",
-    "medium_score": "This formula provides some benefits for skin texture, including ingredients like {star_ingredients}.",
-    "low_score": "This product is not designed to address texture or pore appearance.",
-    "benefits": {}
+    "high_score": "This is a powerful formula for refining skin texture and minimizing the appearance of pores. It uses effective exfoliants like {star_ingredients} to promote cell turnover, while ingredients such as {supporting_ingredients} help to regulate sebum and keep pores clear.",
+    "high_score_generic": "This product helps to improve skin texture through a combination of mild exfoliants and smoothing ingredients. The formula, featuring {generic_contributors}, works to promote cell turnover and refine the skin's surface over time.",
+    "medium_score": "This product can help to improve skin texture with consistent use. It contains ingredients like {star_ingredients} that provide mild exfoliation.",
+    "low_score": "This product is not formulated to specifically target texture concerns or the appearance of pores."
   },
   "Anti-aging & Wrinkle Reduction": {
-    "high_score": "This is a powerful anti-aging formula, featuring proven ingredients like {star_ingredients} to address fine lines and wrinkles.",
-    "medium_score": "This product offers moderate anti-aging support with ingredients such as {star_ingredients}.",
-    "low_score": "Anti-aging is not the main goal of this formula.",
-    "benefits": {}
+    "high_score": "This is a potent anti-aging formula designed to address fine lines and wrinkles. It features powerhouse ingredients like {star_ingredients} that are known to stimulate collagen production and improve skin elasticity, supported by a strong antioxidant blend including {supporting_ingredients} to protect against environmental aging.",
+    "high_score_generic": "This product provides strong anti-aging benefits through its rich antioxidant profile. The combination of ingredients, including {generic_contributors}, helps to protect the skin from environmental stressors that contribute to premature aging.",
+    "medium_score": "This product provides moderate anti-aging support. It contains beneficial ingredients like {star_ingredients} that can help to soften the appearance of fine lines over time.",
+    "low_score": "While this product may offer some antioxidant benefits, it is not formulated as a primary anti-aging treatment."
   }
 }
+
