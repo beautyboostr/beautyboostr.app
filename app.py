@@ -11,7 +11,7 @@ st.set_page_config(
 
 # --- Main App UI ---
 st.title("✨ BeautyBoostr AI Product Analyzer")
-st.markdown("Enter a product's name and its full ingredient (INCI) list. If you know the percentage of any ingredients, add them to the optional field.")
+st.markdown("Enter a product's name, its full ingredient (INCI) list, and any known ingredient percentages.")
 
 # --- Input Fields ---
 col1, col2, col3 = st.columns(3)
@@ -49,12 +49,11 @@ if analyze_button:
     else:
         with st.spinner("🤖 AI is analyzing the formula... This may take a moment."):
             try:
-                # This single function call runs the entire backend logic from engine.py
-                # Updated to pass the new known_percentages_str
-                ai_says_output, formula_breakdown, routine_matches = engine.run_full_analysis(
-                    product_name, 
+                # MODIFIED: Function call now unpacks the new 'potential_concerns' variable
+                ai_says_output, formula_breakdown, routine_matches, potential_concerns = engine.run_full_analysis(
+                    product_name,
                     inci_list_str,
-                    known_percentages_str 
+                    known_percentages_str
                 )
 
                 # --- Display the Final Output ---
@@ -63,17 +62,35 @@ if analyze_button:
                         st.markdown("---")
                         st.subheader("🤖 AI Assistant Says:")
                         for category, details in ai_says_output.items():
-                            st.markdown(f"**{category}:** Score {details['score']}/10")
+                            # Don't show a score for the summary
+                            score_display = f"**Score {details['score']}/10**" if details['score'] else ""
+                            st.markdown(f"**{category}:** {score_display}")
                             st.write(details['narrative'])
-                        
+
+                        # REPLACED: New breakdown section using expanders and showing concerns
                         st.subheader("🔬 Formula Effectiveness Breakdown:")
-                        col1_breakdown, col2_breakdown = st.columns(2)
-                        with col1_breakdown:
-                            st.markdown("##### ✅ Positive Impact")
-                            st.write(", ".join(formula_breakdown.get("Positive Impact", ["None"])))
-                        with col2_breakdown:
-                            st.markdown("#####  neutral Neutral/Functional")
-                            st.write(", ".join(formula_breakdown.get("Neutral/Functional", ["None"])))
+                        # Sort categories by score to show the most relevant first
+                        sorted_categories = sorted(
+                            [item for item in ai_says_output.items() if item[0] != "Summary"],
+                            key=lambda item: item[1]['score'],
+                            reverse=True
+                        )
+
+                        for category_name, details in sorted_categories:
+                            # Only show for relevant categories with a score above 3.0
+                            if details['score'] > 3.0 and category_name in formula_breakdown:
+                                with st.expander(f"**{category_name} (Score: {details['score']}/10)**"):
+                                    for list_name, ingredients in formula_breakdown[category_name].items():
+                                        if ingredients: # Only show if the list is not empty
+                                            st.markdown(f"**{list_name}:**")
+                                            st.write(" • " + " • ".join(ingredients))
+
+                        # Display Potential Concerns if any were found
+                        if potential_concerns:
+                            st.subheader("⚠️ Potential Concerns & Usage Notes:")
+                            for concern in potential_concerns:
+                                st.warning(concern)
+
 
                         st.subheader("📋 Routine Placements (Internal Use):")
                         if routine_matches:
@@ -84,4 +101,3 @@ if analyze_button:
             except Exception:
                 st.error("An unexpected error occurred in the main application.")
                 st.code(traceback.format_exc())
-
