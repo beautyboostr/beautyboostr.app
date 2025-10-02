@@ -198,8 +198,8 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     
     # Define which role keywords are valid for each profile key
     valid_roles_map = {
-        "Toner": ["toner", "essence"],
-        "Essence": ["essence", "toner"],
+        "Toner": ["toner"],
+        "Essence": ["essence"],
         "Serum": ["serum"],
         "Moisturizer (Lightweight)": ["moisturizer"],
         "Moisturizer (Rich)": ["moisturizer"],
@@ -294,4 +294,5 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
                         except IndexError: continue
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
+
 
