@@ -1,10 +1,17 @@
+import streamlit as st
+import json
+import traceback
+import re
+from thefuzz import process
+
 # --- DATA LOADING ---
 @st.cache_data
 def load_all_data():
     """
-    Loads all necessary JSON data files from the 'data' folder with specific error handling.
+    Loads all necessary JSON data files from the 'data' folder.
     """
     data = {}
+    # Note: category_scoring_rules.json is no longer needed with the new logic
     files_to_load = {
         "skin_types": "data/skin_types.json",
         "routines": "data/routines.json",
@@ -14,8 +21,7 @@ def load_all_data():
         "ingredients": "data/ingredients.json",
         "narrative_templates": "data/narrative_templates.json",
         "scoring_config": "data/scoring_config.json",
-        "prohibited_ingredients": "data/prohibited_ingredients.json",
-        "category_scoring_rules": "data/category_scoring_rules.json"
+        "prohibited_ingredients": "data/prohibited_ingredients.json"
     }
     
     for name, path in files_to_load.items():
@@ -23,10 +29,14 @@ def load_all_data():
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'. Please ensure it's in the 'data' folder.")
+            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
         except json.JSONDecodeError as e:
-            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format.")
+            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}.")
             
+    # Create a list of all ingredient names from the database for fuzzy matching
+    if "ingredients" in data:
+        data["ingredient_names_for_matching"] = [item['inci_name'].lower() for item in data["ingredients"]]
+
     return data
 
 try:
@@ -37,37 +47,25 @@ except (FileNotFoundError, ValueError) as e:
 
 # --- HELPER FUNCTION ---
 def parse_known_percentages(known_percentages_str):
-    """Parses the user input for known percentages into a dictionary."""
     known_percentages = {}
-    if not known_percentages_str:
-        return known_percentages
-    
-    pairs = known_percentages_str.split(',')
-    for pair in pairs:
+    if not known_percentages_str: return known_percentages
+    for pair in known_percentages_str.split(','):
         if ':' in pair:
             try:
                 name, perc_str = pair.split(':', 1)
-                name = name.strip().lower()
-                perc = float(perc_str.strip())
-                known_percentages[name] = perc
-            except ValueError:
-                continue
+                known_percentages[name.strip().lower()] = float(perc_str.strip())
+            except ValueError: continue
     return known_percentages
 
 # --- MAIN ANALYSIS ORCHESTRATOR ---
 def run_full_analysis(product_name, inci_list_str, known_percentages_str):
-    """
-    The main orchestrator function that runs the entire analysis pipeline.
-    """
     try:
-        st.write("---")
-        st.write("### 🧠 AI Analysis Log")
-        st.write("_[This log shows the AI's step-by-step reasoning]_")
+        st.write("---"); st.write("### 🧠 AI Analysis Log"); st.write("_[This log shows the AI's step-by-step reasoning]_")
         
-        inci_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
-        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} ingredients.")
+        raw_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
+        inci_list = [re.sub(r'[\.\*]$', '', item.split('/')[0].strip()) for item in raw_list]
+        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} cleaned ingredients.")
 
-        # STAGE 0: Safety Check
         prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
         if prohibited_found:
             st.error(f"⚠️ **SAFETY ALERT:** This product contains a substance prohibited in cosmetic products in the EU: **{prohibited_found.title()}**. Analysis halted.")
@@ -82,17 +80,14 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
             return None, None, None
             
         ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], known_percentages)
-        analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
+        analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
         
-        # STAGE 2: Narrative Generation with NEW SCORING
-        ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"], ALL_DATA["category_scoring_rules"])
+        ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"])
         
-        # STAGE 3: Matching & Internal Output
         routine_matches = find_all_routine_matches(product_roles, analyzed_ingredients, ALL_DATA)
 
         return ai_says_output, formula_breakdown, routine_matches
-
     except Exception:
         st.error("An unexpected error occurred during the analysis process.")
         st.code(traceback.format_exc())
@@ -102,8 +97,7 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
 def check_for_prohibited(inci_list, prohibited_data):
     prohibited_set = set(ing.lower() for ing in prohibited_data.get("ingredients", []))
     for ingredient in inci_list:
-        if ingredient in prohibited_set:
-            return ingredient
+        if ingredient in prohibited_set: return ingredient
     return None
 
 # --- STAGE 1 FUNCTIONS ---
@@ -129,8 +123,11 @@ def get_product_profile(product_name, profiles_data):
 
 def estimate_percentages(inci_list, profile, markers, known_percentages):
     percentages = {name: None for name in inci_list}
+    # Use fuzzy matching to map known percentages to the inci list
     for name, perc in known_percentages.items():
-        if name in percentages: percentages[name] = float(perc)
+        match = process.extractOne(name, inci_list)
+        if match and match[1] > 90: # High confidence match
+            percentages[match[0]] = float(perc)
     
     for i in range(len(inci_list) - 1, -1, -1):
         current_ing = inci_list[i]
@@ -138,8 +135,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
         floor_perc = 0.001
         if i + 1 < len(inci_list):
             next_ing = inci_list[i+1]
-            if percentages[next_ing] is None:
-                 raise ValueError("Estimation logic failed: encountered an un-estimated ingredient while moving backwards.")
+            if percentages[next_ing] is None: raise ValueError("Estimation logic failed.")
             floor_perc = percentages[next_ing]
         estimated_perc = floor_perc * 1.1 + 0.01 
         one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
@@ -147,67 +143,70 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
             estimated_perc = min(estimated_perc, 1.0)
         percentages[current_ing] = estimated_perc
 
-    known_sum = sum(p for ing, p in percentages.items() if ing in known_percentages)
+    # Calculate sums for normalization
+    known_sum = sum(p for ing, p in percentages.items() if p is not None and (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())))
     if known_sum > 100:
-        st.error("Error: The sum of known percentages exceeds 100%. Please check your input.")
+        st.error("Error: The sum of known percentages exceeds 100%.")
         raise ValueError("Sum of known percentages exceeds 100%.")
-    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
+    
+    estimated_sum = sum(p for ing, p in percentages.items() if p is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())))
     remaining_to_distribute = 100.0 - known_sum
     if estimated_sum > 0 and remaining_to_distribute > 0:
         factor = remaining_to_distribute / estimated_sum
         for ing in percentages:
-            if ing not in known_percentages: percentages[ing] *= factor
+             if percentages[ing] is not None and not (ing in known_percentages or any(process.extractOne(ing, known_percentages.keys())[1] > 90 for k in known_percentages.keys())):
+                percentages[ing] *= factor
     
-    final_total = sum(percentages.values())
+    final_total = sum(p for p in percentages.values() if p is not None)
     if final_total > 0:
         final_factor = 100.0 / final_total
-        for ing in percentages: percentages[ing] *= final_factor
-
+        for ing in percentages:
+            if percentages[ing] is not None:
+                percentages[ing] *= final_factor
+        
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
-    debug_percentage_list = [f"- {name}: {percentages[name]:.4f}%" for name in inci_list]
-    st.text("\n".join(debug_percentage_list))
+    st.text("\n".join([f"- {name}: {percentages[name]:.4f}%" for name in inci_list]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
 
-
-def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data):
-    ingredients_dict = {item['inci_name'].lower(): item for item in ingredients_data}
+def analyze_ingredient_functions(ingredients_with_percentages, all_data):
+    db_names = all_data["ingredient_names_for_matching"]
+    ingredients_dict = {item['inci_name'].lower(): item for item in all_data["ingredients"]}
     annotated_list = []
+    
     for item in ingredients_with_percentages:
         ingredient_name_lower = item['name'].lower()
-        data = ingredients_dict.get(ingredient_name_lower)
-        functions = []
-        source = "Heuristic" # Assume heuristic by default
-
-        # Step 1: Prioritize the database. If found, use its data.
-        if data and isinstance(data.get('behaviors'), list):
-            for behavior in data['behaviors']:
-                if isinstance(behavior, dict) and behavior.get('functions'):
-                    functions.extend(behavior.get('functions', []))
-            if functions: # If we found any functions in the DB
-                source = "Database"
-
-        # Step 2: If no functions were found in the database, use heuristics as a fallback.
-        if not functions:
+        functions, source = [], "Heuristic"
+        
+        # FUZZY MATCHING LOGIC
+        best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85) # Lowered cutoff for flexibility
+        
+        if best_match:
+            matched_name = best_match[0]
+            data = ingredients_dict.get(matched_name)
+            if data and isinstance(data.get('behaviors'), list):
+                for behavior in data['behaviors']:
+                    if isinstance(behavior, dict) and behavior.get('functions'):
+                        functions.extend(behavior.get('functions', []))
+                if functions: source = f"Database (Match: {matched_name})"
+        
+        # FALLBACK HEURISTIC if no DB match
+        if source == "Heuristic":
             if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
             if "ferment" in ingredient_name_lower or "lactobacillus" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
-            if "water" in ingredient_name_lower and "aqua" not in ingredient_name_lower: functions.extend(["Soothing", "Hydration"]) # For hydrosols
+            if "water" in ingredient_name_lower and "aqua" not in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
             if "gluconolactone" in ingredient_name_lower: functions.extend(["Exfoliation (mild)", "Humectant"])
             if "salicylate" in ingredient_name_lower: functions.extend(["Exfoliation (mild)"])
             if "polyglutamate" in ingredient_name_lower: functions.extend(["Hydration", "Humectant"])
 
-        # Step 3: Classify based on the final list of functions
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
         unique_functions = list(set(functions))
         classification = "Positive Impact" if any(pf in unique_functions for pf in positive_functions) else "Neutral/Functional"
         
-        item['functions'] = unique_functions
-        item['classification'] = classification
-        item['source'] = source # Add source for debugging
+        item.update({'functions': unique_functions, 'classification': classification, 'source': source})
         annotated_list.append(item)
 
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
-    debug_func_list = [f"- {ing['name']} (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']
-    st.text("\n".join(debug_func_list))
+    st.text("\n".join([f"- {ing['name']} (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']))
     return annotated_list
 
 def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
@@ -222,80 +221,67 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     }
     valid_keywords = valid_roles_map.get(profile_key, [])
     for role, rules in function_rules.items():
-        if not isinstance(rules, dict): continue
-        is_valid_type = any(keyword in role.lower() for keyword in valid_keywords)
-        if not is_valid_type: continue
-        must_haves = rules.get('must_have_functions', [])
-        if all(f in product_functions for f in must_haves):
-            matched_roles.append(role)
+        if isinstance(rules, dict) and any(keyword in role.lower() for keyword in valid_keywords):
+            if all(f in product_functions for f in rules.get('must_have_functions', [])):
+                matched_roles.append(role)
     if not matched_roles and profile_key: matched_roles.append(profile_key)
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
 
-# --- STAGE 2 & 3 FUNCTIONS (UPGRADED) ---
-def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data):
+# --- STAGE 2 & 3 FUNCTIONS (RETHOUGHT) ---
+def generate_analysis_output(analyzed_ingredients, templates):
     ai_says_output = {}
-    ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
-    scoring_rules = scoring_rules_data.get("categories", {})
+    analysis_categories = {
+        "Hydration & Skin Barrier Support": {
+            "functions": ["Hydration", "Humectant", "Barrier Support", "Emollient", "Occlusive"],
+            "max_expected_percent": 20.0
+        },
+        "Brightening & Even Skin Tone": {
+            "functions": ["Brightening", "Anti-pigmentation"],
+            "max_expected_percent": 15.0
+        },
+        "Soothing & Redness Reduction": {
+            "functions": ["Soothing", "Anti-inflammatory"],
+            "max_expected_percent": 10.0
+        },
+        "Pore Appearance & Texture Improvement": {
+            "functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent"],
+            "max_expected_percent": 10.0
+        },
+        "Anti-aging & Wrinkle Reduction": {
+            "functions": ["Anti-aging", "Collagen Synthesis", "Antioxidant"],
+            "max_expected_percent": 15.0
+        }
+    }
 
-    for category_name, rules in scoring_rules.items():
-        points, star_ingredients_found = 0, []
-        supporting_ingredients_found = []
-        generic_contributors_found = []
-
-        # Layer 1: Score named "star" ingredients
-        for star in rules.get("star_ingredients", []):
-            star_name_lower = star["name"].lower()
-            if star_name_lower in ingredient_percentages and ingredient_percentages[star_name_lower] >= star["min_effective_percent"]:
-                points += star["points"]
-                star_ingredients_found.append(star["name"].title())
+    for category_name, rules in analysis_categories.items():
+        relevant_functions = rules["functions"]
+        max_expected_percent = rules["max_expected_percent"]
         
-        # Layer 2: Score named "supporting" ingredients
-        for support_name, support_points in rules.get("supporting_ingredients", {}).items():
-            support_name_lower = support_name.lower()
-            if support_name_lower in ingredient_percentages:
-                points += support_points
-                if support_name.title() not in star_ingredients_found:
-                    supporting_ingredients_found.append(support_name.title())
-
-        # Layer 3: Score generic function contributors
-        category_functions = rules.get("generic_functions", [])
-        generic_bonus_points = rules.get("generic_function_bonus", 2)
-        all_named_contributors = star_ingredients_found + supporting_ingredients_found
+        total_percentage, contributors = 0, []
         for ing in analyzed_ingredients:
-            if ing['classification'] == 'Positive Impact' and ing['name'].title() not in all_named_contributors:
-                if any(func in category_functions for func in ing.get('functions', [])):
-                    points += generic_bonus_points
-                    generic_contributors_found.append(ing['name'].title())
-
-        # Normalize score to 1-10
-        max_points = rules.get("max_points", 1)
-        final_score = min(10, round((points / max_points) * 9) + 1 if max_points > 0 else 1)
+            if ing['classification'] == 'Positive Impact' and any(func in relevant_functions for func in ing.get('functions', [])):
+                total_percentage += ing['estimated_percentage']
+                contributors.append(ing['name'].title())
         
-        # Generate Narrative
-        if final_score >= 8: template_key = "high_score_generic" if not star_ingredients_found else "high_score"
-        elif final_score >= 4: template_key = "medium_score"
+        # Linear score: (total_active_mass / expected_max_mass) * 10
+        score = min(10, round((total_percentage / max_expected_percent) * 10))
+        
+        if score >= 8: template_key = "high_score"
+        elif score >= 4: template_key = "medium_score"
         else: template_key = "low_score"
         
         narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
+        narrative = narrative.replace("{star_ingredients}", ", ".join(contributors[:2]))
         
-        all_contributors = star_ingredients_found + supporting_ingredients_found + generic_contributors_found
-        unique_contributors = sorted(list(set(all_contributors)), key=lambda x: all_contributors.index(x))
-        
-        narrative = narrative.replace("{star_ingredients}", ", ".join(unique_contributors[:1]))
-        narrative = narrative.replace("{supporting_ingredients}", ", ".join(unique_contributors[1:3]))
-        narrative = narrative.replace("{generic_contributors}", ", ".join(unique_contributors[:2]))
-        
-        ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
+        ai_says_output[category_name] = {"score": score, "narrative": narrative}
 
     formula_breakdown = {
-        "Positive Impact": sorted(list(set([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Positive Impact']))),
-        "Neutral/Functional": sorted(list(set([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Neutral/Functional'])))
+        "Positive Impact": sorted([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Positive Impact']),
+        "Neutral/Functional": sorted([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Neutral/Functional'])
     }
-    
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown
-
 
 def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
     routine_matches, product_functions = [], {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
@@ -321,3 +307,4 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
                         except IndexError: continue
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
+
