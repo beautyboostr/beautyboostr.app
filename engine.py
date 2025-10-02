@@ -236,6 +236,8 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
 
+
+         # --- REPLACEMENT FOR generate_analysis_output in engine.py ---
 def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data, ingredients_data):
     ai_says_output = {}
     formula_breakdown = {}
@@ -251,7 +253,7 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         supporting_ingredients_found = []
         generic_contributors_found = []
         
-        # 1. Check for Star Ingredients
+        # 1. Check for Star Ingredients at effective percentages
         for star_rule in rules.get("star_ingredients", []):
             star_name_lower = star_rule["name"].lower()
             match = process.extractOne(star_name_lower, ingredient_percentages.keys())
@@ -268,15 +270,26 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 points += ing_points
                 supporting_ingredients_found.append(ing_name)
 
-        # 3. Add bonus points for generic functions
-        product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
-        for generic_func in rules.get("generic_functions", []):
-            if generic_func in product_functions:
-                points += rules.get("generic_function_bonus", 0)
-                contributors = [ing['name'].title() for ing in analyzed_ingredients if generic_func in ing.get('functions', []) and ing['classification'] == 'Positive Impact']
-                for c in contributors:
-                     if c not in generic_contributors_found and c not in star_ingredients_found and c not in supporting_ingredients_found:
-                         generic_contributors_found.append(c)
+        # 3. CORRECTED LOGIC: Award points for EACH ingredient contributing a generic function
+        generic_function_set = set(rules.get("generic_functions", []))
+        bonus_points_per_match = 1.5  # Points awarded per ingredient providing a useful function
+
+        for ingredient in analyzed_ingredients:
+            ing_name_lower = ingredient['name'].lower()
+            # Ensure we don't double-count points for star or supporting ingredients
+            is_already_scored = any(process.extractOne(star['name'].lower(), [ing_name_lower])[1] > 95 for star in rules.get("star_ingredients", [])) or \
+                                any(process.extractOne(sup.lower(), [ing_name_lower])[1] > 95 for sup in supporting_rules.keys())
+            
+            if is_already_scored:
+                continue
+
+            # Find intersection of this ingredient's functions and the category's generic functions
+            matching_functions = generic_function_set.intersection(set(ingredient.get('functions', [])))
+            
+            if matching_functions:
+                points += bonus_points_per_match
+                if ingredient['name'].title() not in generic_contributors_found:
+                    generic_contributors_found.append(ingredient['name'].title())
 
         final_score = round(min(10, (points / rules.get("max_points", 100)) * 10), 1)
 
@@ -291,13 +304,37 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 key_contributors = supporting_ingredients_found + generic_contributors_found
                 narrative = template_set.get("high_score_generic", "").format(generic_contributors=", ".join(list(set(key_contributors))[:3]))
         elif final_score >= 4.0:
-            key_ingredients = star_ingredients_found + supporting_ingredients_found
-            narrative = template_set.get("medium_score", "").format(star_ingredients=", ".join(key_ingredients) if key_ingredients else "some beneficial ingredients")
+            key_ingredients = star_ingredients_found + supporting_ingredients_found + generic_contributors_found
+            narrative = template_set.get("medium_score", "").format(star_ingredients=", ".join(list(set(key_ingredients))[:3]) if key_ingredients else "some beneficial ingredients")
         else:
             narrative = template_set.get("low_score", "This formula does not focus on this category.")
 
-        if final_score > 0:
+        if final_score > 0.5: # Threshold to display a category
              ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
+        
+        # --- Formula Breakdown ---
+        contributors = {"Star Ingredients": star_ingredients_found, "Supporting Ingredients": supporting_ingredients_found, "Other Key Ingredients": generic_contributors_found}
+        if any(v for v in contributors.values()):
+            formula_breakdown[category_name] = {k: v for k, v in contributors.items() if v}
+
+    # --- Summary & Concerns ---
+    if ai_says_output:
+        top_two_categories = sorted(ai_says_output.items(), key=lambda item: item[1]['score'], reverse=True)[:2]
+        if len(top_two_categories) >= 2:
+            summary_text = f"**At a Glance:** This product appears to be strongest in **{top_two_categories[0][0]}** and **{top_two_categories[1][0]}**."
+            summary_dict = {"Summary": {"score": "", "narrative": summary_text}}
+            summary_dict.update(ai_says_output)
+            ai_says_output = summary_dict
+
+    for ing in analyzed_ingredients:
+        match = process.extractOne(ing['name'].lower(), [db_ing['inci_name'].lower() for db_ing in ingredients_data])
+        if match and match[1] > 90:
+            db_entry = next((item for item in ingredients_data if item['inci_name'].lower() == match[0]), None)
+            if db_entry and db_entry.get("restrictions") and db_entry["restrictions"] != "Без обмежень":
+                 potential_concerns.append(f"**{ing['name'].title()}:** {db_entry['restrictions']}")
+    
+    st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
+    return ai_says_output, formula_breakdown, potential_concerns
         
         # --- Formula Breakdown ---
         contributors = {"Star Ingredients": star_ingredients_found, "Supporting Ingredients": supporting_ingredients_found, "Other Key Ingredients": generic_contributors_found}
