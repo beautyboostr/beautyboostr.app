@@ -28,11 +28,11 @@ with col2:
         selected_skin_type_str = st.selectbox(
             "Select Your Skin Type (Optional)",
             options=[""] + skin_type_names,
-            help="Selecting a skin type will provide a more personalized match score."
+            help="Selecting a skin type provides a more personalized match score."
         )
         selected_skin_type_id = selected_skin_type_str.split(':')[0] if selected_skin_type_str else None
-    except Exception:
-        st.error("Could not load skin types for dropdown.")
+    except Exception as e:
+        st.error(f"Could not load skin types for dropdown: {e}")
         selected_skin_type_id = None
 
 inci_list_str = st.text_area(
@@ -52,46 +52,36 @@ if analyze_button:
         st.warning("Please provide both a product name and an ingredient list.")
     else:
         with st.spinner("🤖 AI is analyzing the formula... This may take a moment."):
-            try:
-                # --- CORRECTED FUNCTION CALL ---
-                # Removed the extra 'engine.ALL_DATA' argument
-                ai_says_output, formula_breakdown, routine_matches = engine.run_full_analysis(
-                    product_name, 
-                    inci_list_str,
-                    selected_skin_type_id
-                )
+            # The engine.py file now handles the full analysis, including the safety check.
+            # If a prohibited ingredient is found, the engine will print an error and return None.
+            ai_says_output, formula_breakdown, routine_matches = engine.run_full_analysis(
+                product_name, 
+                inci_list_str,
+                selected_skin_type_id
+            )
 
-                # --- Display the Final Output ---
-                if ai_says_output:
-                    with output_container:
-                        st.markdown("---")
-                        st.subheader("🤖 AI Assistant Says:")
-                        for category, details in ai_says_output.items():
-                            st.markdown(f"**{category}:** Score {details['score']}/10")
-                            st.write(details['narrative'])
-                        
-                        st.subheader("🔬 Formula Effectiveness Breakdown:")
-                        col1_breakdown, col2_breakdown = st.columns(2)
-                        with col1_breakdown:
-                            st.markdown("##### ✅ Positive Impact")
-                            st.write(", ".join(formula_breakdown.get("Positive Impact", ["None"])))
-                        with col2_breakdown:
-                            st.markdown("#####  neutral Neutral/Functional")
-                            st.write(", ".join(formula_breakdown.get("Neutral/Functional", ["None"])))
+            # --- Display the Final Output ---
+            # This block will only run if the analysis was successful (i.e., not stopped by a safety check or other error)
+            if ai_says_output and formula_breakdown and routine_matches is not None:
+                with output_container:
+                    st.markdown("---")
+                    st.subheader("🤖 AI Assistant Says:")
+                    for category, details in ai_says_output.items():
+                        st.markdown(f"**{category}:** Score {details['score']}/10")
+                        st.write(details['narrative'])
+                    
+                    st.subheader("🔬 Formula Effectiveness Breakdown:")
+                    col1_breakdown, col2_breakdown = st.columns(2)
+                    with col1_breakdown:
+                        st.markdown("##### ✅ Positive Impact")
+                        st.write(", ".join(formula_breakdown.get("Positive Impact", ["None"])))
+                    with col2_breakdown:
+                        st.markdown("#####  neutrall Neutral/Functional")
+                        st.write(", ".join(formula_breakdown.get("Neutral/Functional", ["None"])))
 
-                        st.subheader("📋 Routine Placements (Internal Use):")
-                        if routine_matches:
-                            # Use st.code to display the list clearly
-                            st.code("\n".join(routine_matches), language=None)
-                        else:
-                            st.info("No perfect routine placements were found based on the analysis.")
-                else:
-                    # This handles cases where the analysis runs but finds no valid output
-                    st.error("Analysis completed, but no valid output was generated. Please check the debug logs.")
-
-            except Exception:
-                # This will catch any unexpected Python error during the analysis
-                st.error("An unexpected error occurred during the analysis process.")
-                # The traceback provides the full, detailed error for debugging
-                st.code(traceback.format_exc())
+                    st.subheader("📋 Routine Placements (Internal Use):")
+                    if routine_matches:
+                        st.code("\n".join(routine_matches), language=None)
+                    else:
+                        st.info("No perfect routine placements were found based on the analysis.")
 
