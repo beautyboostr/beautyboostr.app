@@ -177,20 +177,34 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         ingredient_name_lower = item['name'].lower()
         data = ingredients_dict.get(ingredient_name_lower)
         functions = []
+
+        # Step 1: Get functions from the structured database if available
         if data and isinstance(data.get('behaviors'), list):
             for behavior in data['behaviors']:
-                if isinstance(behavior, dict) and behavior.get('functions'): functions.extend(behavior.get('functions', []))
-        else:
-            if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
-            if "ferment" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
-            if "gluconolactone" in ingredient_name_lower: functions.extend(["Exfoliation (mild)", "Humectant"])
-            if "salicylate" in ingredient_name_lower: functions.extend(["Exfoliation (mild)"])
-            if "polyglutamate" in ingredient_name_lower: functions.extend(["Hydration", "Humectant"])
+                if isinstance(behavior, dict) and behavior.get('functions'):
+                    functions.extend(behavior.get('functions', []))
+
+        # Step 2: ALWAYS apply heuristics to catch generic functions
+        if "extract" in ingredient_name_lower:
+            functions.extend(["Antioxidant", "Soothing"])
+        if "ferment" in ingredient_name_lower:
+            functions.extend(["Soothing", "Hydration"])
+        if "gluconolactone" in ingredient_name_lower:
+            functions.extend(["Exfoliation (mild)", "Humectant"])
+        if "salicylate" in ingredient_name_lower:
+            functions.extend(["Exfoliation (mild)"])
+        if "polyglutamate" in ingredient_name_lower:
+            functions.extend(["Hydration", "Humectant"])
+
+        # Step 3: Classify based on the combined list of functions
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
-        classification = "Positive Impact" if any(pf in functions for pf in positive_functions) else "Neutral/Functional"
-        item['functions'] = list(set(functions))
+        unique_functions = list(set(functions))
+        classification = "Positive Impact" if any(pf in unique_functions for pf in positive_functions) else "Neutral/Functional"
+        
+        item['functions'] = unique_functions
         item['classification'] = classification
         annotated_list.append(item)
+
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
     debug_func_list = [f"- {ing['name']}: {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']
     st.text("\n".join(debug_func_list))
