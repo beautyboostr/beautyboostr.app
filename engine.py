@@ -199,7 +199,7 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     # Define which role keywords are valid for each profile key
     valid_roles_map = {
         "Toner": ["toner", "essence"],
-        "Essence": ["essence"],
+        "Essence": ["essence", "toner"],
         "Serum": ["serum"],
         "Moisturizer (Lightweight)": ["moisturizer"],
         "Moisturizer (Rich)": ["moisturizer"],
@@ -208,9 +208,9 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
         "Cleanser (Oil-based)": ["cleanser"],
         "Mask (Wash-off Gel/Cream)": ["mask", "oil"],
         "Mask (Clay)": ["mask"],
-        "Face Oil": ["oil"],
+        "Face Oil": ["oil", "mask"],
         "Eye Cream": ["eye cream"],
-        "Sunscreen": ["spf"],
+        "Sunscreen": ["spf", "sunscreen"],
         "Lip Balm": ["lip balm"],
         "Mist": ["mist"]
     }
@@ -232,10 +232,9 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
         if all(f in product_functions for f in must_haves):
             matched_roles.append(role)
     
-    if not matched_roles:
-        # If no specific roles match, find the general role
-        general_role = next((role for role, rules in function_rules.items() if isinstance(rules,dict) and len(rules.get("must_have_functions",[])) == 1 and rules["must_have_functions"][0] in product_functions), "Unknown")
-        matched_roles.append(general_role)
+    # Fallback to the general profile key if no specific roles are matched
+    if not matched_roles and profile_key:
+        matched_roles.append(profile_key)
 
 
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
