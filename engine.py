@@ -28,9 +28,9 @@ def load_all_data():
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'. Please ensure it's in the 'data' folder.")
+            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
         except json.JSONDecodeError as e:
-            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format.")
+            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}.")
             
     return data
 
@@ -61,18 +61,17 @@ def parse_known_percentages(known_percentages_str):
 
 # --- MAIN ANALYSIS ORCHESTRATOR ---
 def run_full_analysis(product_name, inci_list_str, known_percentages_str):
-    """
-    The main orchestrator function that runs the entire analysis pipeline.
-    """
     try:
         st.write("---")
         st.write("### 🧠 AI Analysis Log")
         st.write("_[This log shows the AI's step-by-step reasoning]_")
         
-        inci_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
-        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} ingredients.")
+        # --- UPGRADED PRE-PROCESSING ---
+        raw_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
+        # Clean by splitting on '/' and removing trailing punctuation like '.' or '*'
+        inci_list = [re.sub(r'[\.\*]$', '', item.split('/')[0].strip()) for item in raw_list]
+        st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} cleaned ingredients.")
 
-        # STAGE 0: Safety Check
         prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
         if prohibited_found:
             st.error(f"⚠️ **SAFETY ALERT:** This product contains a substance prohibited in cosmetic products in the EU: **{prohibited_found.title()}**. Analysis halted.")
@@ -90,10 +89,8 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
         
-        # STAGE 2: Narrative Generation with NEW SCORING
         ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"], ALL_DATA["category_scoring_rules"])
         
-        # STAGE 3: Matching & Internal Output
         routine_matches = find_all_routine_matches(product_roles, analyzed_ingredients, ALL_DATA)
 
         return ai_says_output, formula_breakdown, routine_matches
@@ -237,7 +234,7 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
 
-# --- STAGE 2 & 3 FUNCTIONS (UPGRADED) ---
+# --- STAGE 2 & 3 FUNCTIONS ---
 def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data):
     ai_says_output = {}
     ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
@@ -248,14 +245,12 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         supporting_ingredients_found = []
         generic_contributors_found = []
 
-        # Layer 1: Score named "star" ingredients
         for star in rules.get("star_ingredients", []):
             star_name_lower = star["name"].lower()
             if star_name_lower in ingredient_percentages and ingredient_percentages[star_name_lower] >= star["min_effective_percent"]:
                 points += star["points"]
                 star_ingredients_found.append(star["name"].title())
         
-        # Layer 2: Score named "supporting" ingredients
         for support_name, support_points in rules.get("supporting_ingredients", {}).items():
             support_name_lower = support_name.lower()
             if support_name_lower in ingredient_percentages:
@@ -263,7 +258,6 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 if support_name.title() not in star_ingredients_found:
                     supporting_ingredients_found.append(support_name.title())
 
-        # Layer 3: Score generic function contributors
         category_functions = rules.get("generic_functions", [])
         generic_bonus_points = rules.get("generic_function_bonus", 2)
         all_named_contributors = star_ingredients_found + supporting_ingredients_found
@@ -273,11 +267,9 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                     points += generic_bonus_points
                     generic_contributors_found.append(ing['name'].title())
 
-        # Normalize score to 1-10
         max_points = rules.get("max_points", 1)
         final_score = min(10, round((points / max_points) * 9) + 1 if max_points > 0 else 1)
         
-        # Generate Narrative
         if final_score >= 8: template_key = "high_score_generic" if not star_ingredients_found else "high_score"
         elif final_score >= 4: template_key = "medium_score"
         else: template_key = "low_score"
