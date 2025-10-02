@@ -28,9 +28,9 @@ def load_all_data():
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
+            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'. Please ensure it's in the 'data' folder.")
         except json.JSONDecodeError as e:
-            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}.")
+            raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}. Please validate the file's format.")
             
     return data
 
@@ -167,6 +167,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
     st.text("\n".join(debug_percentage_list))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
 
+
 def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data):
     ingredients_dict = {item['inci_name'].lower(): item for item in ingredients_data}
     annotated_list = []
@@ -222,46 +223,55 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
     for category_name, rules in scoring_rules.items():
         points = 0
         star_ingredients_found = []
+        supporting_ingredients_found = []
+        generic_contributors_found = []
 
-        # Layer 1: Score named "star" and "supporting" ingredients
+        # Layer 1: Score named "star" ingredients
         for star in rules.get("star_ingredients", []):
             star_name_lower = star["name"].lower()
             if star_name_lower in ingredient_percentages and ingredient_percentages[star_name_lower] >= star["min_effective_percent"]:
                 points += star["points"]
                 star_ingredients_found.append(star["name"].title())
+        
+        # Layer 2: Score named "supporting" ingredients
         for support_name, support_points in rules.get("supporting_ingredients", {}).items():
             support_name_lower = support_name.lower()
             if support_name_lower in ingredient_percentages:
                 points += support_points
                 if support_name.title() not in star_ingredients_found:
-                    star_ingredients_found.append(support_name.title())
+                    supporting_ingredients_found.append(support_name.title())
 
-        # Layer 2: Score based on generic functions for all other positive ingredients
+        # Layer 3: Score generic function contributors
         category_functions = rules.get("generic_functions", [])
-        generic_bonus_points = rules.get("generic_function_bonus", 2) # Default bonus
+        generic_bonus_points = rules.get("generic_function_bonus", 2)
+        all_named_contributors = star_ingredients_found + supporting_ingredients_found
         for ing in analyzed_ingredients:
-            # Check if this ingredient has already been scored as a star/supporter
-            if ing['classification'] == 'Positive Impact' and ing['name'].title() not in star_ingredients_found:
-                # Check if it has any function relevant to this category
+            if ing['classification'] == 'Positive Impact' and ing['name'].title() not in all_named_contributors:
                 if any(func in category_functions for func in ing.get('functions', [])):
                     points += generic_bonus_points
-                    # Add to star list for narrative purposes if it contributed
-                    star_ingredients_found.append(ing['name'].title())
-
+                    generic_contributors_found.append(ing['name'].title())
 
         # Normalize score to 1-10
         max_points = rules.get("max_points", 1)
         final_score = min(10, round((points / max_points) * 9) + 1 if max_points > 0 else 1)
         
         # Generate Narrative
-        if final_score >= 8: template_key = "high_score"
-        elif final_score >= 4: template_key = "medium_score"
-        else: template_key = "low_score"
+        if final_score >= 8:
+            if star_ingredients_found:
+                template_key = "high_score"
+            else:
+                template_key = "high_score_generic"
+        elif final_score >= 4:
+            template_key = "medium_score"
+        else:
+            template_key = "low_score"
         
         narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
-        # Make the star ingredient list for the narrative more robust
-        unique_stars = sorted(list(set(star_ingredients_found)), key=lambda x: star_ingredients_found.index(x))
-        narrative = narrative.replace("{star_ingredients}", ", ".join(unique_stars[:2]))
+        
+        # Populate placeholders
+        narrative = narrative.replace("{star_ingredients}", ", ".join(star_ingredients_found[:2]))
+        narrative = narrative.replace("{supporting_ingredients}", ", ".join(supporting_ingredients_found[:2]))
+        narrative = narrative.replace("{generic_contributors}", ", ".join(generic_contributors_found[:2]))
         
         ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
 
@@ -272,6 +282,7 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
     
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown
+
 
 def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
     routine_matches, product_functions = [], {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
