@@ -182,6 +182,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
     st.text("\n".join([f"- {name}: {percentages[name]:.4f}%" for name in inci_list]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
 
+# --- REPLACEMENT FOR analyze_ingredient_functions in engine.py ---
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
     ingredients_dict = {item['inci_name'].lower(): item for item in all_data["ingredients"]}
@@ -189,9 +190,21 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
 
     for item in ingredients_with_percentages:
         ingredient_name_lower = item['name'].lower()
+        # Handle the common case of "Aqua"
+        if ingredient_name_lower == 'aqua':
+            ingredient_name_lower = 'water'
+            
         functions, source = [], "Heuristic"
+        best_match = None
 
-        best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85)
+        # --- CORRECTED LOGIC ---
+        # 1. Prioritize a direct, exact match before using fuzzy logic.
+        if ingredient_name_lower in db_names:
+            best_match = (ingredient_name_lower, 100)  # Simulate a perfect match
+        # 2. If no exact match, THEN use fuzzy matching as a fallback.
+        else:
+            best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85)
+        # --- END OF CORRECTION ---
 
         if best_match:
             matched_name = best_match[0]
@@ -200,9 +213,10 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
                 for behavior in data['behaviors']:
                     if isinstance(behavior, dict) and behavior.get('functions'):
                         functions.extend(behavior.get('functions', []))
-                if functions: source = f"Database (Match: {matched_name})"
+                if functions:
+                    source = f"Database (Match: {matched_name})"
 
-        if not functions: # Heuristic fallback
+        if not functions: # Heuristic fallback if DB lookup fails
             if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
             if "ferment" in ingredient_name_lower or "lactobacillus" in ingredient_name_lower: functions.extend(["Soothing", "Hydration", "Barrier Support"])
             if "water" in ingredient_name_lower and "aqua" not in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
