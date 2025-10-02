@@ -180,7 +180,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         functions = []
         source = "Heuristic" # Assume heuristic by default
 
-        # Step 1: Prioritize the database. If found, use its data and stop.
+        # Step 1: Prioritize the database. If found, use its data.
         if data and isinstance(data.get('behaviors'), list):
             for behavior in data['behaviors']:
                 if isinstance(behavior, dict) and behavior.get('functions'):
