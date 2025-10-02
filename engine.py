@@ -17,7 +17,8 @@ def load_all_data():
         "one_percent_markers": "data/one_percent_markers.json",
         "ingredients": "data/ingredients.json",
         "narrative_templates": "data/narrative_templates.json",
-        "scoring_config": "data/scoring_config.json"
+        "scoring_config": "data/scoring_config.json",
+        "prohibited_ingredients": "data/prohibited_ingredients.json"
     }
     
     for name, path in files_to_load.items():
@@ -41,6 +42,9 @@ except (FileNotFoundError, ValueError, RuntimeError) as e:
 
 # --- MAIN ANALYSIS ORCHESTRATOR ---
 def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
+    """
+    The main orchestrator function that runs the entire analysis pipeline.
+    """
     try:
         st.write("---")
         st.write("### 🧠 AI Analysis Log")
@@ -48,6 +52,12 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
         
         inci_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
         st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} ingredients.")
+
+        # STAGE 0: Safety Check
+        prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
+        if prohibited_found:
+            st.error(f"⚠️ **SAFETY ALERT:** This product contains a prohibited substance: **{prohibited_found.title()}**. Analysis halted.")
+            return None, None, None
 
         # STAGE 1: Deconstruction
         profile = get_product_profile(product_name, ALL_DATA["product_profiles"])
@@ -57,13 +67,13 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
             
         ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"])
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
-        product_role = identify_product_role(analyzed_ingredients, ALL_DATA["product_functions"])
+        product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"])
         
         # STAGE 2: Narrative Generation
         ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"])
         
         # STAGE 3: Matching & Internal Output
-        routine_matches = find_all_routine_matches(product_role, analyzed_ingredients, ALL_DATA)
+        routine_matches = find_all_routine_matches(product_roles, analyzed_ingredients, ALL_DATA)
 
         return ai_says_output, formula_breakdown, routine_matches
 
@@ -71,6 +81,15 @@ def run_full_analysis(product_name, inci_list_str, selected_skin_type_id=None):
         st.error("An unexpected error occurred during the analysis process.")
         st.code(traceback.format_exc())
         return None, None, None
+
+# --- STAGE 0 FUNCTION ---
+def check_for_prohibited(inci_list, prohibited_data):
+    """Checks if any ingredient in the list is prohibited."""
+    prohibited_list = prohibited_data.get("ingredients", [])
+    for ingredient in inci_list:
+        if ingredient.title() in prohibited_list:
+            return ingredient
+    return None
 
 # --- STAGE 1 FUNCTIONS ---
 def get_product_profile(product_name, profiles_data):
@@ -182,11 +201,11 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         functions = []
         classification = "Neutral/Functional"
 
-        if data: # Ingredient found in our database
+        if data:
             if data.get('behaviors'):
                 for behavior in data['behaviors']:
                     functions.extend(behavior.get('functions', []))
-        else: # --- NEW HEURISTIC LOGIC FOR UNKNOWN INGREDIENTS ---
+        else: 
             if "extract" in ingredient_name_lower:
                 functions.extend(["Antioxidant", "Soothing"])
             if "ferment" in ingredient_name_lower:
@@ -199,7 +218,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
                 functions.extend(["Hydration", "Humectant"])
 
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
-        if any(pf in funcs for pf in positive_functions for funcs in functions):
+        if any(pf in functions for pf in positive_functions):
             classification = "Positive Impact"
 
         item['functions'] = list(set(functions))
@@ -209,23 +228,23 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.** Total functions found: {sum(len(ing.get('functions', [])) for ing in annotated_list)}")
     return annotated_list
 
-def identify_product_role(analyzed_ingredients, function_rules):
+def identify_product_roles(analyzed_ingredients, function_rules):
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
-    best_match, highest_score = "Unknown", 0
+    matched_roles = []
 
     for role, rules in function_rules.items():
         if not isinstance(rules, dict):
             continue
             
-        score = 0
         must_haves = rules.get('must_have_functions', [])
         if all(f in product_functions for f in must_haves):
-            score += len(must_haves)
-            if score > highest_score:
-                highest_score, best_match = score, role
+            matched_roles.append(role)
     
-    st.write(f"**[DEBUG] Stage 4: Primary Product Role Identified.** Role: **{best_match}**")
-    return best_match
+    if not matched_roles:
+        matched_roles.append("Unknown")
+
+    st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(matched_roles)}**")
+    return matched_roles
 
 # --- STAGE 2 & 3 FUNCTIONS ---
 def generate_analysis_output(analyzed_ingredients, templates):
@@ -266,7 +285,7 @@ def generate_analysis_output(analyzed_ingredients, templates):
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown
 
-def find_all_routine_matches(product_role, analyzed_ingredients, all_data):
+def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
     routine_matches = []
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     scoring_config = all_data["scoring_config"]
@@ -278,7 +297,7 @@ def find_all_routine_matches(product_role, analyzed_ingredients, all_data):
         for routine_key, routine_details in all_data["routines"].items():
             if routine_key.startswith(type_id):
                 for step in routine_details.get("steps", []):
-                    if step["product_function"] == product_role:
+                    if step["product_function"] in product_roles:
                         
                         base_score = scoring_config["function_match_scores"]["perfect_match_base_points"]
                         bonus_points = 0
