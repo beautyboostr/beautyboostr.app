@@ -42,9 +42,11 @@ except (FileNotFoundError, ValueError) as e:
 
 # --- HELPER FUNCTION ---
 def parse_known_percentages(known_percentages_str):
+    """Parses the user input for known percentages into a dictionary."""
     known_percentages = {}
     if not known_percentages_str:
         return known_percentages
+    
     pairs = known_percentages_str.split(',')
     for pair in pairs:
         if ':' in pair:
@@ -228,7 +230,8 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 points += star["points"]
                 star_ingredients_found.append(star["name"].title())
         for support_name, support_points in rules.get("supporting_ingredients", {}).items():
-            if support_name.lower() in ingredient_percentages:
+            support_name_lower = support_name.lower()
+            if support_name_lower in ingredient_percentages:
                 points += support_points
                 if support_name.title() not in star_ingredients_found:
                     star_ingredients_found.append(support_name.title())
@@ -237,9 +240,14 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         category_functions = rules.get("generic_functions", [])
         generic_bonus_points = rules.get("generic_function_bonus", 2) # Default bonus
         for ing in analyzed_ingredients:
+            # Check if this ingredient has already been scored as a star/supporter
             if ing['classification'] == 'Positive Impact' and ing['name'].title() not in star_ingredients_found:
+                # Check if it has any function relevant to this category
                 if any(func in category_functions for func in ing.get('functions', [])):
                     points += generic_bonus_points
+                    # Add to star list for narrative purposes if it contributed
+                    star_ingredients_found.append(ing['name'].title())
+
 
         # Normalize score to 1-10
         max_points = rules.get("max_points", 1)
@@ -251,7 +259,9 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         else: template_key = "low_score"
         
         narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
-        narrative = narrative.replace("{star_ingredients}", ", ".join(star_ingredients_found[:2]))
+        # Make the star ingredient list for the narrative more robust
+        unique_stars = sorted(list(set(star_ingredients_found)), key=lambda x: star_ingredients_found.index(x))
+        narrative = narrative.replace("{star_ingredients}", ", ".join(unique_stars[:2]))
         
         ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
 
