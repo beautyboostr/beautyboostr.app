@@ -1,5 +1,5 @@
 {
-  "description": "Defines the rules for calculating the 1-10 score for each analysis category, with expanded ingredient lists and more comprehensive generic function mapping.",
+  "description": "Defines the complete rules for calculating the 1-10 score for each analysis category, including star ingredients and generic function bonuses.",
   "categories": {
     "Hydration & Skin Barrier Support": {
       "max_points": 100,
@@ -66,7 +66,7 @@
     },
     "Pore Appearance & Texture Improvement": {
       "max_points": 100,
-      "generic_functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent", "Anti-aging"],
+      "generic_functions": ["Exfoliation (mild)", "Sebum Regulation", "Astringent"],
       "generic_function_bonus": 3,
       "star_ingredients": [
         { "name": "Salicylic Acid", "min_effective_percent": 0.5, "points": 30 },
@@ -86,7 +86,7 @@
     },
     "Anti-aging & Wrinkle Reduction": {
       "max_points": 100,
-      "generic_functions": ["Anti-aging", "Collagen Synthesis", "Antioxidant", "Hydration", "Exfoliation (mild)", "UV Protection"],
+      "generic_functions": ["Anti-aging", "Collagen Synthesis", "Antioxidant", "Hydration", "Exfoliation (mild)"],
       "generic_function_bonus": 3,
       "star_ingredients": [
         { "name": "Retinol", "min_effective_percent": 0.1, "points": 30 },
@@ -98,7 +98,8 @@
       "supporting_ingredients": {
         "Resveratrol": 10,
         "Ferulic Acid": 10,
-        "Coenzyme Q10": 8
+        "Coenzyme Q10": 8,
+        "Gluconolactone": 5
       }
     }
   }
