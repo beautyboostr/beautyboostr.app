@@ -1,4 +1,4 @@
-﻿{
+{
   "Type 1-3-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
@@ -511,7 +511,7 @@
   "Type 10-5-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
       { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
       { "step_number": 5, "product_function": "Anti-aging Mask or Oil" }
@@ -533,7 +533,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
       { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
       { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
@@ -619,7 +619,7 @@
   "Type 12-5-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
       { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
       { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
@@ -641,7 +641,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
       { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
       { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
@@ -657,7 +657,7 @@
   "Type 13-3-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "pH-Balancing Serum" },
+      { "step_number": 2, "product_function": "Refining Serum" },
       { "step_number": 3, "product_function": "Lightweight Moisturizer" }
     ]
   },
@@ -674,7 +674,7 @@
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "pH-Balancing Serum" },
+      { "step_number": 3, "product_function": "Refining Serum" },
       { "step_number": 4, "product_function": "Lightweight Moisturizer" },
       { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
     ]
@@ -684,7 +684,7 @@
       { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Brightening Essence" },
-      { "step_number": 4, "product_function": "pH-Balancing Serum" },
+      { "step_number": 4, "product_function": "Refining Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Lightweight Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
@@ -696,7 +696,7 @@
       { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
       { "step_number": 4, "product_function": "Brightening Essence" },
-      { "step_number": 5, "product_function": "pH-Balancing Serum" },
+      { "step_number": 5, "product_function": "Refining Serum" },
       { "step_number": 6, "product_function": "Lightweight Moisturizer" },
       { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
     ]
@@ -1289,7 +1289,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating or Calming Essence or Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Hydrating or Calming Essence or Very Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
       { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
       { "step_number": 7, "product_function": "Anti-aging or Soothing Mask or Oil" }
@@ -1322,7 +1322,7 @@
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 4, "product_function": "Refining Serum" },
       { "step_number": 5, "product_function": "Lightweight Moisturizer" }
     ]
@@ -1343,7 +1343,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Refining Serum" },
       { "step_number": 7, "product_function": "Lightweight Moisturizer" }
@@ -1376,7 +1376,7 @@
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 4, "product_function": "Refining Serum" },
       { "step_number": 5, "product_function": "Anti-aging or Lightweight Moisturizer" }
     ]
@@ -1397,7 +1397,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Refining Serum" },
       { "step_number": 7, "product_function": "Anti-aging or Lightweight Moisturizer" }
@@ -1430,7 +1430,7 @@
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 4, "product_function": "Pigmentation Serum" },
       { "step_number": 5, "product_function": "Lightweight Moisturizer" }
     ]
@@ -1451,7 +1451,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
       { "step_number": 6, "product_function": "Eye Cream" },
       { "step_number": 7, "product_function": "Lightweight Moisturizer" }
@@ -1484,7 +1484,7 @@
     "steps": [
       { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
       { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
     ]
@@ -1505,7 +1505,7 @@
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
       { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
       { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clarifying Mask" },
+      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
       { "step_number": 6, "product_function": "Eye Cream" },
       { "step_number": 7, "product_function": "Anti-aging Moisturizer" }
@@ -1778,7 +1778,7 @@
       { "step_number": 4, "product_function": "Barrier Support Essence" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
       { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil (Weekly)" }
+      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 34-3-morning": {
@@ -1832,7 +1832,7 @@
       { "step_number": 4, "product_function": "Anti-aging Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil (Weekly)" }
+      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 35-3-morning": {
@@ -1886,7 +1886,7 @@
       { "step_number": 4, "product_function": "Barrier Support Essence" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
       { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil (Weekly)" }
+      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 36-3-morning": {
@@ -1940,7 +1940,7 @@
       { "step_number": 4, "product_function": "Anti-aging Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil (Weekly)" }
+      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   }
 }
