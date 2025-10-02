@@ -42,11 +42,9 @@ except (FileNotFoundError, ValueError) as e:
 
 # --- HELPER FUNCTION ---
 def parse_known_percentages(known_percentages_str):
-    """Parses the user input for known percentages into a dictionary."""
     known_percentages = {}
     if not known_percentages_str:
         return known_percentages
-    
     pairs = known_percentages_str.split(',')
     for pair in pairs:
         if ':' in pair:
@@ -84,7 +82,7 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
             
         ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], known_percentages)
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA["ingredients"])
-        product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key) # Pass profile key
+        product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
         
         ai_says_output, formula_breakdown = generate_analysis_output(analyzed_ingredients, ALL_DATA["narrative_templates"], ALL_DATA["category_scoring_rules"])
         
@@ -123,7 +121,7 @@ def get_product_profile(product_name, profiles_data):
             if profile:
                 st.write(f"**[DEBUG] Stage 1: Product Profile Identified.** Keyword: `{keyword}`. Profile: **{profile_key}**")
                 return profile, profile_key
-    st.warning("Could not automatically determine product type from the name. Using 'Serum' as a default profile.")
+    st.warning("Could not automatically determine product type. Using 'Serum' as a default.")
     return profiles_data.get("Serum"), "Serum"
 
 def estimate_percentages(inci_list, profile, markers, known_percentages):
@@ -191,62 +189,39 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.** Total functions found: {sum(len(ing.get('functions', [])) for ing in annotated_list)}")
     return annotated_list
 
-# --- UPGRADED FUNCTION ---
 def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     matched_roles = []
-    
-    # Define which role keywords are valid for each profile key
     valid_roles_map = {
-        "Toner": ["toner"],
-        "Essence": ["essence"],
-        "Serum": ["serum"],
-        "Moisturizer (Lightweight)": ["moisturizer"],
-        "Moisturizer (Rich)": ["moisturizer"],
-        "Cleanser (Foaming)": ["cleanser"],
-        "Cleanser (Cream)": ["cleanser"],
-        "Cleanser (Oil-based)": ["cleanser"],
-        "Mask (Wash-off Gel/Cream)": ["mask", "oil"],
-        "Mask (Clay)": ["mask"],
-        "Face Oil": ["oil", "mask"],
-        "Eye Cream": ["eye cream"],
-        "Sunscreen": ["spf", "sunscreen"],
-        "Lip Balm": ["lip balm"],
-        "Mist": ["mist"]
+        "Toner": ["toner"], "Essence": ["essence"], "Serum": ["serum"],
+        "Moisturizer (Lightweight)": ["moisturizer"], "Moisturizer (Rich)": ["moisturizer"],
+        "Cleanser (Foaming)": ["cleanser"], "Cleanser (Cream)": ["cleanser"], "Cleanser (Oil-based)": ["cleanser"],
+        "Mask (Wash-off Gel/Cream)": ["mask", "oil"], "Mask (Clay)": ["mask"], "Face Oil": ["oil", "mask"],
+        "Eye Cream": ["eye cream"], "Sunscreen": ["spf", "sunscreen"], "Lip Balm": ["lip balm"], "Mist": ["mist"]
     }
-    
-    # Get the valid keywords for the identified product profile
     valid_keywords = valid_roles_map.get(profile_key, [])
-
     for role, rules in function_rules.items():
-        if not isinstance(rules, dict):
-            continue
-        
-        # STAGE 1 Check: Is this role type valid for this product profile?
+        if not isinstance(rules, dict): continue
         is_valid_type = any(keyword in role.lower() for keyword in valid_keywords)
-        if not is_valid_type:
-            continue
-            
-        # STAGE 2 Check: Does it meet the functional requirements?
+        if not is_valid_type: continue
         must_haves = rules.get('must_have_functions', [])
         if all(f in product_functions for f in must_haves):
             matched_roles.append(role)
-    
-    # Fallback to the general profile key if no specific roles are matched
-    if not matched_roles and profile_key:
-        matched_roles.append(profile_key)
-
-
+    if not matched_roles and profile_key: matched_roles.append(profile_key)
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
 
-
-# --- STAGE 2 & 3 FUNCTIONS ---
-def generate_analysis_output(analyzed_ingredients, templates, scoring_rules):
+# --- STAGE 2 & 3 FUNCTIONS (UPGRADED) ---
+def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data):
     ai_says_output = {}
     ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
-    for category_name, rules in scoring_rules.get("categories", {}).items():
-        points, star_ingredients_found = 0, []
+    scoring_rules = scoring_rules_data.get("categories", {})
+
+    for category_name, rules in scoring_rules.items():
+        points = 0
+        star_ingredients_found = []
+
+        # Layer 1: Score named "star" and "supporting" ingredients
         for star in rules.get("star_ingredients", []):
             star_name_lower = star["name"].lower()
             if star_name_lower in ingredient_percentages and ingredient_percentages[star_name_lower] >= star["min_effective_percent"]:
@@ -255,18 +230,36 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules):
         for support_name, support_points in rules.get("supporting_ingredients", {}).items():
             if support_name.lower() in ingredient_percentages:
                 points += support_points
-                if support_name.title() not in star_ingredients_found: star_ingredients_found.append(support_name.title())
+                if support_name.title() not in star_ingredients_found:
+                    star_ingredients_found.append(support_name.title())
+
+        # Layer 2: Score based on generic functions for all other positive ingredients
+        category_functions = rules.get("generic_functions", [])
+        generic_bonus_points = rules.get("generic_function_bonus", 2) # Default bonus
+        for ing in analyzed_ingredients:
+            if ing['classification'] == 'Positive Impact' and ing['name'].title() not in star_ingredients_found:
+                if any(func in category_functions for func in ing.get('functions', [])):
+                    points += generic_bonus_points
+
+        # Normalize score to 1-10
         max_points = rules.get("max_points", 1)
         final_score = min(10, round((points / max_points) * 9) + 1 if max_points > 0 else 1)
+        
+        # Generate Narrative
         if final_score >= 8: template_key = "high_score"
         elif final_score >= 4: template_key = "medium_score"
         else: template_key = "low_score"
-        narrative = templates.get(category_name, {}).get(template_key, "No narrative available.").replace("{star_ingredients}", ", ".join(star_ingredients_found[:2]))
+        
+        narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
+        narrative = narrative.replace("{star_ingredients}", ", ".join(star_ingredients_found[:2]))
+        
         ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
+
     formula_breakdown = {
         "Positive Impact": sorted(list(set([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Positive Impact']))),
         "Neutral/Functional": sorted(list(set([ing['name'].title() for ing in analyzed_ingredients if ing['classification'] == 'Neutral/Functional'])))
     }
+    
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown
 
@@ -294,5 +287,4 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
                         except IndexError: continue
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
-
 
