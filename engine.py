@@ -66,8 +66,10 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         st.write("### 🧠 AI Analysis Log")
         st.write("_[This log shows the AI's step-by-step reasoning]_")
         
+        # --- UPGRADED PRE-PROCESSING ---
         raw_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
-        inci_list = [item.split('/')[0].strip() for item in raw_list]
+        # Clean by splitting on '/' and removing trailing punctuation
+        inci_list = [re.sub(r'[\.\*]$', '', item.split('/')[0].strip()) for item in raw_list]
         st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} cleaned ingredients.")
 
         prohibited_found = check_for_prohibited(inci_list, ALL_DATA["prohibited_ingredients"])
@@ -178,7 +180,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         functions = []
         source = "Heuristic" # Assume heuristic by default
 
-        # Step 1: Prioritize the database. If found, use its data and stop.
+        # Step 1: Prioritize the database. If found, use its data.
         if data and isinstance(data.get('behaviors'), list):
             for behavior in data['behaviors']:
                 if isinstance(behavior, dict) and behavior.get('functions'):
@@ -186,10 +188,11 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
             if functions: # If we found any functions in the DB
                 source = "Database"
 
-        # Step 2: If no functions were found in the database, use heuristics as a fallback.
+        # Step 2: If no functions were found in the database, use heuristics.
         if not functions:
             if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
-            if "ferment" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
+            if "ferment" in ingredient_name_lower or "lactobacillus" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
+            if "water" in ingredient_name_lower and "aqua" not in ingredient_name_lower: functions.extend(["Soothing", "Hydration"]) # For hydrosols
             if "gluconolactone" in ingredient_name_lower: functions.extend(["Exfoliation (mild)", "Humectant"])
             if "salicylate" in ingredient_name_lower: functions.extend(["Exfoliation (mild)"])
             if "polyglutamate" in ingredient_name_lower: functions.extend(["Hydration", "Humectant"])
