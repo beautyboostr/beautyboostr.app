@@ -66,7 +66,6 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         st.write("### 🧠 AI Analysis Log")
         st.write("_[This log shows the AI's step-by-step reasoning]_")
         
-        # --- UPGRADED PRE-PROCESSING ---
         raw_list = [item.strip().lower() for item in inci_list_str.split(',') if item.strip()]
         inci_list = [item.split('/')[0].strip() for item in raw_list]
         st.write(f"**[DEBUG] Step 0: Pre-processing complete.** Found {len(inci_list)} cleaned ingredients.")
@@ -177,36 +176,36 @@ def analyze_ingredient_functions(ingredients_with_percentages, ingredients_data)
         ingredient_name_lower = item['name'].lower()
         data = ingredients_dict.get(ingredient_name_lower)
         functions = []
+        source = "Heuristic" # Assume heuristic by default
 
-        # Step 1: Get functions from the structured database if available
+        # Step 1: Prioritize the database. If found, use its data and stop.
         if data and isinstance(data.get('behaviors'), list):
             for behavior in data['behaviors']:
                 if isinstance(behavior, dict) and behavior.get('functions'):
                     functions.extend(behavior.get('functions', []))
+            if functions: # If we found any functions in the DB
+                source = "Database"
 
-        # Step 2: ALWAYS apply heuristics to catch generic functions
-        if "extract" in ingredient_name_lower:
-            functions.extend(["Antioxidant", "Soothing"])
-        if "ferment" in ingredient_name_lower:
-            functions.extend(["Soothing", "Hydration"])
-        if "gluconolactone" in ingredient_name_lower:
-            functions.extend(["Exfoliation (mild)", "Humectant"])
-        if "salicylate" in ingredient_name_lower:
-            functions.extend(["Exfoliation (mild)"])
-        if "polyglutamate" in ingredient_name_lower:
-            functions.extend(["Hydration", "Humectant"])
+        # Step 2: If no functions were found in the database, use heuristics as a fallback.
+        if not functions:
+            if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
+            if "ferment" in ingredient_name_lower: functions.extend(["Soothing", "Hydration"])
+            if "gluconolactone" in ingredient_name_lower: functions.extend(["Exfoliation (mild)", "Humectant"])
+            if "salicylate" in ingredient_name_lower: functions.extend(["Exfoliation (mild)"])
+            if "polyglutamate" in ingredient_name_lower: functions.extend(["Hydration", "Humectant"])
 
-        # Step 3: Classify based on the combined list of functions
+        # Step 3: Classify based on the final list of functions
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
         unique_functions = list(set(functions))
         classification = "Positive Impact" if any(pf in unique_functions for pf in positive_functions) else "Neutral/Functional"
         
         item['functions'] = unique_functions
         item['classification'] = classification
+        item['source'] = source # Add source for debugging
         annotated_list.append(item)
 
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
-    debug_func_list = [f"- {ing['name']}: {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']
+    debug_func_list = [f"- {ing['name']} (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']
     st.text("\n".join(debug_func_list))
     return annotated_list
 
@@ -243,14 +242,12 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
         supporting_ingredients_found = []
         generic_contributors_found = []
 
-        # Layer 1: Score named "star" ingredients
         for star in rules.get("star_ingredients", []):
             star_name_lower = star["name"].lower()
             if star_name_lower in ingredient_percentages and ingredient_percentages[star_name_lower] >= star["min_effective_percent"]:
                 points += star["points"]
                 star_ingredients_found.append(star["name"].title())
         
-        # Layer 2: Score named "supporting" ingredients
         for support_name, support_points in rules.get("supporting_ingredients", {}).items():
             support_name_lower = support_name.lower()
             if support_name_lower in ingredient_percentages:
@@ -258,7 +255,6 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 if support_name.title() not in star_ingredients_found:
                     supporting_ingredients_found.append(support_name.title())
 
-        # Layer 3: Score generic function contributors
         category_functions = rules.get("generic_functions", [])
         generic_bonus_points = rules.get("generic_function_bonus", 2)
         all_named_contributors = star_ingredients_found + supporting_ingredients_found
@@ -268,20 +264,12 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                     points += generic_bonus_points
                     generic_contributors_found.append(ing['name'].title())
 
-        # Normalize score to 1-10
         max_points = rules.get("max_points", 1)
         final_score = min(10, round((points / max_points) * 9) + 1 if max_points > 0 else 1)
         
-        # Generate Narrative
-        if final_score >= 8:
-            if star_ingredients_found:
-                template_key = "high_score"
-            else:
-                template_key = "high_score_generic"
-        elif final_score >= 4:
-            template_key = "medium_score"
-        else:
-            template_key = "low_score"
+        if final_score >= 8: template_key = "high_score_generic" if not star_ingredients_found else "high_score"
+        elif final_score >= 4: template_key = "medium_score"
+        else: template_key = "low_score"
         
         narrative = templates.get(category_name, {}).get(template_key, "No narrative available.")
         
