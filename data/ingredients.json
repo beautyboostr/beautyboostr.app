@@ -1155,4 +1155,430 @@
     "restrictions": "No data",
     "typical_usage": {}
   }
+  {
+    "inci_name": "Betaine Salicylate",
+    "common_name_ua": "Бетаїн саліцилат",
+    "general_properties": {
+      "origin": "Комбіноване",
+      "nature": "Органічна",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Проблемна шкіра", "жирна шкіра"],
+        "functions": ["Exfoliation (mild)", "Humectant", "Acne Control"]
+      }
+    ],
+    "restrictions": "Considered equivalent to ~2% Salicylic Acid at a 4% concentration.",
+    "typical_usage": {
+      "cream": "1-4%",
+      "toner": "1-4%"
+    }
+  },
+  {
+    "inci_name": "Brassica Oleracea Capitata (Cabbage) Leaf Extract",
+    "common_name_ua": "Екстракт листя капусти",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant", "Soothing"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Citrullus Lanatus (Watermelon) Fruit Extract",
+    "common_name_ua": "Екстракт кавуна",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant", "Hydration"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Cucumis Melo (Melon) Fruit Extract",
+    "common_name_ua": "Екстракт дині",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant", "Soothing"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Cucumis Sativus (Cucumber) Fruit Extract",
+    "common_name_ua": "Екстракт огірка",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра", "Суха шкіра"],
+        "functions": ["Soothing", "Hydration"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Fragaria Ananassa (Strawberry) Fruit Extract",
+    "common_name_ua": "Екстракт полуниці",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Пігментація", "Для всіх типів шкіри"],
+        "functions": ["Antioxidant", "Brightening"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Gluconolactone",
+    "common_name_ua": "Глюконолактон",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "PHA (Полігідроксикислота)",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра", "Суха шкіра", "Вікова шкіра"],
+        "functions": ["Exfoliation (mild)", "Humectant", "Anti-aging", "Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {
+      "toner": "2-15%",
+      "cream": "2-10%"
+    }
+  },
+  {
+    "inci_name": "Glycyrrhiza Glabra (Licorice) Root Extract",
+    "common_name_ua": "Екстракт кореня солодки",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Пігментація", "Чутлива шкіра"],
+        "functions": ["Brightening", "Soothing", "Anti-inflammatory"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Hibiscus Sabdariffa Flower Extract",
+    "common_name_ua": "Екстракт квіток гібіскуса",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Exfoliation (mild)", "Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Ipomoea Batatas Root Extract",
+    "common_name_ua": "Екстракт батату",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Iris Florentina Root Extract",
+    "common_name_ua": "Екстракт кореня ірису",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Жирна шкіра"],
+        "functions": ["Astringent", "Soothing"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Lactobacillus/Watermelon Fruit Ferment Extract",
+    "common_name_ua": "Ферментований екстракт кавуна",
+    "general_properties": {
+      "origin": "Біотехнологічне",
+      "nature": "Фермент",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра"],
+        "functions": ["Soothing", "Barrier Support", "Hydration"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Melaleuca Alternifolia (Tea Tree) Extract",
+    "common_name_ua": "Екстракт чайного дерева",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Проблемна шкіра"],
+        "functions": ["Antiseptic", "Acne Control", "Anti-inflammatory"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Opuntia Ficus-Indica Extract",
+    "common_name_ua": "Екстракт опунції",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Суха шкіра", "Чутлива шкіра"],
+        "functions": ["Antioxidant", "Hydration", "Soothing"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Paeonia Suffruticosa Root Extract",
+    "common_name_ua": "Екстракт кореня півонії",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра"],
+        "functions": ["Soothing", "Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Pyrus Communis (Pear) Fruit Extract",
+    "common_name_ua": "Екстракт груші",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant", "Exfoliation (mild)"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Saccharum Officinarum (Sugarcane) Extract",
+    "common_name_ua": "Екстракт цукрової тростини",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Exfoliation (mild)", "Humectant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Salix Alba (Willow) Bark Extract",
+    "common_name_ua": "Екстракт кори верби",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Проблемна шкіра", "Чутлива шкіра"],
+        "functions": ["Exfoliation (mild)", "Soothing", "Acne Control"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Scutellaria Baicalensis Root Extract",
+    "common_name_ua": "Екстракт кореня шоломниці байкальської",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра", "Пігментація"],
+        "functions": ["Antioxidant", "Soothing", "Anti-inflammatory", "Brightening"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Sodium Polyglutamate",
+    "common_name_ua": "Поліглутамат натрію",
+    "general_properties": {
+      "origin": "Біотехнологічне",
+      "nature": "Полімер",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Суха шкіра", "Для всіх типів шкіри"],
+        "functions": ["Hydration", "Humectant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Vaccinium Angustifolium (Blueberry) Fruit Extract",
+    "common_name_ua": "Екстракт лохини",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Для всіх типів шкіри"],
+        "functions": ["Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  },
+  {
+    "inci_name": "Vetiveria Zizanoides Root Extract",
+    "common_name_ua": "Екстракт кореня ветиверу",
+    "general_properties": {
+      "origin": "Натуральне",
+      "nature": "Рослинний екстракт",
+      "physical_form": "Рідина",
+      "eco_friendly": "Екологічний"
+    },
+    "behaviors": [
+      {
+        "conditions": {},
+        "purpose": ["Чутлива шкіра"],
+        "functions": ["Soothing", "Antioxidant"]
+      }
+    ],
+    "restrictions": "Без обмежень",
+    "typical_usage": {}
+  }
 ]
+
+
