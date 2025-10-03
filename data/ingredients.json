@@ -220,6 +220,403 @@
     "general_properties": { "origin": "Натуральне", "nature": "Рослинний екстракт", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
     "behaviors": [{ "conditions": {}, "purpose": ["Чутлива шкіра"], "functions": ["Soothing", "Antioxidant"] }],
     "restrictions": "Без обмежень", "typical_usage": {}
+  },
+  {
+    "inci_name": "Aqua",
+    "common_name_ua": "Вода",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Solvent"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "50-80%", "cream": "40-70%" }
+  },
+  {
+    "inci_name": "Glycolic Acid",
+    "common_name_ua": "Гліколева кислота",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [
+      { "conditions": { "concentration": "1-5%", "ph": "4.0-6.5" }, "purpose": ["Суха шкіра"], "functions": ["Moisturizer"] },
+      { "conditions": { "concentration": "5-20%", "ph": "3.0-4.0" }, "purpose": ["Для всіх типів шкіри"], "functions": ["Exfoliation"] }
+    ],
+    "restrictions": "Відповідно до CPSR (pH ≤ 3.5, до 10% у професійних засобах)",
+    "typical_usage": { "cleansing_gel": "0-5%", "cream": "0-4%" }
+  },
+  {
+    "inci_name": "Retinol",
+    "common_name_ua": "Ретинол",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [
+      { "conditions": { "concentration": "0.025-0.3%" }, "purpose": ["Проблемна шкіра/ акне"], "functions": ["Regeneration", "Pore-cleansing"] },
+      { "conditions": { "concentration": "0.1-0.3%" }, "purpose": ["Вікова шкіра"], "functions": ["Regeneration", "Anti-aging"] }
+    ],
+    "restrictions": "0.3% у засобах для обличчя, \n0.05% у засобах для тіла",
+    "typical_usage": { "cleansing_gel": "0-0.05%", "cream": "0-0.3%" }
+  },
+  {
+    "inci_name": "Propylene Glycol",
+    "common_name_ua": "Пропіленгліколь",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Humectant"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "1-5%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Dimethicone",
+    "common_name_ua": "Диметикон",
+    "general_properties": { "origin": "Синтетичне", "nature": "Полімер", "physical_form": "Рідина", "eco_friendly": "Низька екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Emollient"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-2%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Paraffinum Liquidum",
+    "common_name_ua": "Парафін рідкий",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Олія", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Emollient"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Cetyl Alcohol",
+    "common_name_ua": "Цетиловий спирт",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Тверда речовина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Emulsifier"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.5-3%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Stearyl Alcohol",
+    "common_name_ua": "Стеариловий спирт",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Тверда речовина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Emulsifier"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.5-3%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Glyceryl Stearate",
+    "common_name_ua": "Гліцерил стеарат",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Тверда речовина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Emulsifier"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.5-2%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "PEG-100 Stearate",
+    "common_name_ua": "ПЕГ-100 стеарат",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Низька екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Emulsifier"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-2%", "cream": "0.5-3%" }
+  },
+  {
+    "inci_name": "Isopropyl Palmitate",
+    "common_name_ua": "Ізопропіл пальмітат",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Олія", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Emollient"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Phenoxyethanol",
+    "common_name_ua": "Феноксіетанол",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Preservative"] }],
+    "restrictions": "1%",
+    "typical_usage": { "cleansing_gel": "0.5-1%", "cream": "0.5-1%" }
+  },
+  {
+    "inci_name": "Ethylhexylglycerin",
+    "common_name_ua": "Етилгексилгліцерин",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Preservative"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.1-0.5%", "cream": "0.1-0.5%" }
+  },
+  {
+    "inci_name": "Tocopherol",
+    "common_name_ua": "Токоферол",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Antioxidant"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.5%", "cream": "0.1-1%" }
+  },
+  {
+    "inci_name": "L-Ascorbic Acid",
+    "common_name_ua": "Л-аскорбінова кислота",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Пігментація, вікова шкіра"], "functions": ["Antioxidant", "Brightening"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-2%", "cream": "0-3%" }
+  },
+  {
+    "inci_name": "Niacinamide",
+    "common_name_ua": "Ніацинамід",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Пігментація, проблемна шкіра"], "functions": ["Brightening"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-3%", "cream": "0-5%" }
+  },
+  {
+    "inci_name": "Kojic Acid",
+    "common_name_ua": "Койєва кислота",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Пігментація"], "functions": ["Brightening"] }],
+    "restrictions": "1%",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Hydroquinone",
+    "common_name_ua": "Гідрохінон",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Пігментація"], "functions": ["Brightening"] }],
+    "restrictions": "Заборонений у засобах для освітлення шкіри",
+    "typical_usage": { "cleansing_gel": "0% (заборонений)", "cream": "0% (заборонений)" }
+  },
+  {
+    "inci_name": "Ceramides",
+    "common_name_ua": "Цераміди",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра, чутлива шкіра"], "functions": ["Barrier Support"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.5%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Peptides",
+    "common_name_ua": "Пептиди",
+    "general_properties": { "origin": "Біотехнологічне", "nature": "Пептиди", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Вікова шкіра"], "functions": ["Anti-aging"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.1%", "cream": "0-0.1%" }
+  },
+  {
+    "inci_name": "Butyrospermum Parkii Butter",
+    "common_name_ua": "Олія ши",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Масло", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "2-10%" }
+  },
+  {
+    "inci_name": "Cocos Nucifera Oil",
+    "common_name_ua": "Кокосова олія",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Масло", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Simmondsia Chinensis Seed Oil",
+    "common_name_ua": "Олія жожоба",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Олія", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Argania Spinosa Kernel Oil",
+    "common_name_ua": "Арганова олія",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Олія", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Antioxidant"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Persea Gratissima Oil",
+    "common_name_ua": "Олія авокадо",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Олія", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Emollient"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Prunus Amygdalus Dulcis Oil",
+    "common_name_ua": "Олія солодкого мигдалю",
+    "general_properties": { "origin": "Натуральне", "nature": "Ліпіди", "physical_form": "Олія", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "Panthenol",
+    "common_name_ua": "Пантенол",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Чутлива шкіра"], "functions": ["Soothing"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-2%", "cream": "0-3%" }
+  },
+  {
+    "inci_name": "Aloe Barbadensis Leaf Juice",
+    "common_name_ua": "Сік листя алое вера",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Чутлива шкіра"], "functions": ["Soothing"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-2%", "cream": "0-5%" }
+  },
+  {
+    "inci_name": "Zinc Oxide",
+    "common_name_ua": "Оксид цинку",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["UV Filter"] }],
+    "restrictions": "25% як УФ-фільтр",
+    "typical_usage": { "cleansing_gel": "0-5%", "cream": "0-25%" }
+  },
+  {
+    "inci_name": "Titanium Dioxide",
+    "common_name_ua": "Діоксид титану",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["UV Filter"] }],
+    "restrictions": "25% як УФ-фільтр",
+    "typical_usage": { "cleansing_gel": "0-5%", "cream": "0-25%" }
+  },
+  {
+    "inci_name": "Methylparaben",
+    "common_name_ua": "Метилпарабен",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Preservative"] }],
+    "restrictions": "0.4% (окремо) або 0.8% (у суміші парабенів)",
+    "typical_usage": { "cleansing_gel": "0-0.4%", "cream": "0-0.4%" }
+  },
+  {
+    "inci_name": "Propylparaben",
+    "common_name_ua": "Пропілпарабен",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Preservative"] }],
+    "restrictions": "0.14% (окремо) або 0.8% (у суміші парабенів)",
+    "typical_usage": { "cleansing_gel": "0-0.14%", "cream": "0-0.14%" }
+  },
+  {
+    "inci_name": "Sodium Lauryl Sulfate",
+    "common_name_ua": "Лаурилсульфат натрію",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Проблемна шкіра"], "functions": ["Cleanser"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "5-15%", "cream": "0-0.5%" }
+  },
+  {
+    "inci_name": "Sodium Laureth Sulfate",
+    "common_name_ua": "Лауретсульфат натрію",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Проблемна шкіра"], "functions": ["Foaming Agent"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "5-15%", "cream": "0-0.5%" }
+  },
+  {
+    "inci_name": "Caffeine",
+    "common_name_ua": "Кофеїн",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Stimulant"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Biotin",
+    "common_name_ua": "Біотин",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Strengthening"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.5%", "cream": "0-0.5%" }
+  },
+  {
+    "inci_name": "Polyglutamic Acid",
+    "common_name_ua": "Поліглутаминова кислота",
+    "general_properties": { "origin": "Біотехнологічне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Camellia Sinensis Leaf Extract",
+    "common_name_ua": "Екстракт листя зеленого чаю",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Antioxidant"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-2%" }
+  },
+  {
+    "inci_name": "Chamomilla Recutita Flower Extract",
+    "common_name_ua": "Екстракт квітів ромашки",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Чутлива шкіра"], "functions": ["Soothing"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-2%" }
+  },
+  {
+    "inci_name": "Keratin",
+    "common_name_ua": "Кератин",
+    "general_properties": { "origin": "Натуральне", "nature": "Білки", "physical_form": "Тверда речовина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Strengthening"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.5%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Collagen",
+    "common_name_ua": "Колаген",
+    "general_properties": { "origin": "Натуральне", "nature": "Білки", "physical_form": "Тверда речовина", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Вікова шкіра"], "functions": ["Moisturizer"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-0.5%", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Eucalyptus Globulus Leaf Oil",
+    "common_name_ua": "Олія евкаліпта",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Олія", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Проблемна шкіра"], "functions": ["Antiseptic"] }],
+    "restrictions": "0.01% у незмивних засобах, \n0.1% у змивних засобах",
+    "typical_usage": { "cleansing_gel": "0-0.1%", "cream": "0-0.01%" }
+  },
+  {
+    "inci_name": "Carbomer",
+    "common_name_ua": "Карбомер",
+    "general_properties": { "origin": "Синтетичне", "nature": "Полімер", "physical_form": "Гель", "eco_friendly": "Помірна екологічність" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Thickener"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.1-1%", "cream": "0.1-1%" }
+  },
+  {
+    "inci_name": "Xanthan Gum",
+    "common_name_ua": "Ксантанова камедь",
+    "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Гель", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Thickener"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0.1-1%", "cream": "0.1-1%" }
+  },
+  {
+    "inci_name": "Talc",
+    "common_name_ua": "Тальк",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Filler"] }],
+    "restrictions": "Без обмежень (за винятком заборони вдихання пудри)",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "0-2%" }
+  },
+  {
+    "inci_name": "Petrolatum",
+    "common_name_ua": "Петролатум",
+    "general_properties": { "origin": "Синтетичне", "nature": "Органічна", "physical_form": "Віск", "eco_friendly": "Шкодить довкіллю" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Суха шкіра"], "functions": ["Emollient"] }],
+    "restrictions": "Без обмежень",
+    "typical_usage": { "cleansing_gel": "0-1%", "cream": "1-5%" }
+  },
+  {
+    "inci_name": "CI 77491",
+    "common_name_ua": "CI 77491",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Colorant"] }],
+    "restrictions": "Відповідно до CPSR (Додаток IV, № 126)",
+    "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "CI 77492",
+    "common_name_ua": "CI 77492",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Colorant"] }],
+    "restrictions": "Відповідно до CPSR (Додаток IV, № 127)",
+    "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "CI 77499",
+    "common_name_ua": "CI 77499",
+    "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Пудра", "eco_friendly": "Екологічний" },
+    "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Colorant"] }],
+    "restrictions": "Відповідно до CPSR (Додаток IV, № 128)",
+    "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
   }
 ]
-
