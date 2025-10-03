@@ -103,23 +103,46 @@ def check_for_prohibited(inci_list, prohibited_data):
 # --- STAGE 1 FUNCTIONS ---
 def get_product_profile(product_name, profiles_data):
     name_lower = product_name.lower()
+    
+    # This map now includes 'purifying cleanser'
     keyword_map = {
-        "oil cleanser": "Cleanser (Oil-based)", "cleansing oil": "Cleanser (Oil-based)", "cleansing balm": "Cleanser (Oil-based)",
-        "cream cleanser": "Cleanser (Cream)", "milk cleanser": "Cleanser (Cream)", "foaming cleanser": "Cleanser (Foaming)",
-        "rich cream": "Moisturizer (Rich)", "barrier cream": "Moisturizer (Rich)", "night cream": "Moisturizer (Rich)",
-        "lotion": "Moisturizer (Lightweight)", "gel cream": "Moisturizer (Lightweight)", "sunscreen": "Sunscreen", "spf": "Sunscreen",
-        "serum": "Serum", "essence": "Essence", "toner": "Toner", "clay mask": "Mask (Clay)", "mask": "Mask (Wash-off Gel/Cream)",
-        "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Mist",
-        "cleanser": "Cleanser (Foaming)", "cream": "Moisturizer (Rich)", "moisturizer": "Moisturizer (Lightweight)"
+        "oil cleanser": "Oil-based Cleanser", 
+        "cleansing oil": "Oil-based Cleanser", 
+        "cleansing balm": "Oil-based Cleanser",
+        "cream cleanser": "Hydrating Cream Cleanser", 
+        "milk cleanser": "Hydrating Cream Cleanser", 
+        "foaming cleanser": "Gentle Foaming Cleanser",
+        "purifying cleanser": "Gentle Foaming Cleanser", # NEW: Added 'purifying cleanser'
+        "rich cream": "Barrier Repair Moisturizer", 
+        "barrier cream": "Barrier Repair Moisturizer", 
+        "night cream": "Anti-aging Moisturizer",
+        "lotion": "Lightweight Moisturizer", 
+        "gel cream": "Lightweight Moisturizer", 
+        "sunscreen": "SPF 30+", 
+        "spf": "SPF 30+",
+        "serum": "Hydrating Serum", 
+        "essence": "Hydrating Essence", 
+        "toner": "Hydrating Toner", 
+        "clay mask": "Clay Mask", 
+        "mask": "Hydrating Mask or Oil",
+        "face oil": "Face Oil", 
+        "eye cream": "Eye Cream", 
+        "lip balm": "Lip Balm", 
+        "mist": "Hydrating Mist",
+        "cleanser": "Gentle Foaming Cleanser", # Default cleanser
+        "cream": "Barrier Repair Moisturizer",   # Default rich cream
+        "moisturizer": "Lightweight Moisturizer" # Default moisturizer
     }
+    
     for keyword, profile_key in keyword_map.items():
         if keyword in name_lower:
             profile = profiles_data.get(profile_key)
             if profile:
                 st.write(f"**[DEBUG] Stage 1: Product Profile Identified.** Keyword: `{keyword}`. Profile: **{profile_key}**")
                 return profile, profile_key
-    st.warning("Could not automatically determine product type. Using 'Serum' as a default.")
-    return profiles_data.get("Serum"), "Serum"
+                
+    st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
+    return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
 def estimate_percentages(inci_list, profile, markers, known_percentages):
     percentages = {name: 0.0 for name in inci_list}
