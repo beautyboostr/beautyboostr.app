@@ -8,7 +8,7 @@ from thefuzz import process
 @st.cache_data
 def load_all_data():
     """
-    Loads all necessary JSON data files from the 'data' folder with specific error handling.
+    Loads all necessary JSON data files from the 'data' folder.
     """
     data = {}
     files_to_load = {
