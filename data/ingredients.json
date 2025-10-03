@@ -1,5 +1,13 @@
 [
   {
+  "inci_name": "Water",
+  "common_name_ua": "Вода",
+  "general_properties": { "origin": "Натуральне", "nature": "Розчинник", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
+  "behaviors": [{ "conditions": {}, "purpose": ["Формула"], "functions": ["Solvent"] }],
+  "restrictions": "Без обмежень",
+  "typical_usage": { "cream": "50-80%", "toner": "80-95%" }
+},
+  {
     "inci_name": "Lactic Acid",
     "common_name_ua": "Молочна кислота",
     "general_properties": { "origin": "Натуральне", "nature": "Органічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
@@ -620,5 +628,6 @@
     "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
   }
 ]
+
 
 
