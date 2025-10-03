@@ -222,7 +222,7 @@
     "restrictions": "Без обмежень", "typical_usage": {}
   },
   {
-    "inci_name": "Aqua",
+    "inci_name": "Water",
     "common_name_ua": "Вода",
     "general_properties": { "origin": "Натуральне", "nature": "Неорганічна", "physical_form": "Рідина", "eco_friendly": "Екологічний" },
     "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Solvent"] }],
@@ -620,4 +620,5 @@
     "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
   }
 ]
+
 
