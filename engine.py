@@ -187,6 +187,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
 
+# --- REPLACEMENT for analyze_ingredient_functions in engine.py ---
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
     ingredients_dict = {item['inci_name'].lower(): item for item in all_data["ingredients"]}
@@ -228,9 +229,10 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
         annotated_list.append(item)
 
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
-    st.text("\n".join([f"- {ing['name']} (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list if ing['classification'] == 'Positive Impact']))
+    # MODIFIED: The filter "if ing['classification'] == 'Positive Impact'" has been removed to show ALL ingredients.
+    st.text("\n".join([f"- {ing['name']} ({ing['classification']}) (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list]))
+    
     return annotated_list
-
 def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     matched_roles = []
