@@ -626,8 +626,49 @@
     "behaviors": [{ "conditions": {}, "purpose": ["Для всіх типів шкіри"], "functions": ["Colorant"] }],
     "restrictions": "Відповідно до CPSR (Додаток IV, № 128)",
     "typical_usage": { "cleansing_gel": "0% (не використовується)", "cream": "0-1%" }
+  },
+  {
+    "inci_name": "Mineral Oil",
+    "common_name_ua": "Мінеральна олія",
+    "behaviors": [{"functions": ["Emollient", "Occlusive"]}]
+  },
+  {
+    "inci_name": "Stearyl Alcohol",
+    "common_name_ua": "Стеариловий спирт",
+    "behaviors": [{"functions": ["Emollient", "Thickener", "Emulsion Stabilizer"]}]
+  },
+  {
+    "inci_name": "Cetyl Alcohol",
+    "common_name_ua": "Цетиловий спирт",
+    "behaviors": [{"functions": ["Emollient", "Thickener", "Emulsion Stabilizer"]}]
+  },
+  {
+    "inci_name": "Dimethicone",
+    "common_name_ua": "Диметикон",
+    "behaviors": [{"functions": ["Emollient", "Occlusive"]}]
+  },
+  {
+    "inci_name": "Phenoxyethanol",
+    "common_name_ua": "Феноксіетанол",
+    "behaviors": [{"functions": ["Preservative"]}]
+  },
+  {
+    "inci_name": "Disodium EDTA",
+    "common_name_ua": "Динатрій ЕДТА",
+    "behaviors": [{"functions": ["Chelating Agent"]}]
+  },
+  {
+    "inci_name": "Allantoin",
+    "common_name_ua": "Алантоїн",
+    "behaviors": [{"functions": ["Soothing", "Skin-Protecting"]}]
+  },
+  {
+    "inci_name": "Panthenol",
+    "common_name_ua": "Пантенол",
+    "behaviors": [{"functions": ["Soothing", "Humectant"]}]
   }
 ]
+
 
 
 
