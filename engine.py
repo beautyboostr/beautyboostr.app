@@ -128,104 +128,98 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- REWRITTEN to prevent negative percentages with a capped reduction factor ---
+# --- FINAL VERSION: Iterative Search with Explicit 1% Rule Enforcement ---
 def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
     """
-    Estimates ingredient percentages using a robust hybrid model.
-    1. Places known percentages as fixed anchors.
-    2. Uses data-driven averages for ingredients below the 1% line.
-    3. Uses linear interpolation between anchors for ingredients above 1%.
-    4. Safely applies the final adjustment using a capped proportional reduction method to prevent negative percentages.
+    Estimates ingredient percentages using a robust iterative search model that strictly
+    enforces the 1% rule.
     """
-    st.write("✅ **Running the HYBRID (Negative-Safe) estimation logic.**")
-    percentages = {name: 0.0 for name in inci_list}
+    st.write("✅ **Running the definitive ITERATIVE SEARCH logic with explicit 1% rule enforcement.**")
     
-    # --- Step 1: Validate and Place Known Percentage Anchors ---
+    # --- Step 1: Pre-computation of constant values (anchors and the "Below 1%" zone) ---
+    
+    # Place user-supplied known percentages as fixed anchors
     known_ingredients_map = {}
     last_known_perc = 101.0
-    last_known_idx = -1
     for i, name in enumerate(inci_list):
         for known_name, known_perc in known_percentages.items():
             if process.extractOne(known_name, [name])[1] > 95:
                 if known_perc > last_known_perc:
-                    prev_known_name = next((k for k, v in known_ingredients_map.items() if v['index'] == last_known_idx), f"Ingredient at position {last_known_idx+1}")
-                    raise ValueError(f"Your known percentages violate the descending order rule. '{prev_known_name.title()}' at {last_known_perc}% cannot be followed by '{name.title()}' at {known_perc}%.")
-                
-                percentages[name] = known_perc
+                    raise ValueError("Your known percentages violate the descending order rule.")
                 known_ingredients_map[name] = {'perc': known_perc, 'index': i}
                 last_known_perc = known_perc
-                last_known_idx = i
                 break
 
-    # --- Step 2: Calculate the "Below 1%" Zone ---
+    # ** 1% RULE ENFORCEMENT PART 1: Identify the "1% Line" **
+    # Find the first ingredient from our markers list. This is the boundary.
     one_percent_markers = all_data.get("one_percent_markers", {}).get("markers", [])
     usage_ranges = all_data.get("usage_ranges", {})
     one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in one_percent_markers and ing not in known_ingredients_map), len(inci_list))
-    
+
+    # Calculate and lock in all percentages FOR AND AFTER the 1% line
+    below_1_percs = {}
     for i in range(one_percent_line_index, len(inci_list)):
         ing = inci_list[i]
         if ing not in known_ingredients_map:
             ing_ranges = usage_ranges.get(ing.lower(), {})
             perc_range = ing_ranges.get(profile_key, ing_ranges.get("default", [0.05, 0.5]))
-            assigned_perc = min(sum(perc_range) / 2, 1.0)
-            percentages[ing] = assigned_perc
-
-    # --- Step 3: Calculate the "Above 1%" Zone (Interpolation) ---
-    anchors_above_1 = [a for a in known_ingredients_map.values() if a['index'] < one_percent_line_index]
-    start_perc = profile.get("base_solvent_range", [50, 80])[0]
-    all_anchors = [{'index': -1, 'perc': start_perc}] + anchors_above_1 + [{'index': one_percent_line_index, 'perc': 1.0}]
-    all_anchors = sorted(list({v['index']:v for v in all_anchors}.values()), key=lambda x: x['index'])
-
-    for i in range(len(all_anchors) - 1):
-        start_anchor, end_anchor = all_anchors[i], all_anchors[i+1]
-        start_index, end_index = start_anchor['index'], end_anchor['index']
-        start_perc, end_perc = start_anchor['perc'], end_anchor['perc']
-        
-        num_ingredients_in_segment = end_index - start_index - 1
-        
-        if num_ingredients_in_segment > 0:
-            step_size = (start_perc - end_perc) / (num_ingredients_in_segment + 1)
-            for j in range(num_ingredients_in_segment):
-                ing_index = start_index + 1 + j
-                ing_name = inci_list[ing_index]
-                if ing_name not in known_ingredients_map:
-                    percentages[ing_name] = start_perc - (step_size * (j + 1))
-
-    # --- Step 4: Final Proportional Adjustment (The Fix for Negative Values) ---
-    current_total = sum(percentages.values())
-    adjustment = 100.0 - current_total
-
-    first_anchor_index = len(inci_list)
-    if known_ingredients_map:
-        first_anchor_index = min(v['index'] for v in known_ingredients_map.values())
-
-    ingredients_to_adjust = [
-        name for i, name in enumerate(inci_list) 
-        if i < first_anchor_index and name not in known_ingredients_map
-    ]
+            # ** 1% RULE ENFORCEMENT PART 2: Cap "Below 1%" Ingredients **
+            # The percentage is capped at a maximum of 1.0 to respect the rule.
+            below_1_percs[ing] = min(sum(perc_range) / 2, 1.0)
     
-    block_sum = sum(percentages[name] for name in ingredients_to_adjust)
+    # --- Step 2: The Iterative Search for the correct starting percentage ---
+    
+    low_bound, high_bound = profile.get("base_solvent_range", [40, 98])
+    final_percentages = {}
+    
+    for _ in range(10): # 10 iterations provides sufficient precision
+        guess_start_perc = (low_bound + high_bound) / 2
+        
+        temp_percentages = {name: 0.0 for name in inci_list}
+        temp_percentages.update({k: v['perc'] for k, v in known_ingredients_map.items()})
+        temp_percentages.update(below_1_percs)
+        
+        # Run the interpolation with the current guess
+        anchors_above_1 = [a for a in known_ingredients_map.values() if a['index'] < one_percent_line_index]
+        start_anchor = {'index': -1, 'perc': guess_start_perc}
+        
+        # ** 1% RULE ENFORCEMENT PART 3: Set a 1% Floor for Interpolation **
+        # This virtual anchor ensures the interpolation for ingredients above the line
+        # always descends towards 1.0%, keeping them above 1%.
+        end_anchor = {'index': one_percent_line_index, 'perc': 1.0}
+        
+        all_anchors = sorted(list({v['index']: v for v in [start_anchor] + anchors_above_1 + [end_anchor]}.values()), key=lambda x: x['index'])
 
-    if block_sum > 0 and adjustment != 0:
-        if adjustment > 0:
-            # If we need to add percentage, distribute it proportionally.
-            for name in ingredients_to_adjust:
-                proportion = percentages[name] / block_sum
-                percentages[name] += adjustment * proportion
+        for i in range(len(all_anchors) - 1):
+            s_anchor, e_anchor = all_anchors[i], all_anchors[i+1]
+            num_ingredients_in_segment = e_anchor['index'] - s_anchor['index'] - 1
+            if num_ingredients_in_segment > 0:
+                step_size = (s_anchor['perc'] - e_anchor['perc']) / (num_ingredients_in_segment + 1)
+                for j in range(num_ingredients_in_segment):
+                    ing_index = s_anchor['index'] + 1 + j
+                    ing_name = inci_list[ing_index]
+                    if ing_name not in known_ingredients_map:
+                        # The interpolated value will be > e_anchor['perc'] (our 1% floor)
+                        temp_percentages[ing_name] = s_anchor['perc'] - (step_size * (j + 1))
+        
+        current_total = sum(temp_percentages.values())
+        
+        if current_total > 100.0:
+            high_bound = guess_start_perc # Guess was too high, lower the ceiling
         else:
-            # If we need to REMOVE percentage, calculate a reduction factor.
-            total_reduction_needed = -adjustment
-            # This factor represents the percentage to remove from each ingredient.
-            # Capped at 1.0 to prevent ever removing more than 100% of an ingredient's value.
-            reduction_factor = min(1.0, total_reduction_needed / block_sum)
+            low_bound = guess_start_perc  # Guess was too low, raise the floor
             
-            for name in ingredients_to_adjust:
-                percentages[name] *= (1 - reduction_factor)
+        final_percentages = temp_percentages
 
+    # Final sanity check to clean up any floating point dust
+    for name in final_percentages:
+        if final_percentages[name] < 0:
+            final_percentages[name] = 0.0
 
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
-    st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
-    return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
+    st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in final_percentages.items()]))
+    
+    return [{"name": name, "estimated_percentage": perc} for name, perc in final_percentages.items()]
     
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
