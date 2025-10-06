@@ -83,7 +83,7 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
             st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
             return None, None, None, None
         
-        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], known_percentages, ALL_DATA, profile_key)
+        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA, known_percentages, profile_key)
         
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
@@ -94,6 +94,9 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
 
         return ai_says_output, formula_breakdown, routine_matches, potential_concerns
 
+    except ValueError as e:
+        st.error(f"Input Error: {e}")
+        return None, None, None, None
     except Exception:
         st.error("An unexpected error occurred during the analysis process.")
         st.code(traceback.format_exc())
@@ -109,8 +112,7 @@ def get_product_profile(product_name, profiles_data):
     name_lower = product_name.lower()
     keyword_map = {
         "oil cleanser": "Oil-based Cleanser", "cleansing oil": "Oil-based Cleanser", "cleansing balm": "Oil-based Cleanser",
-        "cream cleanser": "Hydrating Cream Cleanser", "milk cleanser": "Hydrating Cream Cleanser", "foaming cleanser": "Gentle Foaming Cleanser",
-        "purifying cleanser": "Gentle Foaming Cleanser",
+        "cream cleanser": "Hydrating Cream Cleanser", "milk cleanser": "Hydrating Cream Cleanser", "foaming cleanser": "Gentle Foaming Cleanser", "purifying cleanser": "Gentle Foaming Cleanser",
         "rich cream": "Barrier Repair Moisturizer", "barrier cream": "Barrier Repair Moisturizer", "night cream": "Anti-aging Moisturizer",
         "lotion": "Lightweight Moisturizer", "gel cream": "Lightweight Moisturizer", "sunscreen": "SPF 30+", "spf": "SPF 30+",
         "serum": "Hydrating Serum", "essence": "Hydrating Essence", "toner": "Hydrating Toner", "clay mask": "Clay Mask", "mask": "Hydrating Mask or Oil",
@@ -126,61 +128,71 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-def estimate_percentages(inci_list, profile, markers, known_percentages, all_data, profile_key):
-    # VERIFICATION MESSAGE: Check for this in your debug log.
-    st.write("✅ **Running the LATEST version of the estimation logic.**")
-
+# --- REPLACED: The new, multi-stage, profile-guided estimation algorithm ---
+def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
+    st.write("✅ **Running the FINAL version of the estimation logic.**")
     percentages = {name: 0.0 for name in inci_list}
+    
+    # --- Step 1: Validate and Place Anchors ---
+    last_known_perc = 101.0 # Start high
+    for i, name in enumerate(inci_list):
+        for known_name, known_perc in known_percentages.items():
+            if process.extractOne(known_name, [name])[1] > 95:
+                if known_perc > last_known_perc:
+                    raise ValueError(f"Your known percentages violate the descending order rule. '{inci_list[i-1]}' cannot be lower than '{name}'.")
+                percentages[name] = known_perc
+                last_known_perc = known_perc
+                break
+        else: # If no known percentage was found for this ingredient
+            last_known_perc = percentages.get(inci_list[i-1], last_known_perc) if i > 0 else last_known_perc
+
+    # --- Step 2: Calculate the "Below 1%" Zone ---
+    one_percent_markers = all_data.get("one_percent_markers", {}).get("markers", [])
     usage_ranges = all_data.get("usage_ranges", {})
-
-    for name, perc in known_percentages.items():
-        match = process.extractOne(name, inci_list)
-        if match and match[1] > 90:
-            percentages[match[0]] = float(perc)
-
-    for i in range(len(inci_list) - 1, -1, -1):
-        current_ing = inci_list[i]
-        if current_ing in known_percentages or percentages[current_ing] > 0: continue
-
-        floor_perc = 0.01
-        if i + 1 < len(inci_list):
-            floor_perc = percentages[inci_list[i+1]]
-
-        estimated_perc = floor_perc * 1.3 + 0.01 
-
-        ing_ranges = usage_ranges.get(current_ing.lower(), {})
-        max_perc_from_range = ing_ranges.get(profile_key, ing_ranges.get("default", [None, None]))[1]
-        
-        if max_perc_from_range is not None:
-            estimated_perc = min(estimated_perc, max_perc_from_range)
-
-        percentages[current_ing] = estimated_perc
-
-    one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", []) and ing not in known_percentages), -1)
-    if one_percent_line_index != -1:
-        marker_ingredient_name = inci_list[one_percent_line_index]
-        unnormalized_value_at_marker = percentages[marker_ingredient_name]
-        
-        if unnormalized_value_at_marker > 0:
-            scaling_factor = 1.0 / unnormalized_value_at_marker
-            for ing in percentages:
-                if ing not in known_percentages:
-                    percentages[ing] *= scaling_factor
+    one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in one_percent_markers and ing not in known_percentages), len(inci_list))
     
-    known_sum = sum(p for ing, p in percentages.items() if ing in known_percentages)
-    if known_sum > 100:
-        st.error("Error: The sum of known percentages exceeds 100%.")
-        raise ValueError("Sum of known percentages exceeds 100%.")
+    below_1_percent_sum = 0
+    for i in range(one_percent_line_index, len(inci_list)):
+        ing = inci_list[i]
+        if percentages[ing] == 0: # If not a known anchor
+            ing_ranges = usage_ranges.get(ing.lower(), {})
+            # Get range for this profile, or default, or fallback
+            perc_range = ing_ranges.get(profile_key, ing_ranges.get("default", [0.01, 0.5]))
+            # Assign the average of the typical range, capped at 1.0
+            assigned_perc = min(sum(perc_range) / 2, 1.0)
+            percentages[ing] = assigned_perc
+            below_1_percent_sum += assigned_perc
+            
+    # --- Step 3: Calculate the "Above 1%" Zone (Profile-Guided) ---
+    known_sum_total = sum(known_percentages.values())
+    above_1_percent_sum_remaining = 100.0 - known_sum_total - below_1_percent_sum
 
-    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
-    remaining_to_distribute = 100.0 - known_sum
+    above_1_ingredients = inci_list[:one_percent_line_index]
     
-    if estimated_sum > 0 and remaining_to_distribute > 0:
-        final_factor = remaining_to_distribute / estimated_sum
-        for ing in percentages:
+    # Perform a backward fill ONLY on the top ingredients
+    for i in range(len(above_1_ingredients) - 1, -1, -1):
+        ing = above_1_ingredients[i]
+        if percentages[ing] == 0: # If not a known anchor
+            floor_perc = percentages.get(above_1_ingredients[i+1], 1.0) if i+1 < len(above_1_ingredients) else 1.0
+            percentages[ing] = floor_perc * 1.3
+
+    # Normalize the top section to fill the remaining space
+    current_top_sum = sum(percentages[ing] for ing in above_1_ingredients if ing not in known_percentages)
+    if current_top_sum > 0:
+        factor = above_1_percent_sum_remaining / current_top_sum
+        for ing in above_1_ingredients:
             if ing not in known_percentages:
-                percentages[ing] *= final_factor
-    
+                percentages[ing] *= factor
+
+    # --- Step 4: Final Sanitization ---
+    # Due to floating point math, a tiny final adjustment might be needed
+    final_sum = sum(percentages.values())
+    if abs(final_sum - 100.0) > 0.01:
+        adjustment_factor = 100.0 / final_sum
+        for ing in inci_list:
+            if ing not in known_percentages: # Only adjust estimated values
+                percentages[ing] *= adjustment_factor
+
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
@@ -196,10 +208,8 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
         functions, source = [], "Heuristic"
         best_match = None
 
-        if ingredient_name_lower in db_names:
-            best_match = (ingredient_name_lower, 100)
-        else:
-            best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85)
+        if ingredient_name_lower in db_names: best_match = (ingredient_name_lower, 100)
+        else: best_match = process.extractOne(ingredient_name_lower, db_names, score_cutoff=85)
 
         if best_match:
             matched_name = best_match[0]
@@ -229,17 +239,14 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     matched_roles = []
     valid_roles_map = {
-        "Toner": ["toner"], "Essence": ["essence"], "Serum": ["serum"],
-        "Moisturizer (Lightweight)": ["moisturizer"], "Moisturizer (Rich)": ["moisturizer"],
-        "Cleanser (Foaming)": ["cleanser"], "Cleanser (Cream)": ["cleanser"], "Cleanser (Oil-based)": ["cleanser"],
-        "Mask (Wash-off Gel/Cream)": ["mask", "oil"], "Mask (Clay)": ["mask"], "Face Oil": ["oil", "mask"],
-        "Eye Cream": ["eye cream"], "Sunscreen": ["spf", "sunscreen"], "Lip Balm": ["lip balm"], "Mist": ["mist"]
+        "Toner": ["toner"], "Essence": ["essence"], "Serum": ["serum"], "Moisturizer (Lightweight)": ["moisturizer"], "Moisturizer (Rich)": ["moisturizer"],
+        "Cleanser (Foaming)": ["cleanser"], "Cleanser (Cream)": ["cleanser"], "Cleanser (Oil-based)": ["cleanser"], "Mask (Wash-off Gel/Cream)": ["mask", "oil"],
+        "Mask (Clay)": ["mask"], "Face Oil": ["oil", "mask"], "Eye Cream": ["eye cream"], "Sunscreen": ["spf", "sunscreen"], "Lip Balm": ["lip balm"], "Mist": ["mist"]
     }
     valid_keywords = valid_roles_map.get(profile_key, [])
     for role, rules in function_rules.items():
         if isinstance(rules, dict) and any(keyword in role.lower() for keyword in valid_keywords):
-            if all(f in product_functions for f in rules.get('must_have_functions', [])):
-                matched_roles.append(role)
+            if all(f in product_functions for f in rules.get('must_have_functions', [])): matched_roles.append(role)
     if not matched_roles and profile_key: matched_roles.append(profile_key)
     st.write(f"**[DEBUG] Stage 4: Product Roles Identified.** Roles: **{', '.join(list(set(matched_roles)))}**")
     return list(set(matched_roles))
@@ -248,25 +255,21 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
     ai_says_output, formula_breakdown, potential_concerns = {}, {}, []
     ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
     scoring_rules = scoring_rules_data.get("categories", {})
-
     for category_name, rules in scoring_rules.items():
         points = 0
         star_ingredients_found, supporting_ingredients_found, generic_contributors_found = [], [], []
-        
         for star_rule in rules.get("star_ingredients", []):
             star_name_lower = star_rule["name"].lower()
             match = process.extractOne(star_name_lower, ingredient_percentages.keys())
             if match and match[1] > 95 and ingredient_percentages.get(match[0], 0) >= star_rule["min_effective_percent"]:
                 points += star_rule["points"]
                 star_ingredients_found.append(star_rule["name"])
-
         supporting_rules = rules.get("supporting_ingredients", {})
         for ing_name, ing_points in supporting_rules.items():
             match = process.extractOne(ing_name.lower(), ingredient_percentages.keys())
             if match and match[1] > 95:
                 points += ing_points
                 supporting_ingredients_found.append(ing_name)
-
         generic_function_set = set(rules.get("generic_functions", []))
         bonus_points_per_match = 1.5
         for ingredient in analyzed_ingredients:
@@ -277,41 +280,29 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
                 points += bonus_points_per_match
                 if ingredient['name'].title() not in generic_contributors_found:
                     generic_contributors_found.append(ingredient['name'].title())
-
         final_score = round(min(10, (points / rules.get("max_points", 100)) * 10), 1)
         if final_score > 0.5:
             template_set = templates.get(category_name, {})
             narrative = ""
             if final_score >= 7.5:
-                if star_ingredients_found:
-                    narrative = template_set.get("high_score", "").format(star_ingredients=", ".join(star_ingredients_found), supporting_ingredients=", ".join(supporting_ingredients_found) if supporting_ingredients_found else "a blend of beneficial ingredients")
-                else:
-                    narrative = template_set.get("high_score_generic", "").format(generic_contributors=", ".join(list(set(supporting_ingredients_found + generic_contributors_found))[:3]))
-            elif final_score >= 4.0:
-                narrative = template_set.get("medium_score", "").format(star_ingredients=", ".join(list(set(star_ingredients_found + supporting_ingredients_found + generic_contributors_found))[:3]) if (star_ingredients_found or supporting_ingredients_found or generic_contributors_found) else "some beneficial ingredients")
-            else:
-                narrative = template_set.get("low_score", "This formula does not focus on this category.")
+                if star_ingredients_found: narrative = template_set.get("high_score", "").format(star_ingredients=", ".join(star_ingredients_found), supporting_ingredients=", ".join(supporting_ingredients_found) if supporting_ingredients_found else "a blend of beneficial ingredients")
+                else: narrative = template_set.get("high_score_generic", "").format(generic_contributors=", ".join(list(set(supporting_ingredients_found + generic_contributors_found))[:3]))
+            elif final_score >= 4.0: narrative = template_set.get("medium_score", "").format(star_ingredients=", ".join(list(set(star_ingredients_found + supporting_ingredients_found + generic_contributors_found))[:3]) if (star_ingredients_found or supporting_ingredients_found or generic_contributors_found) else "some beneficial ingredients")
+            else: narrative = template_set.get("low_score", "This formula does not focus on this category.")
             ai_says_output[category_name] = {"score": final_score, "narrative": narrative}
-        
         contributors = {"Star Ingredients": star_ingredients_found, "Supporting Ingredients": supporting_ingredients_found, "Other Key Ingredients": generic_contributors_found}
-        if any(v for v in contributors.values()):
-            formula_breakdown[category_name] = {k: v for k, v in contributors.items() if v}
-
+        if any(v for v in contributors.values()): formula_breakdown[category_name] = {k: v for k, v in contributors.items() if v}
     if ai_says_output:
         top_two_categories = sorted(ai_says_output.items(), key=lambda item: item[1]['score'], reverse=True)[:2]
         if len(top_two_categories) >= 2:
             summary_text = f"**At a Glance:** This product appears to be strongest in **{top_two_categories[0][0]}** and **{top_two_categories[1][0]}**."
-            summary_dict = {"Summary": {"score": "", "narrative": summary_text}}
-            summary_dict.update(ai_says_output)
-            ai_says_output = summary_dict
-
+            summary_dict = {"Summary": {"score": "", "narrative": summary_text}}; summary_dict.update(ai_says_output); ai_says_output = summary_dict
     for ing in analyzed_ingredients:
         match = process.extractOne(ing['name'].lower(), [db_ing['inci_name'].lower() for db_ing in ALL_DATA["ingredients"]])
         if match and match[1] > 90:
             db_entry = next((item for item in ALL_DATA["ingredients"] if item['inci_name'].lower() == match[0]), None)
             if db_entry and db_entry.get("restrictions") and db_entry["restrictions"] != "Без обмежень":
                  potential_concerns.append(f"**{ing['name'].title()}:** {db_entry['restrictions']}")
-    
     st.write("**[DEBUG] Stage 5: Narratives and Breakdowns Generated.**")
     return ai_says_output, formula_breakdown, potential_concerns
 
@@ -321,14 +312,12 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
     for type_id, skin_type in all_data["skin_types"].items():
         product_ingredient_set = {ing['name'].lower() for ing in analyzed_ingredients}
         if any(bad_ing.lower() in product_ingredient_set for bad_ing in skin_type.get('bad_for_ingredients', [])): continue
-
         for routine_key, routine_details in all_data["routines"].items():
             if routine_key.startswith(type_id):
                 for step in routine_details.get("steps", []):
                     if step["product_function"] in product_roles:
                         base_score = scoring_config["function_match_scores"]["perfect_match_base_points"]
                         bonus_points, max_bonus = 0, 0
-                        
                         good_for_list = skin_type.get("good_for_functions", [])
                         if isinstance(good_for_list, list):
                             for priority_func in good_for_list:
@@ -338,16 +327,13 @@ def find_all_routine_matches(product_roles, analyzed_ingredients, all_data):
                                         bonus_value = scoring_config["priority_fulfillment_scores"].get(f"{priority}_priority_bonus", 0)
                                         max_bonus += bonus_value
                                         if func_name in product_functions: bonus_points += bonus_value
-
                         total_score = base_score + bonus_points
                         max_possible_score = base_score + max_bonus
                         match_percent = (total_score / max_possible_score) * 100 if max_possible_score > 0 else 0
-                        
                         if match_percent >= scoring_config.get("match_thresholds", {}).get("good_match_min_percent", 70):
                             try:
                                 skin_type_number = type_id.split(' ')[1]
                                 routine_matches.append(f"ID {skin_type_number} Routine {routine_key} Step {step['step_number']} Match {match_percent:.0f}%")
                             except IndexError: continue
-
     st.write(f"**[DEBUG] Stage 6: Routine Matching Complete.** Found **{len(routine_matches)}** placements.")
     return routine_matches
