@@ -148,67 +148,51 @@ def get_product_profile(product_name, profiles_data):
 def estimate_percentages(inci_list, profile, markers, known_percentages):
     percentages = {name: 0.0 for name in inci_list}
     
-    # Place known percentages as anchors
+    # Step 1: Place known percentages as anchors
     for name, perc in known_percentages.items():
         match = process.extractOne(name, inci_list)
         if match and match[1] > 90:
             percentages[match[0]] = float(perc)
 
-    # --- Step 1: Perform the initial backward fill ---
-    # This creates a list that respects the descending order rule
+    # Step 2: Perform a simple backward fill to establish a correctly ordered list
     for i in range(len(inci_list) - 1, -1, -1):
         current_ing = inci_list[i]
-        if percentages[current_ing] > 0: continue
+        if percentages[current_ing] > 0: continue # Skip if it's a known anchor
 
-        floor_perc = 0.001
+        floor_perc = 0.01 # Start with a minimum floor
         if i + 1 < len(inci_list):
-            next_ing = inci_list[i+1]
-            floor_perc = percentages[next_ing]
+            floor_perc = percentages[inci_list[i+1]]
 
-        estimated_perc = floor_perc * 1.1 + 0.01 
-        percentages[current_ing] = estimated_perc
+        # Set the current ingredient to be slightly higher than the one after it
+        percentages[current_ing] = floor_perc * 1.3 + 0.01 
 
-    # --- Step 2: CORRECTED Smart Normalization ---
-    one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
+    # Step 3: Use the 1% line to proportionally scale all estimated ingredients
+    # Find the first ingredient that is a known 1% marker (and is not a user-provided anchor)
+    one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", []) and ing not in known_percentages), -1)
 
+    # If a 1% marker is found, use it to determine the primary scaling factor
+    if one_percent_line_index != -1:
+        marker_ingredient_name = inci_list[one_percent_line_index]
+        unnormalized_value_at_marker = percentages[marker_ingredient_name]
+        
+        # We want this ingredient to be at ~1.0%. This gives us our scaling factor.
+        if unnormalized_value_at_marker > 0:
+            scaling_factor = 1.0 / unnormalized_value_at_marker
+            
+            # Apply this factor to ALL estimated ingredients. This preserves the order.
+            for ing in percentages:
+                if ing not in known_percentages:
+                    percentages[ing] *= scaling_factor
+    
+    # Step 4: Final normalization to ensure the sum is exactly 100%
     known_sum = sum(p for ing, p in percentages.items() if ing in known_percentages)
     if known_sum > 100:
         st.error("Error: The sum of known percentages exceeds 100%.")
         raise ValueError("Sum of known percentages exceeds 100%.")
 
-    # Lock in the percentages for ingredients below the 1% line
-    fixed_below_1_line_sum = 0
-    if one_percent_line_index != -1:
-        for i in range(one_percent_line_index, len(inci_list)):
-            ing = inci_list[i]
-            if ing not in known_percentages:
-                # Cap the value and add it to the "fixed" sum
-                percentages[ing] = min(percentages[ing], 1.0)
-                fixed_below_1_line_sum += percentages[ing]
-
-    # Calculate the percentage remaining to be distributed ONLY to the top ingredients
-    remaining_to_distribute = 100.0 - known_sum - fixed_below_1_line_sum
-
-    # Calculate the current sum of the top ingredients that we need to normalize
-    sum_to_normalize = 0
-    ingredients_to_normalize = []
-    # Determine the boundary for normalization (either the 1% line or the whole list)
-    normalization_boundary = one_percent_line_index if one_percent_line_index != -1 else len(inci_list)
-    for i in range(normalization_boundary):
-        ing = inci_list[i]
-        if ing not in known_percentages:
-            sum_to_normalize += percentages[ing]
-            ingredients_to_normalize.append(ing)
-
-    # Apply normalization factor ONLY to the top ingredients
-    if sum_to_normalize > 0 and remaining_to_distribute > 0:
-        factor = remaining_to_distribute / sum_to_normalize
-        for ing in ingredients_to_normalize:
-            percentages[ing] *= factor
-            
-    st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
-    st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
-    return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
+    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
+    
+    remaining_to_distribute = 100.
 # --- REPLACEMENT for analyze_ingredient_functions in engine.py ---
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
