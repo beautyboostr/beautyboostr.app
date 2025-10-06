@@ -128,17 +128,16 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- REWRITTEN with proportional distribution for the final adjustment ---
-# --- REWRITTEN with proportional distribution for the final adjustment ---
+# --- REWRITTEN to prevent negative percentages with a capped reduction factor ---
 def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
     """
     Estimates ingredient percentages using a robust hybrid model.
-    1. Places known percentages as fixed anchors and validates their order.
+    1. Places known percentages as fixed anchors.
     2. Uses data-driven averages for ingredients below the 1% line.
     3. Uses linear interpolation between anchors for ingredients above 1%.
-    4. Distributes the final adjustment proportionally among all ingredients before the first anchor.
+    4. Safely applies the final adjustment using a capped proportional reduction method to prevent negative percentages.
     """
-    st.write("✅ **Running the HYBRID (Proportional Adjustment) estimation logic.**")
+    st.write("✅ **Running the HYBRID (Negative-Safe) estimation logic.**")
     percentages = {name: 0.0 for name in inci_list}
     
     # --- Step 1: Validate and Place Known Percentage Anchors ---
@@ -192,42 +191,42 @@ def estimate_percentages(inci_list, profile, all_data, known_percentages, profil
                 if ing_name not in known_ingredients_map:
                     percentages[ing_name] = start_perc - (step_size * (j + 1))
 
-    # --- Step 4: Final Proportional Adjustment (The Improved Fix) ---
+    # --- Step 4: Final Proportional Adjustment (The Fix for Negative Values) ---
     current_total = sum(percentages.values())
     adjustment = 100.0 - current_total
 
-    # Find the index of the first user-supplied anchor.
-    first_anchor_index = len(inci_list) # Default to end of list if no anchors
+    first_anchor_index = len(inci_list)
     if known_ingredients_map:
         first_anchor_index = min(v['index'] for v in known_ingredients_map.values())
 
-    # Identify the ingredients in the block before the first anchor that need adjusting.
     ingredients_to_adjust = [
         name for i, name in enumerate(inci_list) 
         if i < first_anchor_index and name not in known_ingredients_map
     ]
-
-    # Calculate the sum of this block to use for proportion calculation.
+    
     block_sum = sum(percentages[name] for name in ingredients_to_adjust)
 
-    if block_sum > 0:
-        # Distribute the adjustment proportionally across the ingredients in the block.
-        for name in ingredients_to_adjust:
-            proportion = percentages[name] / block_sum
-            percentages[name] += adjustment * proportion
-    elif adjustment != 0:
-        # Fallback for the rare case where the block is empty or sums to zero.
-        # Adjust the very first non-anchor ingredient in the entire list.
-        first_non_anchor_ingredient = next((name for name in inci_list if name not in known_ingredients_map), None)
-        if first_non_anchor_ingredient:
-            percentages[first_non_anchor_ingredient] += adjustment
+    if block_sum > 0 and adjustment != 0:
+        if adjustment > 0:
+            # If we need to add percentage, distribute it proportionally.
+            for name in ingredients_to_adjust:
+                proportion = percentages[name] / block_sum
+                percentages[name] += adjustment * proportion
+        else:
+            # If we need to REMOVE percentage, calculate a reduction factor.
+            total_reduction_needed = -adjustment
+            # This factor represents the percentage to remove from each ingredient.
+            # Capped at 1.0 to prevent ever removing more than 100% of an ingredient's value.
+            reduction_factor = min(1.0, total_reduction_needed / block_sum)
+            
+            for name in ingredients_to_adjust:
+                percentages[name] *= (1 - reduction_factor)
 
 
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
-
-
+    
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
     ingredients_dict = {item['inci_name'].lower(): item for item in all_data["ingredients"]}
