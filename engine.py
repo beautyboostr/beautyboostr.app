@@ -83,7 +83,7 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
             st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
             return None, None, None, None
         
-        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA, known_percentages, profile_key)
+        ingredients_with_percentages = estimate_percentages(inci_list, known_percentages, ALL_DATA)
         
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
@@ -128,71 +128,61 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- REPLACED: The new, multi-stage, profile-guided estimation algorithm ---
-def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
+# --- REPLACED: The final, robust estimation algorithm ---
+def estimate_percentages(inci_list, known_percentages, all_data):
     st.write("✅ **Running the FINAL version of the estimation logic.**")
     percentages = {name: 0.0 for name in inci_list}
-    
+    known_ingredients_map = {}
+
     # --- Step 1: Validate and Place Anchors ---
-    last_known_perc = 101.0 # Start high
+    last_known_perc = 101.0
+    last_known_idx = -1
     for i, name in enumerate(inci_list):
         for known_name, known_perc in known_percentages.items():
             if process.extractOne(known_name, [name])[1] > 95:
                 if known_perc > last_known_perc:
-                    raise ValueError(f"Your known percentages violate the descending order rule. '{inci_list[i-1]}' cannot be lower than '{name}'.")
+                    # Find the name of the previous known ingredient for a clearer error message
+                    prev_known_name = next(k for k, v in known_ingredients_map.items() if v['index'] == last_known_idx)
+                    raise ValueError(f"Your known percentages violate the descending order rule. '{prev_known_name.title()}' at {last_known_perc}% cannot be followed by '{name.title()}' at {known_perc}%.")
+                
                 percentages[name] = known_perc
+                known_ingredients_map[name] = {'perc': known_perc, 'index': i}
                 last_known_perc = known_perc
+                last_known_idx = i
                 break
-        else: # If no known percentage was found for this ingredient
-            last_known_perc = percentages.get(inci_list[i-1], last_known_perc) if i > 0 else last_known_perc
 
-    # --- Step 2: Calculate the "Below 1%" Zone ---
-    one_percent_markers = all_data.get("one_percent_markers", {}).get("markers", [])
-    usage_ranges = all_data.get("usage_ranges", {})
-    one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in one_percent_markers and ing not in known_percentages), len(inci_list))
+    # --- Step 2: "Segmented" Backward Fill ---
+    # This guarantees the descending order is established correctly around anchors.
+    sorted_known_indices = sorted([d['index'] for d in known_ingredients_map.values()], reverse=True)
     
-    below_1_percent_sum = 0
-    for i in range(one_percent_line_index, len(inci_list)):
-        ing = inci_list[i]
-        if percentages[ing] == 0: # If not a known anchor
-            ing_ranges = usage_ranges.get(ing.lower(), {})
-            # Get range for this profile, or default, or fallback
-            perc_range = ing_ranges.get(profile_key, ing_ranges.get("default", [0.01, 0.5]))
-            # Assign the average of the typical range, capped at 1.0
-            assigned_perc = min(sum(perc_range) / 2, 1.0)
-            percentages[ing] = assigned_perc
-            below_1_percent_sum += assigned_perc
-            
-    # --- Step 3: Calculate the "Above 1%" Zone (Profile-Guided) ---
-    known_sum_total = sum(known_percentages.values())
-    above_1_percent_sum_remaining = 100.0 - known_sum_total - below_1_percent_sum
+    # Start filling from the end of the list up to the last anchor
+    end_index = len(inci_list)
+    for index in sorted_known_indices:
+        for i in range(end_index - 2, index, -1):
+            floor_perc = percentages[inci_list[i+1]]
+            percentages[inci_list[i]] = floor_perc * 1.3 + 0.01
+        end_index = index
 
-    above_1_ingredients = inci_list[:one_percent_line_index]
+    # Fill from the first anchor to the top of the list
+    for i in range(end_index - 1, -1, -1):
+         floor_perc = percentages[inci_list[i+1]] if (i+1) < len(inci_list) else 0.01
+         percentages[inci_list[i]] = floor_perc * 1.3 + 0.01
     
-    # Perform a backward fill ONLY on the top ingredients
-    for i in range(len(above_1_ingredients) - 1, -1, -1):
-        ing = above_1_ingredients[i]
-        if percentages[ing] == 0: # If not a known anchor
-            floor_perc = percentages.get(above_1_ingredients[i+1], 1.0) if i+1 < len(above_1_ingredients) else 1.0
-            percentages[ing] = floor_perc * 1.3
+    # --- Step 3: Final Normalization ---
+    # This single normalization step preserves the perfect descending order created above.
+    known_sum = sum(known_percentages.values())
+    if known_sum > 100:
+        raise ValueError("The sum of your known percentages cannot exceed 100%.")
 
-    # Normalize the top section to fill the remaining space
-    current_top_sum = sum(percentages[ing] for ing in above_1_ingredients if ing not in known_percentages)
-    if current_top_sum > 0:
-        factor = above_1_percent_sum_remaining / current_top_sum
-        for ing in above_1_ingredients:
-            if ing not in known_percentages:
-                percentages[ing] *= factor
-
-    # --- Step 4: Final Sanitization ---
-    # Due to floating point math, a tiny final adjustment might be needed
-    final_sum = sum(percentages.values())
-    if abs(final_sum - 100.0) > 0.01:
-        adjustment_factor = 100.0 / final_sum
-        for ing in inci_list:
-            if ing not in known_percentages: # Only adjust estimated values
-                percentages[ing] *= adjustment_factor
-
+    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_ingredients_map)
+    remaining_to_distribute = 100.0 - known_sum
+    
+    if estimated_sum > 0 and remaining_to_distribute > 0:
+        final_factor = remaining_to_distribute / estimated_sum
+        for ing in percentages:
+            if ing not in known_ingredients_map:
+                percentages[ing] *= final_factor
+    
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
