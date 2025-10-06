@@ -83,7 +83,7 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
             st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
             return None, None, None, None
         
-        ingredients_with_percentages = estimate_percentages(inci_list, profile, known_percentages)
+        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA, known_percentages, profile_key)
         
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
@@ -128,68 +128,77 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- REPLACED: The new, robust, interpolation-based algorithm ---
-def estimate_percentages(inci_list, profile, known_percentages):
-    st.write("✅ **Running the INTERPOLATION version of the estimation logic.**")
+# --- REPLACED: The final, correct, hybrid estimation algorithm ---
+def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
+    st.write("✅ **Running the HYBRID (Interpolation + Data-Driven) estimation logic.**")
     percentages = {name: 0.0 for name in inci_list}
     
-    # --- Step 1: Identify all anchors ---
-    anchors = []
-    # Add known percentages from user
-    for name, perc in known_percentages.items():
-        match = process.extractOne(name, inci_list)
-        if match and match[1] > 90:
-            anchors.append({'name': match[0], 'perc': perc, 'index': inci_list.index(match[0])})
+    # --- Step 1: Validate and Place Anchors ---
+    known_ingredients_map = {}
+    last_known_perc = 101.0
+    last_known_idx = -1
+    for i, name in enumerate(inci_list):
+        for known_name, known_perc in known_percentages.items():
+            if process.extractOne(known_name, [name])[1] > 95:
+                if known_perc > last_known_perc:
+                    prev_known_name = next((k for k, v in known_ingredients_map.items() if v['index'] == last_known_idx), f"Ingredient at position {last_known_idx+1}")
+                    raise ValueError(f"Your known percentages violate the descending order rule. '{prev_known_name.title()}' at {last_known_perc}% cannot be followed by '{name.title()}' at {known_perc}%.")
+                
+                percentages[name] = known_perc
+                known_ingredients_map[name] = {'perc': known_perc, 'index': i}
+                last_known_perc = known_perc
+                last_known_idx = i
+                break
 
-    # Add virtual start anchor (uses product profile for a smart guess)
-    start_perc = profile.get("base_solvent_range", [50, 80])[0] if 'water' in inci_list[0].lower() else 40.0
-    anchors.append({'name': 'virtual_start', 'perc': start_perc, 'index': -1})
+    # --- Step 2: Calculate the "Below 1%" Zone ---
+    one_percent_markers = all_data.get("one_percent_markers", {}).get("markers", [])
+    usage_ranges = all_data.get("usage_ranges", {})
+    one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in one_percent_markers and ing not in known_ingredients_map), len(inci_list))
     
-    # Add virtual end anchor
-    anchors.append({'name': 'virtual_end', 'perc': 0.01, 'index': len(inci_list)})
+    below_1_percent_sum = 0
+    for i in range(one_percent_line_index, len(inci_list)):
+        ing = inci_list[i]
+        if ing not in known_ingredients_map:
+            ing_ranges = usage_ranges.get(ing.lower(), {})
+            perc_range = ing_ranges.get(profile_key, ing_ranges.get("default", [0.05, 0.5]))
+            assigned_perc = min(sum(perc_range) / 2, 1.0)
+            percentages[ing] = assigned_perc
+        below_1_percent_sum += percentages[ing]
+
+    # --- Step 3: Calculate the "Above 1%" Zone (Interpolation) ---
+    anchors_above_1 = [a for a in known_ingredients_map.values() if a['index'] < one_percent_line_index]
     
-    # Sort anchors and remove duplicates
-    anchors = [dict(t) for t in {tuple(d.items()) for d in anchors}]
-    anchors.sort(key=lambda x: x['index'])
+    # Add virtual anchors for interpolation
+    start_perc = profile.get("base_solvent_range", [50, 80])[0]
+    all_anchors = [{'index': -1, 'perc': start_perc}] + anchors_above_1 + [{'index': one_percent_line_index, 'perc': 1.0}]
+    all_anchors = sorted(list({v['index']:v for v in all_anchors}.values()), key=lambda x: x['index'])
 
-    # Validate anchor order
-    for i in range(1, len(anchors)):
-        if anchors[i]['perc'] > anchors[i-1]['perc']:
-            raise ValueError(f"Anchor values violate descending order: ...{anchors[i-1]['name']} at {anchors[i-1]['perc']}% followed by ...{anchors[i]['name']} at {anchors[i]['perc']}%")
-
-    # Place real anchors in the percentages dict
-    for anchor in anchors:
-        if 'virtual' not in anchor['name']:
-            percentages[anchor['name']] = anchor['perc']
-
-    # --- Step 2: Interpolate between each pair of anchors ---
-    for i in range(len(anchors) - 1):
-        start_anchor, end_anchor = anchors[i], anchors[i+1]
+    for i in range(len(all_anchors) - 1):
+        start_anchor, end_anchor = all_anchors[i], all_anchors[i+1]
         start_index, end_index = start_anchor['index'], end_anchor['index']
         start_perc, end_perc = start_anchor['perc'], end_anchor['perc']
         
         num_ingredients_in_segment = end_index - start_index - 1
         
         if num_ingredients_in_segment > 0:
-            # Manual linear interpolation (to avoid numpy dependency)
             step_size = (start_perc - end_perc) / (num_ingredients_in_segment + 1)
-            
             for j in range(num_ingredients_in_segment):
                 ing_index = start_index + 1 + j
                 ing_name = inci_list[ing_index]
-                if percentages[ing_name] == 0.0: # If not already a known anchor
+                if ing_name not in known_ingredients_map:
                     percentages[ing_name] = start_perc - (step_size * (j + 1))
 
-    # --- Step 3: Final Normalization ---
-    known_sum = sum(known_percentages.values())
-    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
+    # --- Step 4: Final Normalization ---
+    known_sum_total = sum(known_percentages.values())
+    estimated_above_1_sum = sum(p for i, p in enumerate(percentages.values()) if i < one_percent_line_index and inci_list[i] not in known_ingredients_map)
     
-    remaining_to_distribute = 100.0 - known_sum
+    remaining_to_distribute = 100.0 - known_sum_total - below_1_percent_sum
     
-    if estimated_sum > 0 and remaining_to_distribute > 0:
-        factor = remaining_to_distribute / estimated_sum
-        for ing in percentages:
-            if ing not in known_percentages:
+    if estimated_above_1_sum > 0 and remaining_to_distribute > 0:
+        factor = remaining_to_distribute / estimated_above_1_sum
+        for i in range(one_percent_line_index):
+            ing = inci_list[i]
+            if ing not in known_ingredients_map:
                 percentages[ing] *= factor
     
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
