@@ -1,0 +1,533 @@
+{
+  "description": "Typical usage percentage ranges for key ingredients in specific product types.",
+  "aqua": {
+    "Cleanser": [
+      50,
+      80
+    ],
+    "Cream": [
+      40,
+      70
+    ]
+  },
+  "lactic acid": {
+    "Cleanser": [
+      0,
+      5
+    ],
+    "Cream": [
+      0,
+      4
+    ]
+  },
+  "glycolic acid": {
+    "Cleanser": [
+      0,
+      5
+    ],
+    "Cream": [
+      0,
+      4
+    ]
+  },
+  "salicylic acid": {
+    "Cleanser": [
+      0,
+      3
+    ],
+    "Cream": [
+      0,
+      2
+    ]
+  },
+  "retinol": {
+    "Cleanser": [
+      0,
+      0.05
+    ],
+    "Cream": [
+      0,
+      0.3
+    ]
+  },
+  "glycerin": {
+    "Cleanser": [
+      2,
+      10
+    ],
+    "Cream": [
+      2,
+      10
+    ]
+  },
+  "propylene glycol": {
+    "Cleanser": [
+      1,
+      5
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "dimethicone": {
+    "Cleanser": [
+      0,
+      2
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "paraffinum liquidum": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "cetyl alcohol": {
+    "Cleanser": [
+      0.5,
+      3
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "stearyl alcohol": {
+    "Cleanser": [
+      0.5,
+      3
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "glyceryl stearate": {
+    "Cleanser": [
+      0.5,
+      2
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "peg-100 stearate": {
+    "Cleanser": [
+      0,
+      2
+    ],
+    "Cream": [
+      0.5,
+      3
+    ]
+  },
+  "isopropyl palmitate": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "phenoxyethanol": {
+    "Cleanser": [
+      0.5,
+      1
+    ],
+    "Cream": [
+      0.5,
+      1
+    ]
+  },
+  "ethylhexylglycerin": {
+    "Cleanser": [
+      0.1,
+      0.5
+    ],
+    "Cream": [
+      0.1,
+      0.5
+    ]
+  },
+  "tocopherol": {
+    "Cleanser": [
+      0,
+      0.5
+    ],
+    "Cream": [
+      0.1,
+      1
+    ]
+  },
+  "hyaluronic acid": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0.1,
+      2
+    ]
+  },
+  "l-ascorbic acid": {
+    "Cleanser": [
+      0,
+      2
+    ],
+    "Cream": [
+      0,
+      3
+    ]
+  },
+  "niacinamide": {
+    "Cleanser": [
+      0,
+      3
+    ],
+    "Cream": [
+      0,
+      5
+    ]
+  },
+  "kojic acid": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "hydroquinone": {
+    "Cleanser": [
+      0,
+      0
+    ],
+    "Cream": [
+      0,
+      0
+    ]
+  },
+  "ceramides": {
+    "Cleanser": [
+      0,
+      0.5
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "peptides": {
+    "Cleanser": [
+      0,
+      0.1
+    ],
+    "Cream": [
+      0,
+      0.1
+    ]
+  },
+  "butyrospermum parkii butter": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      2,
+      10
+    ]
+  },
+  "cocos nucifera oil": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "simmondsia chinensis seed oil": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "argania spinosa kernel oil": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "persea gratissima oil": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "prunus amygdalus dulcis oil": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "panthenol": {
+    "Cleanser": [
+      0,
+      2
+    ],
+    "Cream": [
+      0,
+      3
+    ]
+  },
+  "aloe barbadensis leaf juice": {
+    "Cleanser": [
+      0,
+      2
+    ],
+    "Cream": [
+      0,
+      5
+    ]
+  },
+  "zinc oxide": {
+    "Cleanser": [
+      0,
+      5
+    ],
+    "Cream": [
+      0,
+      25
+    ]
+  },
+  "titanium dioxide": {
+    "Cleanser": [
+      0,
+      5
+    ],
+    "Cream": [
+      0,
+      25
+    ]
+  },
+  "methylparaben": {
+    "Cleanser": [
+      0,
+      0.4
+    ],
+    "Cream": [
+      0,
+      0.4
+    ]
+  },
+  "propylparaben": {
+    "Cleanser": [
+      0,
+      0.14
+    ],
+    "Cream": [
+      0,
+      0.14
+    ]
+  },
+  "sodium lauryl sulfate": {
+    "Cleanser": [
+      5,
+      15
+    ],
+    "Cream": [
+      0,
+      0.5
+    ]
+  },
+  "sodium laureth sulfate": {
+    "Cleanser": [
+      5,
+      15
+    ],
+    "Cream": [
+      0,
+      0.5
+    ]
+  },
+  "caffeine": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "biotin": {
+    "Cleanser": [
+      0,
+      0.5
+    ],
+    "Cream": [
+      0,
+      0.5
+    ]
+  },
+  "polyglutamic acid": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "camellia sinensis leaf extract": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      2
+    ]
+  },
+  "chamomilla recutita flower extract": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      2
+    ]
+  },
+  "keratin": {
+    "Cleanser": [
+      0,
+      0.5
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "collagen": {
+    "Cleanser": [
+      0,
+      0.5
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "eucalyptus globulus leaf oil": {
+    "Cleanser": [
+      0,
+      0.1
+    ],
+    "Cream": [
+      0,
+      0.01
+    ]
+  },
+  "carbomer": {
+    "Cleanser": [
+      0.1,
+      1
+    ],
+    "Cream": [
+      0.1,
+      1
+    ]
+  },
+  "xanthan gum": {
+    "Cleanser": [
+      0.1,
+      1
+    ],
+    "Cream": [
+      0.1,
+      1
+    ]
+  },
+  "talc": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      0,
+      2
+    ]
+  },
+  "petrolatum": {
+    "Cleanser": [
+      0,
+      1
+    ],
+    "Cream": [
+      1,
+      5
+    ]
+  },
+  "ci 77491": {
+    "Cleanser": [
+      0,
+      0
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "ci 77492": {
+    "Cleanser": [
+      0,
+      0
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  },
+  "ci 77499": {
+    "Cleanser": [
+      0,
+      0
+    ],
+    "Cream": [
+      0,
+      1
+    ]
+  }
+}
