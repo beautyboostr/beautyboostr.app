@@ -130,7 +130,7 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# UPDATED: This function is now fully replaced with the version that uses ingredient_usage_ranges.json
+# --- REPLACEMENT for estimate_percentages in engine.py ---
 def estimate_percentages(inci_list, profile, markers, known_percentages, all_data, profile_key):
     percentages = {name: 0.0 for name in inci_list}
     usage_ranges = all_data.get("usage_ranges", {})
@@ -144,15 +144,18 @@ def estimate_percentages(inci_list, profile, markers, known_percentages, all_dat
     # Step 2: Backward fill, constrained by usage ranges
     for i in range(len(inci_list) - 1, -1, -1):
         current_ing = inci_list[i]
-        if percentages[current_ing] > 0: continue
+        # Skip ingredients that are already anchored
+        if percentages[current_ing] > 0 and current_ing in known_percentages: 
+            continue
 
-        floor_perc = 0.01
+        floor_perc = 0.01 # The absolute minimum for the last ingredient
         if i + 1 < len(inci_list):
             floor_perc = percentages[inci_list[i+1]]
 
-        estimated_perc = floor_perc * 1.3 + 0.01
+        # Set the current ingredient to be slightly higher than the one after it
+        estimated_perc = floor_perc * 1.3 + 0.01 
 
-        # Check for a max usage constraint from the new data file
+        # Check for a max usage constraint from the ingredient_usage_ranges.json file
         ing_ranges = usage_ranges.get(current_ing.lower(), {})
         max_perc_from_range = ing_ranges.get(profile_key, ing_ranges.get("default", [None, None]))[1]
         
@@ -170,6 +173,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages, all_dat
         
         if unnormalized_value_at_marker > 0:
             scaling_factor = 1.0 / unnormalized_value_at_marker
+            # Apply this factor to ALL estimated ingredients. This preserves the order.
             for ing in percentages:
                 if ing not in known_percentages:
                     percentages[ing] *= scaling_factor
@@ -186,6 +190,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages, all_dat
     
     if estimated_sum > 0 and remaining_to_distribute > 0:
         final_factor = remaining_to_distribute / estimated_sum
+        # Apply the final normalization factor to all estimated ingredients
         for ing in percentages:
             if ing not in known_percentages:
                 percentages[ing] *= final_factor
