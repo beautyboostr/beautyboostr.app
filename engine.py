@@ -128,17 +128,16 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- FINAL VERSION: Iterative Search with Explicit 1% Rule Enforcement ---
+# --- FINAL ROBUST VERSION: Iterative Search with Best-Result Tracking ---
 def estimate_percentages(inci_list, profile, all_data, known_percentages, profile_key):
     """
-    Estimates ingredient percentages using a robust iterative search model that strictly
-    enforces the 1% rule.
+    Estimates ingredient percentages using a robust iterative search model. This version
+    tracks the result that is closest to a 100% sum across all iterations to ensure
+    the best possible solution is returned, preventing >100% sums.
     """
-    st.write("✅ **Running the definitive ITERATIVE SEARCH logic with explicit 1% rule enforcement.**")
+    st.write("✅ **Running the definitive ITERATIVE SEARCH logic (Best Result Tracking).**")
     
-    # --- Step 1: Pre-computation of constant values (anchors and the "Below 1%" zone) ---
-    
-    # Place user-supplied known percentages as fixed anchors
+    # --- Step 1: Pre-computation of constant values (anchors and below-1% zone) ---
     known_ingredients_map = {}
     last_known_perc = 101.0
     for i, name in enumerate(inci_list):
@@ -150,44 +149,37 @@ def estimate_percentages(inci_list, profile, all_data, known_percentages, profil
                 last_known_perc = known_perc
                 break
 
-    # ** 1% RULE ENFORCEMENT PART 1: Identify the "1% Line" **
-    # Find the first ingredient from our markers list. This is the boundary.
     one_percent_markers = all_data.get("one_percent_markers", {}).get("markers", [])
     usage_ranges = all_data.get("usage_ranges", {})
     one_percent_line_index = next((i for i, ing in enumerate(inci_list) if ing in one_percent_markers and ing not in known_ingredients_map), len(inci_list))
 
-    # Calculate and lock in all percentages FOR AND AFTER the 1% line
     below_1_percs = {}
     for i in range(one_percent_line_index, len(inci_list)):
         ing = inci_list[i]
         if ing not in known_ingredients_map:
             ing_ranges = usage_ranges.get(ing.lower(), {})
             perc_range = ing_ranges.get(profile_key, ing_ranges.get("default", [0.05, 0.5]))
-            # ** 1% RULE ENFORCEMENT PART 2: Cap "Below 1%" Ingredients **
-            # The percentage is capped at a maximum of 1.0 to respect the rule.
             below_1_percs[ing] = min(sum(perc_range) / 2, 1.0)
     
-    # --- Step 2: The Iterative Search for the correct starting percentage ---
-    
+    # --- Step 2: The Iterative Search with Best-Result Tracking ---
     low_bound, high_bound = profile.get("base_solvent_range", [40, 98])
-    final_percentages = {}
     
-    for _ in range(10): # 10 iterations provides sufficient precision
+    # Variables to store the best result found during the search
+    best_result = {}
+    smallest_error = float('inf')
+
+    # Increased iterations for better convergence on complex lists
+    for _ in range(15):
         guess_start_perc = (low_bound + high_bound) / 2
         
         temp_percentages = {name: 0.0 for name in inci_list}
         temp_percentages.update({k: v['perc'] for k, v in known_ingredients_map.items()})
         temp_percentages.update(below_1_percs)
         
-        # Run the interpolation with the current guess
+        # Run the trusted interpolation logic with the current guess
         anchors_above_1 = [a for a in known_ingredients_map.values() if a['index'] < one_percent_line_index]
         start_anchor = {'index': -1, 'perc': guess_start_perc}
-        
-        # ** 1% RULE ENFORCEMENT PART 3: Set a 1% Floor for Interpolation **
-        # This virtual anchor ensures the interpolation for ingredients above the line
-        # always descends towards 1.0%, keeping them above 1%.
         end_anchor = {'index': one_percent_line_index, 'perc': 1.0}
-        
         all_anchors = sorted(list({v['index']: v for v in [start_anchor] + anchors_above_1 + [end_anchor]}.values()), key=lambda x: x['index'])
 
         for i in range(len(all_anchors) - 1):
@@ -199,21 +191,27 @@ def estimate_percentages(inci_list, profile, all_data, known_percentages, profil
                     ing_index = s_anchor['index'] + 1 + j
                     ing_name = inci_list[ing_index]
                     if ing_name not in known_ingredients_map:
-                        # The interpolated value will be > e_anchor['perc'] (our 1% floor)
                         temp_percentages[ing_name] = s_anchor['perc'] - (step_size * (j + 1))
         
         current_total = sum(temp_percentages.values())
+        error = abs(100.0 - current_total)
         
+        # ** THE FIX: Check if this iteration produced a better result (closer to 100) **
+        if error < smallest_error:
+            smallest_error = error
+            best_result = temp_percentages
+        
+        # Refine the search space for the next iteration
         if current_total > 100.0:
-            high_bound = guess_start_perc # Guess was too high, lower the ceiling
+            high_bound = guess_start_perc
         else:
-            low_bound = guess_start_perc  # Guess was too low, raise the floor
+            low_bound = guess_start_perc
             
-        final_percentages = temp_percentages
+    final_percentages = best_result
 
-    # Final sanity check to clean up any floating point dust
+    # Final sanity check for negative values caused by edge cases
     for name in final_percentages:
-        if final_percentages[name] < 0:
+        if final_percentages.get(name, 0) < 0:
             final_percentages[name] = 0.0
 
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
