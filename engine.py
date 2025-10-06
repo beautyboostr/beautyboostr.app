@@ -21,7 +21,8 @@ def load_all_data():
         "narrative_templates": "data/narrative_templates.json",
         "scoring_config": "data/scoring_config.json",
         "prohibited_ingredients": "data/prohibited_ingredients.json",
-        "category_scoring_rules": "data/category_scoring_rules.json"
+        "category_scoring_rules": "data/category_scoring_rules.json",
+        "usage_ranges": "data/ingredient_usage_ranges.json" # UPDATED: Loading the new file
     }
     
     for name, path in files_to_load.items():
@@ -29,7 +30,12 @@ def load_all_data():
             with open(path, 'r', encoding='utf-8-sig') as f:
                 data[name] = json.load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
+            # For the new file, don't raise a fatal error, just warn and continue.
+            if name == "usage_ranges":
+                st.warning(f"Optional data file not found at '{path}'. Estimation will be less accurate.")
+                data[name] = {}
+            else:
+                raise FileNotFoundError(f"Fatal Error: A required data file was not found at '{path}'.")
         except json.JSONDecodeError as e:
             raise ValueError(f"Fatal Error: Error decoding JSON from file '{path}': {e}.")
             
@@ -77,8 +83,10 @@ def run_full_analysis(product_name, inci_list_str, known_percentages_str):
         if not profile:
             st.error("Fatal Error: Could not retrieve a valid product profile. Analysis halted.")
             return None, None, None, None
-            
-        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], known_percentages)
+        
+        # UPDATED: The call to estimate_percentages now passes all_data and the profile_key
+        ingredients_with_percentages = estimate_percentages(inci_list, profile, ALL_DATA["one_percent_markers"], known_percentages, ALL_DATA, profile_key)
+        
         analyzed_ingredients = analyze_ingredient_functions(ingredients_with_percentages, ALL_DATA)
         product_roles = identify_product_roles(analyzed_ingredients, ALL_DATA["product_functions"], profile_key)
         
@@ -103,83 +111,65 @@ def check_for_prohibited(inci_list, prohibited_data):
 # --- STAGE 1 FUNCTIONS ---
 def get_product_profile(product_name, profiles_data):
     name_lower = product_name.lower()
-    
-    # This map now includes 'purifying cleanser'
     keyword_map = {
-        "oil cleanser": "Oil-based Cleanser", 
-        "cleansing oil": "Oil-based Cleanser", 
-        "cleansing balm": "Oil-based Cleanser",
-        "cream cleanser": "Hydrating Cream Cleanser", 
-        "milk cleanser": "Hydrating Cream Cleanser", 
-        "foaming cleanser": "Gentle Foaming Cleanser",
-        "purifying cleanser": "Gentle Foaming Cleanser", # NEW: Added 'purifying cleanser'
-        "rich cream": "Barrier Repair Moisturizer", 
-        "barrier cream": "Barrier Repair Moisturizer", 
-        "night cream": "Anti-aging Moisturizer",
-        "lotion": "Lightweight Moisturizer", 
-        "gel cream": "Lightweight Moisturizer", 
-        "sunscreen": "SPF 30+", 
-        "spf": "SPF 30+",
-        "serum": "Hydrating Serum", 
-        "essence": "Hydrating Essence", 
-        "toner": "Hydrating Toner", 
-        "clay mask": "Clay Mask", 
-        "mask": "Hydrating Mask or Oil",
-        "face oil": "Face Oil", 
-        "eye cream": "Eye Cream", 
-        "lip balm": "Lip Balm", 
-        "mist": "Hydrating Mist",
-        "cleanser": "Gentle Foaming Cleanser", # Default cleanser
-        "cream": "Barrier Repair Moisturizer",   # Default rich cream
-        "moisturizer": "Lightweight Moisturizer" # Default moisturizer
+        "oil cleanser": "Oil-based Cleanser", "cleansing oil": "Oil-based Cleanser", "cleansing balm": "Oil-based Cleanser",
+        "cream cleanser": "Hydrating Cream Cleanser", "milk cleanser": "Hydrating Cream Cleanser", "foaming cleanser": "Gentle Foaming Cleanser",
+        "purifying cleanser": "Gentle Foaming Cleanser",
+        "rich cream": "Barrier Repair Moisturizer", "barrier cream": "Barrier Repair Moisturizer", "night cream": "Anti-aging Moisturizer",
+        "lotion": "Lightweight Moisturizer", "gel cream": "Lightweight Moisturizer", "sunscreen": "SPF 30+", "spf": "SPF 30+",
+        "serum": "Hydrating Serum", "essence": "Hydrating Essence", "toner": "Hydrating Toner", "clay mask": "Clay Mask", "mask": "Hydrating Mask or Oil",
+        "face oil": "Face Oil", "eye cream": "Eye Cream", "lip balm": "Lip Balm", "mist": "Hydrating Mist",
+        "cleanser": "Gentle Foaming Cleanser", "cream": "Barrier Repair Moisturizer", "moisturizer": "Lightweight Moisturizer"
     }
-    
     for keyword, profile_key in keyword_map.items():
         if keyword in name_lower:
             profile = profiles_data.get(profile_key)
             if profile:
                 st.write(f"**[DEBUG] Stage 1: Product Profile Identified.** Keyword: `{keyword}`. Profile: **{profile_key}**")
                 return profile, profile_key
-                
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
-# --- REPLACEMENT for estimate_percentages in engine.py ---
-def estimate_percentages(inci_list, profile, markers, known_percentages):
+# UPDATED: This function is now fully replaced with the version that uses ingredient_usage_ranges.json
+def estimate_percentages(inci_list, profile, markers, known_percentages, all_data, profile_key):
     percentages = {name: 0.0 for name in inci_list}
-    
+    usage_ranges = all_data.get("usage_ranges", {})
+
     # Step 1: Place known percentages as anchors
     for name, perc in known_percentages.items():
         match = process.extractOne(name, inci_list)
         if match and match[1] > 90:
             percentages[match[0]] = float(perc)
 
-    # Step 2: Perform a simple backward fill to establish a correctly ordered list
+    # Step 2: Backward fill, constrained by usage ranges
     for i in range(len(inci_list) - 1, -1, -1):
         current_ing = inci_list[i]
-        if percentages[current_ing] > 0: continue # Skip if it's a known anchor
+        if percentages[current_ing] > 0: continue
 
-        floor_perc = 0.01 # Start with a minimum floor
+        floor_perc = 0.01
         if i + 1 < len(inci_list):
             floor_perc = percentages[inci_list[i+1]]
 
-        # Set the current ingredient to be slightly higher than the one after it
-        percentages[current_ing] = floor_perc * 1.3 + 0.01 
+        estimated_perc = floor_perc * 1.3 + 0.01
+
+        # Check for a max usage constraint from the new data file
+        ing_ranges = usage_ranges.get(current_ing.lower(), {})
+        max_perc_from_range = ing_ranges.get(profile_key, ing_ranges.get("default", [None, None]))[1]
+        
+        if max_perc_from_range is not None:
+            estimated_perc = min(estimated_perc, max_perc_from_range)
+
+        percentages[current_ing] = estimated_perc
 
     # Step 3: Use the 1% line to proportionally scale all estimated ingredients
-    # Find the first ingredient that is a known 1% marker (and is not a user-provided anchor)
     one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", []) and ing not in known_percentages), -1)
 
-    # If a 1% marker is found, use it to determine the primary scaling factor
     if one_percent_line_index != -1:
         marker_ingredient_name = inci_list[one_percent_line_index]
         unnormalized_value_at_marker = percentages[marker_ingredient_name]
         
-        # We want this ingredient to be at ~1.0%. This gives us our scaling factor.
         if unnormalized_value_at_marker > 0:
             scaling_factor = 1.0 / unnormalized_value_at_marker
-            
-            # Apply this factor to ALL estimated ingredients. This preserves the order.
             for ing in percentages:
                 if ing not in known_percentages:
                     percentages[ing] *= scaling_factor
@@ -196,7 +186,6 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
     
     if estimated_sum > 0 and remaining_to_distribute > 0:
         final_factor = remaining_to_distribute / estimated_sum
-        # Apply the final normalization factor to all estimated ingredients
         for ing in percentages:
             if ing not in known_percentages:
                 percentages[ing] *= final_factor
@@ -204,7 +193,7 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
-# --- REPLACEMENT for analyze_ingredient_functions in engine.py ---
+
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
     ingredients_dict = {item['inci_name'].lower(): item for item in all_data["ingredients"]}
@@ -212,9 +201,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     
     for item in ingredients_with_percentages:
         ingredient_name_lower = item['name'].lower()
-        if ingredient_name_lower == 'aqua':
-            ingredient_name_lower = 'water'
-            
+        if ingredient_name_lower == 'aqua': ingredient_name_lower = 'water'
         functions, source = [], "Heuristic"
         best_match = None
 
@@ -230,8 +217,7 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
                 for behavior in data['behaviors']:
                     if isinstance(behavior, dict) and behavior.get('functions'):
                         functions.extend(behavior.get('functions', []))
-                if functions:
-                    source = f"Database (Match: {matched_name})"
+                if functions: source = f"Database (Match: {matched_name})"
 
         if source == "Heuristic":
             if "extract" in ingredient_name_lower: functions.extend(["Antioxidant", "Soothing"])
@@ -241,15 +227,13 @@ def analyze_ingredient_functions(ingredients_with_percentages, all_data):
         positive_functions = ["Hydration", "Soothing", "Antioxidant", "Brightening", "Anti-aging", "Exfoliation (mild)", "Barrier Support", "Sebum Regulation", "UV Protection", "Emollient", "Humectant"]
         unique_functions = list(set(functions))
         classification = "Positive Impact" if any(pf in unique_functions for pf in positive_functions) else "Neutral/Functional"
-        
         item.update({'functions': unique_functions, 'classification': classification, 'source': source})
         annotated_list.append(item)
 
     st.write(f"**[DEBUG] Stage 3: Ingredient Functions Analyzed.**")
-    # MODIFIED: The filter "if ing['classification'] == 'Positive Impact'" has been removed to show ALL ingredients.
     st.text("\n".join([f"- {ing['name']} ({ing['classification']}) (Source: {ing.get('source', 'N/A')}): {ing.get('functions', [])}" for ing in annotated_list]))
-    
     return annotated_list
+
 def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     product_functions = {func for ing in analyzed_ingredients for func in ing.get('functions', [])}
     matched_roles = []
@@ -270,10 +254,7 @@ def identify_product_roles(analyzed_ingredients, function_rules, profile_key):
     return list(set(matched_roles))
 
 def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data, ingredients_data):
-    ai_says_output = {}
-    formula_breakdown = {}
-    potential_concerns = []
-    
+    ai_says_output, formula_breakdown, potential_concerns = {}, {}, []
     ingredient_percentages = {ing['name'].lower(): ing['estimated_percentage'] for ing in analyzed_ingredients}
     scoring_rules = scoring_rules_data.get("categories", {})
 
@@ -297,19 +278,16 @@ def generate_analysis_output(analyzed_ingredients, templates, scoring_rules_data
 
         generic_function_set = set(rules.get("generic_functions", []))
         bonus_points_per_match = 1.5
-
         for ingredient in analyzed_ingredients:
             ing_name_lower = ingredient['name'].lower()
             is_already_scored = any(process.extractOne(star['name'].lower(), [ing_name_lower])[1] > 95 for star in rules.get("star_ingredients", [])) or \
                                 any(process.extractOne(sup.lower(), [ing_name_lower])[1] > 95 for sup in supporting_rules.keys())
-            
             if not is_already_scored and generic_function_set.intersection(set(ingredient.get('functions', []))):
                 points += bonus_points_per_match
                 if ingredient['name'].title() not in generic_contributors_found:
                     generic_contributors_found.append(ingredient['name'].title())
 
         final_score = round(min(10, (points / rules.get("max_points", 100)) * 10), 1)
-
         if final_score > 0.5:
             template_set = templates.get(category_name, {})
             narrative = ""
