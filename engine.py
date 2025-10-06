@@ -144,14 +144,18 @@ def get_product_profile(product_name, profiles_data):
     st.warning("Could not automatically determine product type. Using 'Hydrating Serum' as a default.")
     return profiles_data.get("Hydrating Serum"), "Hydrating Serum"
 
+# --- REPLACEMENT for estimate_percentages in engine.py ---
 def estimate_percentages(inci_list, profile, markers, known_percentages):
     percentages = {name: 0.0 for name in inci_list}
     
+    # Place known percentages as anchors
     for name, perc in known_percentages.items():
         match = process.extractOne(name, inci_list)
         if match and match[1] > 90:
             percentages[match[0]] = float(perc)
 
+    # --- Step 1: Perform the initial backward fill ---
+    # This creates a list that respects the descending order rule
     for i in range(len(inci_list) - 1, -1, -1):
         current_ing = inci_list[i]
         if percentages[current_ing] > 0: continue
@@ -162,31 +166,49 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
             floor_perc = percentages[next_ing]
 
         estimated_perc = floor_perc * 1.1 + 0.01 
-        
-        one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
-        if one_percent_line_index != -1 and i >= one_percent_line_index:
-            estimated_perc = min(estimated_perc, 1.0)
-            
         percentages[current_ing] = estimated_perc
+
+    # --- Step 2: CORRECTED Smart Normalization ---
+    one_percent_line_index = next((idx for idx, ing in enumerate(inci_list) if ing in markers.get("markers", [])), -1)
 
     known_sum = sum(p for ing, p in percentages.items() if ing in known_percentages)
     if known_sum > 100:
         st.error("Error: The sum of known percentages exceeds 100%.")
         raise ValueError("Sum of known percentages exceeds 100%.")
-    
-    estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
-    remaining_to_distribute = 100.0 - known_sum
-    
-    if estimated_sum > 0 and remaining_to_distribute > 0:
-        factor = remaining_to_distribute / estimated_sum
-        for ing in percentages:
+
+    # Lock in the percentages for ingredients below the 1% line
+    fixed_below_1_line_sum = 0
+    if one_percent_line_index != -1:
+        for i in range(one_percent_line_index, len(inci_list)):
+            ing = inci_list[i]
             if ing not in known_percentages:
-                percentages[ing] *= factor
-        
+                # Cap the value and add it to the "fixed" sum
+                percentages[ing] = min(percentages[ing], 1.0)
+                fixed_below_1_line_sum += percentages[ing]
+
+    # Calculate the percentage remaining to be distributed ONLY to the top ingredients
+    remaining_to_distribute = 100.0 - known_sum - fixed_below_1_line_sum
+
+    # Calculate the current sum of the top ingredients that we need to normalize
+    sum_to_normalize = 0
+    ingredients_to_normalize = []
+    # Determine the boundary for normalization (either the 1% line or the whole list)
+    normalization_boundary = one_percent_line_index if one_percent_line_index != -1 else len(inci_list)
+    for i in range(normalization_boundary):
+        ing = inci_list[i]
+        if ing not in known_percentages:
+            sum_to_normalize += percentages[ing]
+            ingredients_to_normalize.append(ing)
+
+    # Apply normalization factor ONLY to the top ingredients
+    if sum_to_normalize > 0 and remaining_to_distribute > 0:
+        factor = remaining_to_distribute / sum_to_normalize
+        for ing in ingredients_to_normalize:
+            percentages[ing] *= factor
+            
     st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
     st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
     return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
-
 # --- REPLACEMENT for analyze_ingredient_functions in engine.py ---
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
