@@ -192,7 +192,18 @@ def estimate_percentages(inci_list, profile, markers, known_percentages):
 
     estimated_sum = sum(p for ing, p in percentages.items() if ing not in known_percentages)
     
-    remaining_to_distribute = 100.
+    remaining_to_distribute = 100.0 - known_sum
+    
+    if estimated_sum > 0 and remaining_to_distribute > 0:
+        final_factor = remaining_to_distribute / estimated_sum
+        # Apply the final normalization factor to all estimated ingredients
+        for ing in percentages:
+            if ing not in known_percentages:
+                percentages[ing] *= final_factor
+    
+    st.write(f"**[DEBUG] Stage 2: Full Estimated Formula.**")
+    st.text("\n".join([f"- {name}: {perc:.4f}%" for name, perc in percentages.items()]))
+    return [{"name": name, "estimated_percentage": perc} for name, perc in percentages.items()]
 # --- REPLACEMENT for analyze_ingredient_functions in engine.py ---
 def analyze_ingredient_functions(ingredients_with_percentages, all_data):
     db_names = all_data["ingredient_names_for_matching"]
