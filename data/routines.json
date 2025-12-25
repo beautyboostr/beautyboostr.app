@@ -1,1945 +1,1945 @@
 {
   "Type 1-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 1-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating serum" },
+      { "step_number": 3, "product_function": "Lipid-barrier moisturizer" }
     ]
   },
   "Type 1-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 4, "product_function": "SPF 30+" },
-      { "step_number": 5, "product_function": "Lip Balm" }
+      { "step_number": 3, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 4, "product_function": "SPF cream 30+" },
+      { "step_number": 5, "product_function": "Lip care" }
     ]
   },
   "Type 1-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 3, "product_function": "Hydrating serum" },
+      { "step_number": 4, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 1-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Serum" },
+      { "step_number": 3, "product_function": "Hydrating serum" },
       { "step_number": 4, "product_function": "Eye Cream" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lip care" }
     ]
   },
   "Type 1-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Weekly Exfoliant" },
-      { "step_number": 5, "product_function": "Hydrating Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
+      { "step_number": 5, "product_function": "Hydrating serum" },
+      { "step_number": 6, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 2-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 2-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 2-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Essence or Weekly Exfoliant" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 2-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 2-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Essence or Weekly Exfoliant" },
-      { "step_number": 4, "product_function": "Hydrating Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 3, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Hydrating serum" },
+      { "step_number": 5, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lips Care" }
     ]
   },
   "Type 2-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Hydrating Essence" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 3-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 3-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Lipid-barrier moisturizer" }
     ]
   },
   "Type 3-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 3-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Brightening Essence or Weekly Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 3, "product_function": "Pigmentation Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 3-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Mist" },
-      { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 4, "product_function": "Lipid-Barrier serum" },
+      { "step_number": 5, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lip care" }
     ]
   },
   "Type 3-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Weekly Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Soothing Toner" },
+      { "step_number": 4, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 6, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 4-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 4-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Anti-aging intensive serum" },
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 4-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Lipid-Barrier serum" },
+      { "step_number": 4, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 4-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 3, "product_function": "Anti-aging intensive serum" },
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 4-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
+      { "step_number": 3, "product_function": "Lipid-Barrier serum" },
       { "step_number": 4, "product_function": "Eye Cream" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
+      { "step_number": 5, "product_function": "Lipid-barrier moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 4-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Weekly Exfoliant" },
-      { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Brightening Essence / Weekly Exfoliant" },
+      { "step_number": 5, "product_function": "Anti-aging intensive serum" },
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 5-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 5-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Barrier Repair Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 5-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 5-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 5-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 5-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 6-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 6-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 6-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 6-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "Oil or anti-aging mask" }
     ]
   },
   "Type 6-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 6-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Oil or anti-aging mask" }
     ]
   },
   "Type 7-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 7-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 7-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Essence" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Lipid-Barrier and soothing serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 7-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
+      { "step_number": 3, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 4, "product_function": "Pigmentation Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 7-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
-      { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
+      { "step_number": 4, "product_function": "Lipid-barrier and soothing serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 7-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Soothing Hydrating Mask/Oil" }
     ]
   },
   "Type 8-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 8-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 8-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Essence" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Lipid-Barrier and soothing serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 8-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
+      { "step_number": 3, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 8-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
-      { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
+      { "step_number": 4, "product_function": "Lipid-Barrier and soothing serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 8-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Brightening Essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Antiaging Mask or Oil" }
     ]
   },
   "Type 9-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 9-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Barrier Repair Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Redness Relief Moisturizer" }
     ]
   },
   "Type 9-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 9-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 9-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" },
-      { "step_number": 6, "product_function": "Lip Balm" },
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" },
+      { "step_number": 6, "product_function": "Lip care" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 9-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
       { "step_number": 4, "product_function": "Hydrating Essence" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 10-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 10-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 10-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 10-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Essence / Weekly Exfoliant" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "Anti-aging Soothing Mask/Oil" }
     ]
   },
   "Type 10-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" },
-      { "step_number": 6, "product_function": "Lip Balm" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" },
+      { "step_number": 6, "product_function": "Lips Care" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 10-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Hydrating Essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Anti-aging Soothing Mask/Oil" }
     ]
   },
   "Type 11-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 11-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 11-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Lipid-Barrier Soothing + Redness Relief Serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 11-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Brightening or Hydrating Essence" },
-      { "step_number": 3, "product_function": "Pigmentation Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 3, "product_function": "Pigmintation serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 11-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lips Care" }
     ]
   },
   "Type 11-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
       { "step_number": 4, "product_function": "Brightening Essence" },
-      { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 5, "product_function": "Pigmintation serum" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 12-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 12-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 12-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Lipid-Barrier Soothing + Redness Relief Serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 12-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Essense hydrating / Weekly Exfoliant" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 12-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" },
-      { "step_number": 6, "product_function": "Lip Balm" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" },
+      { "step_number": 6, "product_function": "Lips Care" },
       { "step_number": 7, "product_function": "Hydrating Mist" }
     ]
   },
   "Type 12-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Soothing Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Very Gentle Exfoliant" },
+      { "step_number": 4, "product_function": "Hydrating Essence / Weekly Gentle Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 13-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 13-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Refining Serum" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "pH-Balanced Serum" },
       { "step_number": 3, "product_function": "Lightweight Moisturizer" }
     ]
   },
   "Type 13-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Eye Cream" },
+      { "step_number": 3, "product_function": "Eye products" },
       { "step_number": 4, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 13-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Refining Serum" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "pH-Balanced Serum" },
       { "step_number": 4, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 13-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Brightening Essence" },
-      { "step_number": 4, "product_function": "Refining Serum" },
-      { "step_number": 5, "product_function": "Eye Cream" },
+      { "step_number": 4, "product_function": "pH-Balanced Serum" },
+      { "step_number": 5, "product_function": "Eye products" },
       { "step_number": 6, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 7, "product_function": "SPF 30+" }
+      { "step_number": 7, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 13-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
       { "step_number": 4, "product_function": "Brightening Essence" },
-      { "step_number": 5, "product_function": "Refining Serum" },
+      { "step_number": 5, "product_function": "pH-Balanced Serum" },
       { "step_number": 6, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 14-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Anti-aging Cream" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 14-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 14-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 14-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "Anti-aging Mask / Oil" }
     ]
   },
   "Type 14-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "SPF 30+" }
+      { "step_number": 5, "product_function": "Anti-aging Eye products" },
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 14-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating Essence or Weekly Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Essence / Exfoliant2-3x/week" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 5, "product_function": "Anti-aging eye products" },
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 15-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 15-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
       { "step_number": 3, "product_function": "Lightweight Moisturizer" }
     ]
   },
   "Type 15-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Serum" },
+      { "step_number": 3, "product_function": "Hydrating serum" },
       { "step_number": 4, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 15-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Brightening Essence or Weekly Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 3, "product_function": "Pigmentation Serum" },
       { "step_number": 4, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 5, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 5, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 15-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Brightening Essence" },
-      { "step_number": 4, "product_function": "Hydrating Serum" },
+      { "step_number": 4, "product_function": "Hydrating serum" },
       { "step_number": 5, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lip care" }
     ]
   },
   "Type 15-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Weekly Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Brightening Essence / Exfoliant2-3x/week" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
       { "step_number": 6, "product_function": "Lightweight Moisturizer" },
-      { "step_number": 7, "product_function": "Hydrating Mask or Oil" }
+      { "step_number": 7, "product_function": "Hydrating Mask/Oil" }
     ]
   },
   "Type 16-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Anti-aging Cream" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 16-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 16-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 3, "product_function": "Hydrating serum" },
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 16-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Brightening Essence or Weekly Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 5, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 4, "product_function": "Anti-aging Cream" },
+      { "step_number": 5, "product_function": "Anti-aging Mask / Oil" }
     ]
   },
   "Type 16-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Brightening Essence" },
-      { "step_number": 4, "product_function": "Hydrating Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 4, "product_function": "Hydrating serum" },
+      { "step_number": 5, "product_function": "Anti-aging Cream" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lips Care" }
     ]
   },
   "Type 16-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Enzyme Essence or Weekly Exfoliant" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Enzyme essence / Exfoliant 2-3x/week" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Anti-aging Mask / Oil" }
     ]
   },
   "Type 17-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 17-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Barrier Repair Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 17-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 17-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser/Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Essence / Exfoliant 1-2x/week" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 17-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lips Care" }
     ]
   },
   "Type 17-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Hydrating Essence / Exfoliant 1-2x/week" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 18-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 18-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 18-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 18-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Hydrating Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Essence / Exfoliant 1-2x/week" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 18-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lip care" }
     ]
   },
   "Type 18-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Enzyme Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Enzyme essence / Exfoliant 1-2x/week" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 19-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 19-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 19-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 19-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 4, "product_function": "Pigmentation Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 19-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lip care" }
     ]
   },
   "Type 19-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 20-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Anti-aging Cream" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 20-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 20-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 20-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 20-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating Essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lip Balm" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Lips Care" }
     ]
   },
   "Type 20-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Soothing Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 21-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 21-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Barrier Repair Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 21-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and Soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 21-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Calming Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and Soothing Toner" },
+      { "step_number": 3, "product_function": "Calming essence / Exfoliant(1 time a week)" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 21-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Calming Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 3, "product_function": "Calming essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Soothing Mist" }
+      { "step_number": 5, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Soothing mist" }
     ]
   },
   "Type 21-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Calming Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Moisturizing and Soothing Toner" },
+      { "step_number": 4, "product_function": "Calming essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Soothing mask or oil" }
     ]
   },
   "Type 22-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 22-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 22-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 22-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Calming Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 3, "product_function": "Calming essence / Weekly Exfoliant" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 22-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Calming Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 3, "product_function": "Calming essence" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Soothing Mist" }
+      { "step_number": 5, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Soothing mist" }
     ]
   },
   "Type 22-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
+      { "step_number": 7, "product_function": "Lipid-barrier Soothing Mask or Oil" }
     ]
   },
   "Type 23-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 23-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 23-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 23-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Brightening Essence" },
       { "step_number": 4, "product_function": "Pigmentation Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 23-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Eye Cream" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Soothing Mist" }
+      { "step_number": 5, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Soothing mist" }
     ]
   },
   "Type 23-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Brightening Essence or Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 4, "product_function": "Brightening Essence / Exfoliant 1-2x/week" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Lipid-barrier Soothing Mask or Oil" }
     ]
   },
   "Type 24-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 3, "product_function": "SPF 30+" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 3, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 24-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 24-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 5, "product_function": "SPF 30+" }
+      { "step_number": 4, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 5, "product_function": "SPF cream 30+" }
     ]
   },
   "Type 24-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
       { "step_number": 3, "product_function": "Hydrating or Calming Essence" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 24-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Eye Cream" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 3, "product_function": "Anti-aging Eye Cream" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Barrier Repair Moisturizer" },
-      { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Soothing Mist" }
+      { "step_number": 5, "product_function": "Redness Relief Moisturizer" },
+      { "step_number": 6, "product_function": "SPF cream 30+" },
+      { "step_number": 7, "product_function": "Soothing mist" }
     ]
   },
   "Type 24-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating Cream Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Hydrating or Calming Essence or Very Gentle Exfoliant" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Moisturizing and soothing Toner" },
+      { "step_number": 4, "product_function": "Hydrating or Calming Essence / Weekly Exfoliant" },
       { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Anti-aging Moisturizer" },
+      { "step_number": 6, "product_function": "Anti-aging Cream" },
       { "step_number": 7, "product_function": "Anti-aging or Soothing Mask or Oil" }
     ]
   },
   "Type 25-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 25-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
       { "step_number": 2, "product_function": "Refining Serum" },
-      { "step_number": 3, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 3, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 25-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Refining Serum" },
-      { "step_number": 4, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 4, "product_function": "Hydrating Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 25-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 3, "product_function": "Essence for oil control / Clarifying Mask 1-2x/week" },
       { "step_number": 4, "product_function": "Refining Serum" },
-      { "step_number": 5, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 5, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 25-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Refining Serum" },
-      { "step_number": 5, "product_function": "Oil Control Mist" },
-      { "step_number": 6, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 5, "product_function": "Mist for Oil Control" },
+      { "step_number": 6, "product_function": "Hydrating Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 25-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 4, "product_function": "Essence for oil control / Clarifying Mask 1-2x/week" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Refining Serum" },
-      { "step_number": 7, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 7, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 26-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 26-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging or Lightweight Moisturizer" }
+      { "step_number": 3, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 26-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 4, "product_function": "Hydrating Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 26-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 3, "product_function": "Essense for oil control / clarifying mask 1-2x/week" },
       { "step_number": 4, "product_function": "Refining Serum" },
-      { "step_number": 5, "product_function": "Anti-aging or Lightweight Moisturizer" }
+      { "step_number": 5, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 26-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Hydrating Mist" },
-      { "step_number": 6, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 5, "product_function": "Mists" },
+      { "step_number": 6, "product_function": "Hydrating Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 26-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 4, "product_function": "Essense for oil control / clarifying mask 1-2x/week" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Refining Serum" },
-      { "step_number": 7, "product_function": "Anti-aging or Lightweight Moisturizer" }
+      { "step_number": 7, "product_function": "Anti-aging Cream" }
     ]
   },
   "Type 27-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 27-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
       { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 3, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 27-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Refining Serum" },
-      { "step_number": 4, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 4, "product_function": "Hydrating Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 27-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 3, "product_function": "Essence for Oil Control / Weekly Clarifying Mask" },
       { "step_number": 4, "product_function": "Pigmentation Serum" },
-      { "step_number": 5, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 5, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 27-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Refining Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 6, "product_function": "Hydrating Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 27-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 4, "product_function": "Essence for Oil Control / Weekly Clarifying Mask" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
       { "step_number": 6, "product_function": "Eye Cream" },
-      { "step_number": 7, "product_function": "Lightweight Moisturizer" }
+      { "step_number": 7, "product_function": "Hydrating Moisturizer" }
     ]
   },
   "Type 28-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 28-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Intensive Anti-aging Serum" },
+      { "step_number": 3, "product_function": "Anti-aging night cream" }
     ]
   },
   "Type 28-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
       { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Refining Serum" },
-      { "step_number": 4, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 4, "product_function": "Hydrating Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 28-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 2, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 3, "product_function": "Oil Control Essence or Clay Mask" },
-      { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 3, "product_function": "Essence for Oil Control / Weekly Clarifying Mask" },
+      { "step_number": 4, "product_function": "Intensive Anti-aging Serum" },
+      { "step_number": 5, "product_function": "Anti-aging Night cream" }
     ]
   },
   "Type 28-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
       { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Refining Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Moisturizer" },
+      { "step_number": 6, "product_function": "Hydrating Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 28-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Clarifying Cleanser" },
-      { "step_number": 3, "product_function": "Hydrating or Clarifying Toner" },
-      { "step_number": 4, "product_function": "Oil Control Essence or Clay Mask" },
-      { "step_number": 5, "product_function": "Anti-aging Serum" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 2-3x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 4, "product_function": "Essence for Oil Control / Weekly Clarifying Mask" },
+      { "step_number": 5, "product_function": "Intensive Anti-aging Serum" },
       { "step_number": 6, "product_function": "Eye Cream" },
-      { "step_number": 7, "product_function": "Anti-aging Moisturizer" }
+      { "step_number": 7, "product_function": "Anti-aging Night cream" }
     ]
   },
   "Type 29-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 29-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 29-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 29-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence or Clay Mask" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 3, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
       { "step_number": 4, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 29-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 5, "product_function": "Barrier Support or Oil Control Mist" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 5, "product_function": "Mist for lipid-barrier or oil control" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 29-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Barrier Support Essence or Clay Mask" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
       { "step_number": 5, "product_function": "Eye Cream" },
       { "step_number": 6, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 7, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 7, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 30-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 30-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 30-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 30-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence or Clay Mask" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Clarifying Toner 2-3x/week" },
+      { "step_number": 3, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 30-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 5, "product_function": "Barrier Support or Oil Control Mist" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 5, "product_function": "Mist for lipid-barrier or oil control" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 30-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging or Soothing Mask or Oil" }
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Anti-aging or soothing mask or oil" }
     ]
   },
   "Type 31-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 31-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Pigmentation soothing serum" },
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 31-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
       { "step_number": 3, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 31-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence or Clay Mask" },
-      { "step_number": 4, "product_function": "Pigmentation Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
+      { "step_number": 4, "product_function": "Pigmentation soothing serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 31-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
       { "step_number": 4, "product_function": "Clarifying Soothing Serum" },
-      { "step_number": 5, "product_function": "Barrier Support or Oil Control Mist" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 5, "product_function": "Mist for lipid-barrier or oil control" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 31-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Barrier Support Essence or Clay Mask" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
       { "step_number": 5, "product_function": "Pigmentation Serum" },
       { "step_number": 6, "product_function": "Eye Cream" },
-      { "step_number": 7, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 7, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 32-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 32-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Anti-aging Soothing Serum" },
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 32-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Anti-aging Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Hydrating Toner" },
+      { "step_number": 3, "product_function": "Anti-aging Soothing Serum" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 32-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 2, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence or Clay Mask" },
-      { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Hydrating Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
+      { "step_number": 4, "product_function": "Anti-aging Soothing Serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 32-7-morning": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser" },
+      { "step_number": 3, "product_function": "Hydrating Toner" },
+      { "step_number": 4, "product_function": "Anti-aging Soothing Serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Hydrating Mist" }
+      { "step_number": 7, "product_function": "Mists" }
     ]
   },
   "Type 32-7-evening": {
     "steps": [
       { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming or Enzyme Cleanser" },
-      { "step_number": 3, "product_function": "Soothing or Gentle Exfoliating Toner" },
-      { "step_number": 4, "product_function": "Barrier Support Essence or Clay Mask" },
-      { "step_number": 5, "product_function": "Anti-aging Serum" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
-      { "step_number": 7, "product_function": "Anti-aging Mask or Oil" }
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Hydrating Toner / Clarifying Toner 1-2x/week" },
+      { "step_number": 4, "product_function": "Lipid-Barrier Essence / Weekly Clarifying mask" },
+      { "step_number": 5, "product_function": "Anti-aging Soothing Serum" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
+      { "step_number": 7, "product_function": "Antiaging mask" }
     ]
   },
   "Type 33-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 33-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Barrier Repair Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 33-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 33-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence / Mist" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 33-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 33-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 4, "product_function": "Barrier building Essence / Mist" },
       { "step_number": 5, "product_function": "Barrier Repair Serum" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 34-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 34-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 34-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 34-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
       { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 34-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 34-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 4, "product_function": "Barrier Building Essence/Mist" },
+      { "step_number": 5, "product_function": "Anti-aging Serum" },
+      { "step_number": 6, "product_function": "Eye Cream" },
       { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 35-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 35-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Pigmentation Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Pigmentation soothing serum" },
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 35-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 35-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
-      { "step_number": 4, "product_function": "Eye Cream" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
+      { "step_number": 4, "product_function": "Pigmentation soothing serum" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 35-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
-      { "step_number": 4, "product_function": "Barrier Repair Serum" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
+      { "step_number": 4, "product_function": "Eye Cream" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 6, "product_function": "SPF 30+" },
-      { "step_number": 7, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 7, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 35-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Barrier Support Essence" },
-      { "step_number": 5, "product_function": "Pigmentation Serum" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 4, "product_function": "Barrier Building Essence/Mist" },
+      { "step_number": 5, "product_function": "Pigmentation soothing serum" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   },
   "Type 36-3-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Redness Relief Moisturizer" },
       { "step_number": 3, "product_function": "SPF 30+" }
     ]
   },
   "Type 36-3-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
       { "step_number": 2, "product_function": "Anti-aging Serum" },
-      { "step_number": 3, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 3, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 36-5-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
       { "step_number": 3, "product_function": "Barrier Repair Serum" },
-      { "step_number": 4, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 4, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 5, "product_function": "SPF 30+" }
     ]
   },
   "Type 36-5-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence or Clay Mask" },
-      { "step_number": 4, "product_function": "Anti-aging Serum or Clay Mask" },
-      { "step_number": 5, "product_function": "Lightweight Barrier Repair Moisturizer" }
+      { "step_number": 1, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 2, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence / Weekly Clarifying mask" },
+      { "step_number": 4, "product_function": "Anti-aging Serum / Weekly Clarifying Mask" },
+      { "step_number": 5, "product_function": "Soothing Lipid-Barrier Moisturizer" }
     ]
   },
   "Type 36-7-morning": {
     "steps": [
-      { "step_number": 1, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 2, "product_function": "Soothing Toner" },
-      { "step_number": 3, "product_function": "Barrier Support Essence" },
+      { "step_number": 1, "product_function": "Hydrating Cleanser" },
+      { "step_number": 2, "product_function": "Moisturizing soothing Toner" },
+      { "step_number": 3, "product_function": "Barrier Building Essence/Mist" },
       { "step_number": 4, "product_function": "Barrier Repair Serum" },
       { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 6, "product_function": "Soothing Lipid-Barrier Moisturizer" },
       { "step_number": 7, "product_function": "SPF 30+" }
     ]
   },
   "Type 36-7-evening": {
     "steps": [
-      { "step_number": 1, "product_function": "Oil-based Cleanser" },
-      { "step_number": 2, "product_function": "Gentle Foaming Cleanser" },
-      { "step_number": 3, "product_function": "Soothing Toner" },
-      { "step_number": 4, "product_function": "Anti-aging Serum" },
-      { "step_number": 5, "product_function": "Eye Cream" },
-      { "step_number": 6, "product_function": "Lightweight Barrier Repair Moisturizer" },
+      { "step_number": 1, "product_function": "Cleansing Milk" },
+      { "step_number": 2, "product_function": "Hydrating Cleanser / Clarifying Cleanser 1-2x/week" },
+      { "step_number": 3, "product_function": "Moisturizing Soothing Toner / Weekly Clarifying Toner" },
+      { "step_number": 4, "product_function": "Barrier Building Essence/Mist" },
+      { "step_number": 5, "product_function": "Anti-aging Serum" },
+      { "step_number": 6, "product_function": "Eye Cream" },
       { "step_number": 7, "product_function": "Soothing Mask or Oil" }
     ]
   }
